@@ -1039,22 +1039,44 @@ img { max-width: 100%; display: block; }
 /* ── Track Toggle ── */
 .track-toggle {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 4px;
+  flex-direction: column;
+  gap: 6px;
   background: var(--bg-2);
   border: 1px solid var(--border);
   border-radius: var(--r);
-  padding: 4px;
+  padding: 10px;
   margin-bottom: 60px;
   width: 100%;
-  justify-content: center;
   box-shadow: var(--shadow-xs);
 }
-.track-btn {
-  padding: 8px 16px;
+.track-toggle-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+}
+.track-toggle-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: var(--g-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: var(--g-bg);
+  border: 1px solid var(--g-pale);
   border-radius: var(--r-sm);
-  font-size: 0.82rem;
+  padding: 5px 10px;
+  white-space: nowrap;
+}
+.track-toggle-sep {
+  height: 1px;
+  background: var(--border);
+  margin: 2px 0;
+}
+.track-btn {
+  padding: 7px 14px;
+  border-radius: var(--r-sm);
+  font-size: 0.8rem;
   font-weight: 600;
   cursor: pointer;
   transition: var(--t);
@@ -1142,6 +1164,44 @@ img { max-width: 100%; display: block; }
   }
   .hero-title { display: none; }
   .tracks-overview-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── Vertical section headers on tracks page ── */
+.tracks-vertical-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 20px;
+}
+.tracks-vertical-header-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 6px 14px;
+  border-radius: var(--r-sm);
+}
+.vert-label-data {
+  background: rgba(45,122,80,0.08);
+  color: var(--g-dark);
+  border: 1px solid var(--g-pale);
+}
+.vert-label-enterprise {
+  background: rgba(37,99,235,0.07);
+  color: #1D4ED8;
+  border: 1px solid rgba(37,99,235,0.18);
+}
+.tracks-vertical-header hr {
+  flex: 1;
+  border: none;
+  border-top: 1px solid var(--border);
+}
+.stage-desc {
+  font-size: 0.875rem;
+  color: var(--text-2);
+  line-height: 1.7;
+  margin-top: 12px;
 }
 
 /* Stage Cards */
@@ -1786,7 +1846,8 @@ footer {
   .stages-grid      { grid-template-columns: 1fr; }
   .capstone         { grid-template-columns: 1fr; text-align: center; }
   .capstone-icon    { margin: 0 auto; }
-  .track-toggle     { flex-direction: row; width: 100%; }
+  .track-toggle     { flex-direction: column; width: 100%; }
+  .track-toggle-group { justify-content: flex-start; }
   .track-btn        { text-align: center; flex: 0 0 auto; }
   .footer-inner     { grid-template-columns: 1fr; }
   .footer-bottom    { flex-direction: column; gap: 10px; text-align: center; }
