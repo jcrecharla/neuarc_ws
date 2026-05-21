@@ -11,7 +11,7 @@
   ];
 
   var MSG_TEMPLATE =
-    'Hi NeuArc AI Academy! I\'m interested in learning more about your AI courses and ' +
+    'Hi NeuArc AI Academy! I\'m interested in learning more about your courses and ' +
     'programs. Could you please provide some information on upcoming batches? ' +
     'Looking forward to hearing from you!';
 
