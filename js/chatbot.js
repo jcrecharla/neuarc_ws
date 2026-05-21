@@ -10,7 +10,9 @@
      NOTE: buddy.adviser@neuarcaiacademy.com must be activated
      via the confirmation link formsubmit.co sends on first POST.
   ───────────────────────────────────────────────────────────── */
-  var INTAKE_EMAIL = 'buddy.adviser@neuarcaiacademy.com';
+  var INTAKE_EMAIL   = 'buddy.adviser@neuarcaiacademy.com';
+  var INGEST_URL    = 'https://neuarc-admin.vercel.app/api/ingest'; /* ← your Vercel URL */
+  var INGEST_SECRET = 'REPLACE_WITH_YOUR_INGEST_SECRET';            /* ← match Vercel env var */
 
   /* ─────────────────────────────────────────────────────────────
      TRACK CATALOGUE  (16 tracks)
@@ -735,6 +737,7 @@
       '16_Prereq_Acknowledged':  d.prereqAck       || 'Confirmed',
     };
 
+    /* ── 1. FormSubmit email notification (existing) ── */
     fetch('https://formsubmit.co/ajax/' + INTAKE_EMAIL, {
       method:  'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
@@ -743,6 +746,37 @@
     .then(function (r) { return r.json(); })
     .then(function (r) { console.log('[NeuArc Advisor] email dispatch:', r); })
     .catch(function (e) { console.warn('[NeuArc Advisor] email dispatch failed:', e); });
+
+    /* ── 2. Admin portal ingest — writes lead to database ── */
+    var ingestPayload = {
+      '01_Full_Name':           payload['01_Full_Name'],
+      '02_Email':               payload['02_Email'],
+      '03_Education':           payload['03_Education'],
+      '04_Designation':         payload['04_Designation'],
+      '05_Experience':          payload['05_Experience'],
+      '06_Actively_Working':    payload['06_Actively_Working'],
+      '07_Current_CTC':         payload['07_Current_CTC'],
+      '08_Notice_Period':       payload['08_Notice_Period'],
+      '09_Expected_CTC':        payload['09_Expected_CTC'],
+      '10_Tech_Stack':          payload['10_Tech_Stack'],
+      '11_Target_Track':        payload['11_Target_Track'],
+      '12_Intent_Scope':        payload['12_Intent_Scope'],
+      '13_Lead_Source':         payload['13_Lead_Source'],
+      '14_Referral_Name':       payload['14_Referral_Name'],
+      '15_Referral_Phone':      payload['15_Referral_Phone'],
+      '16_Prereq_Acknowledged': payload['16_Prereq_Acknowledged'],
+    };
+    fetch(INGEST_URL, {
+      method:  'POST',
+      headers: {
+        'Content-Type':    'application/json',
+        'x-ingest-secret': INGEST_SECRET,
+      },
+      body: JSON.stringify(ingestPayload),
+    })
+    .then(function (r) { return r.json(); })
+    .then(function (r) { console.log('[NeuArc Advisor] ingest:', r); })
+    .catch(function (e) { console.warn('[NeuArc Advisor] ingest failed:', e); });
   }
 
   /* ─────────────────────────────────────────────────────────────
