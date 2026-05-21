@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NeuArc AI Academy — Stop Learning Code Syntax. Start Surviving Enterprise Production. Elite engineering training for developers ready to architect at scale." />
+  <title>NeuArc AI Academy — Enterprise Engineering Training</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ══ Navigation ══ -->
+<nav id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <img class="nav-logo-img" src="assets/neuarc-logo.png" alt="NeuArc AI Academy"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+      <span class="logo-css">NEUARC <span class="logo-css-sub">AI ACADEMY</span></span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="edge-framework.html">EDGE Framework</a></li>
+      <li><a href="tracks.html">Tracks</a></li>
+      <li><a href="career.html">Career Suite</a></li>
+      <li><a href="#apply" class="nav-cta">Apply Now</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ══ Hero ══ -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="hero-glow hero-glow-1"></div>
+    <div class="hero-glow hero-glow-2"></div>
+  </div>
+  <div class="hero-inner">
+
+    <!-- Left: Copy -->
+    <div class="hero-left">
+      <div class="hero-badge reveal">
+        <span class="badge-dot"></span>
+        Elite Engineering Academy &mdash; Production-Grade Training
+      </div>
+      <h1 class="hero-title reveal d1">
+        Stop Learning<br />Code Syntax.<br />
+        <span class="gradient-text">Start Surviving<br />Enterprise Production.</span>
+      </h1>
+      <p class="hero-sub reveal d2">
+        The market doesn't reward engineers who simply know how to write code anymore.
+        AI can handle baseline syntax in seconds. The future belongs to those who
+        <strong style="color:var(--white)">control the architecture.</strong>
+        <br /><br />
+        NeuArc AI Academy bypasses the introductory fluff, taking developers with
+        foundational knowledge and forging them into elite, AI-leveraged engineers through
+        real-time, product-specific deployment loops.
+      </p>
+      <div class="hero-ctas reveal d3">
+        <a href="#apply" class="btn btn-primary">Apply for Technical Evaluation</a>
+        <a href="edge-framework.html" class="btn btn-outline">Watch the EDGE Workflow</a>
+      </div>
+      <span class="btn-sub reveal d4">Admission is selective. 10-minute assessment of your basic syntax/logic loops required.</span>
+    </div>
+
+    <!-- Right: Terminal mockup + floating cards -->
+    <div class="hero-right reveal d2">
+      <div class="hero-terminal-wrap">
+        <!-- Floating animated stat cards -->
+        <div class="hero-float-card">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#D1EDD9"/><path d="M4 7l2 2 4-4" stroke="#2D7A50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Pipeline validated</span>
+          <span style="color:var(--g-dark);font-family:var(--font-mono);font-size:0.72em">100%</span>
+        </div>
+        <div class="hero-float-card">
+          <span style="font-size:1em">⚡</span>
+          <span>Dev speed</span>
+          <span style="color:var(--g-dark);font-family:var(--font-mono);font-size:0.72em">10×</span>
+        </div>
+        <div class="terminal">
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <span class="terminal-dot dot-red"></span>
+              <span class="terminal-dot dot-yellow"></span>
+              <span class="terminal-dot dot-green"></span>
+            </div>
+            <span class="terminal-title">neuarc-cli — assessment engine</span>
+          </div>
+          <div class="terminal-body">
+            <span class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">neuarc-cli assess --developer-profile</span></span>
+            <span class="t-blank"></span>
+            <span class="t-line t-output">[SYSTEM] Scanning developer baseline...</span>
+            <span class="t-line t-output">[RESULT] Foundation: Basic loops &amp; CRUD patterns</span>
+            <span class="t-line t-alert">[ALERT]  Production readiness: 12% — Gaps detected</span>
+            <span class="t-blank"></span>
+            <span class="t-line t-output">[GAPS IDENTIFIED]</span>
+            <span class="t-line t-error">  ✗  Distributed systems architecture</span>
+            <span class="t-line t-error">  ✗  CI/CD pipeline validation</span>
+            <span class="t-line t-error">  ✗  Production-scale debugging</span>
+            <span class="t-line t-error">  ✗  AI-assisted engineering workflows</span>
+            <span class="t-blank"></span>
+            <span class="t-line t-success">[ACTION] Initiating EDGE Framework enrollment...</span>
+            <span class="t-line t-success">[TRACK]  Recommended: Cloud-Native DevOps</span>
+            <span class="t-line t-success">[ETA]    18 weeks → Production-grade engineer</span>
+            <span class="t-blank"></span>
+            <span class="t-line"><span class="t-prompt">$</span> <span class="cursor-blink"></span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ Reality Check ══ -->
+<section class="reality-section">
+  <div class="container">
+    <div class="reality-inner">
+      <div class="reality-tag reveal">🚨 The Brutal Truth About Modern Tech Careers</div>
+      <h2 class="reality-headline reveal d1">
+        Traditional IT training<br />
+        <span style="color:var(--red)">is broken.</span>
+      </h2>
+      <p class="reality-body reveal d2">
+        Bootcamps and standard certification courses are still charging thousands to teach you
+        basic loops, basic CRUD commands, and isolated syntax rules. Here is what they aren't
+        telling you: <strong>Generative AI can write that code faster and cleaner than any human ever will.</strong>
+      </p>
+      <p class="reality-body reveal d3">
+        If all you can do is write basic code strings based on rigid instructions, your role is
+        <strong>highly vulnerable.</strong> The modern enterprise ecosystem doesn't pay for typing speed;
+        it pays for <strong>system resilience.</strong> Companies are desperately hunting for engineers who
+        can orchestrate distributed systems, design scalable microservices, triage high-pressure
+        production crashes, and articulately defend architectural decisions to cross-functional stakeholders.
+      </p>
+      <p class="reality-kicker reveal d4">
+        We do not teach you how to code.<br />
+        We teach you how to engineer systems and survive the floor.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 8-Pillar Portfolio Matrix ══ -->
+<section class="section" id="ecosystem">
+  <div class="container">
+    <div class="section-tag reveal">Ecosystem</div>
+    <h2 class="section-title reveal d1">
+      A Comprehensive Career<br />
+      <span class="gradient-text">Transformation Ecosystem</span>
+    </h2>
+    <p class="section-sub reveal d2">
+      NeuArc is not a course repository. It is a fully continuous, integrated ecosystem
+      designed to manage your evolution from a basic coder to a bulletproof tech professional.
+    </p>
+
+    <!-- Vertical A -->
+    <div style="margin-top:56px">
+      <div class="vertical-tag vert-a reveal">🚀 Vertical A — Advanced Technical Delivery</div>
+      <div class="matrix-grid">
+        <div class="matrix-card reveal d1">
+          <div class="matrix-num">01</div>
+          <div class="matrix-icon">🤖</div>
+          <h4 class="matrix-title">AI-Led Technical Training</h4>
+          <p class="matrix-desc">Learn to treat Large Language Models as your ultimate leverage point. Write complex systemic prompts, automate testing configurations, and utilize AI tools to accelerate code generation by 10x—allowing you to focus exclusively on systemic logic and system design.</p>
+          <div class="matrix-outcome">→ Operate at the speed of a senior technical lead</div>
+        </div>
+        <div class="matrix-card reveal d2">
+          <div class="matrix-num">02</div>
+          <div class="matrix-icon">⚡</div>
+          <h4 class="matrix-title">Strict Real-Time Engineering</h4>
+          <p class="matrix-desc">No clean, sandboxed environments. You are introduced directly to messy, asynchronous enterprise setups—network latency, memory leaks, high concurrency handling, and real database constraints.</p>
+          <div class="matrix-outcome">→ Immediate intuition for diagnosing live system failures</div>
+        </div>
+        <div class="matrix-card reveal d3">
+          <div class="matrix-num">03</div>
+          <div class="matrix-icon">🏗️</div>
+          <h4 class="matrix-title">Product-Specific Training</h4>
+          <p class="matrix-desc">Forget trivial, throwaway project assignments. You will build, deploy, and maintain an actual multi-tier product architecture featuring complex integration vectors, custom APIs, and caching layers.</p>
+          <div class="matrix-outcome">→ Verifiable production asset, fully functional and scalable</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vertical B -->
+    <div style="margin-top:48px">
+      <div class="vertical-tag vert-b reveal">💼 Vertical B — The Career Acceleration Suite</div>
+      <div class="matrix-grid">
+        <div class="matrix-card reveal d1">
+          <div class="matrix-num">04</div>
+          <div class="matrix-icon">🎯</div>
+          <h4 class="matrix-title">Human-In-The-Loop Mock Interviews</h4>
+          <p class="matrix-desc">Face intense technical evaluations conducted by working industry practitioners. Get grilled on system design choices, algorithm optimization, and operational edge-cases with radical candor.</p>
+          <div class="matrix-outcome">→ Normalize high-stakes interview pressure before real evaluations</div>
+        </div>
+        <div class="matrix-card reveal d2">
+          <div class="matrix-num">05</div>
+          <div class="matrix-icon">📄</div>
+          <h4 class="matrix-title">Impact-Driven Resume Development</h4>
+          <p class="matrix-desc">We aggressively dismantle standard resumes that merely read like a checklist of programming languages. Your profile is rebuilt to emphasize business impact, architectural ownership, and solved technical bottlenecks.</p>
+          <div class="matrix-outcome">→ Clears automated HR screens and engineering director reviews</div>
+        </div>
+        <div class="matrix-card reveal d3">
+          <div class="matrix-num">06</div>
+          <div class="matrix-icon">🎛️</div>
+          <h4 class="matrix-title">AI-Led Interview Arena</h4>
+          <p class="matrix-desc">Gain unlimited access to specialized AI simulation personas calibrated to act as aggressive corporate interviewers. Practice code optimization and live whiteboarding under time constraints with real-time semantic feedback.</p>
+          <div class="matrix-outcome">→ Perfect communication delivery through iterative machine loops</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vertical C -->
+    <div style="margin-top:48px">
+      <div class="vertical-tag vert-c reveal">🛡️ Vertical C — The Professional Safety Net</div>
+      <div class="matrix-grid" style="grid-template-columns: repeat(2,1fr)">
+        <div class="matrix-card reveal d1">
+          <div class="matrix-num">07</div>
+          <div class="matrix-icon">🌐</div>
+          <h4 class="matrix-title">Elite Professionals Networking</h4>
+          <p class="matrix-desc">Gain entry into a curated tech ecosystem of senior developers, system architects, and tech leaders. Benefit from peer code reviews, continuous sharing of job intelligence, and direct engineering referrals.</p>
+          <div class="matrix-outcome">→ Bypass job portals through engineer-to-engineer trust networks</div>
+        </div>
+        <div class="matrix-card reveal d2">
+          <div class="matrix-num">08</div>
+          <div class="matrix-icon">🛟</div>
+          <h4 class="matrix-title">Post-Placement Technical Triage</h4>
+          <p class="matrix-desc">Getting hired is only half the battle. For your first critical months on the job, NeuArc provides an active technical safety net. Stuck on a complex production ticket or an architectural bottleneck? Our support desk is there.</p>
+          <div class="matrix-outcome">→ Total peace of mind during your critical first 90 days</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ Tech Stack ══ -->
+<div class="divider"></div>
+<section class="stack-section">
+  <div class="container">
+    <p class="stack-title reveal">Engineered for the modern enterprise stack</p>
+    <div class="stack-logos">
+      <div class="stack-item reveal d1">
+        <div class="stack-logo-box">AWS</div>
+        <span class="stack-label">Cloud-Native<br />Infrastructure</span>
+      </div>
+      <div class="stack-item reveal d2">
+        <div class="stack-logo-box">Docker</div>
+        <span class="stack-label">Containerization<br />&amp; Packaging</span>
+      </div>
+      <div class="stack-item reveal d3">
+        <div class="stack-logo-box">Redis</div>
+        <span class="stack-label">High-Speed<br />Caching Layers</span>
+      </div>
+      <div class="stack-item reveal d4">
+        <div class="stack-logo-box">K8s</div>
+        <span class="stack-label">Orchestration<br />&amp; Scaling</span>
+      </div>
+      <div class="stack-item reveal d5">
+        <div class="stack-logo-box">GitHub</div>
+        <span class="stack-label">Continuous<br />Integration</span>
+      </div>
+      <div class="stack-item reveal d6">
+        <div class="stack-logo-box">Kafka</div>
+        <span class="stack-label">Event-Driven<br />Streaming</span>
+      </div>
+      <div class="stack-item reveal d7">
+        <div class="stack-logo-box">Spark</div>
+        <span class="stack-label">Data<br />Processing</span>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ══ Animated Marquee Strip ══ -->
+<div class="visual-strip">
+  <div class="container" style="overflow:hidden">
+    <p class="stack-title" style="margin-bottom:24px">Technologies you will master</p>
+    <div style="overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)">
+      <div class="anim-badge-row">
+        <!-- First set -->
+        <div class="anim-badge"><span class="anim-badge-dot"></span>Apache Kafka</div>
+        <div class="anim-badge"><span class="anim-badge-dot"></span>Kubernetes</div>
+        <div class="anim-badge"><span class="anim-badge-dot"></span>AWS Lambda</div>
+        <div class="anim-badge"><span class="anim-badge-dot"></span>Redis Cache</div>
+        <div class="anim-badge"><span class="anim-badge-dot"></span>Docker Compose</div>
+        <div class="anim-badge"><span class="anim-badge-dot"></span>Apache Spark</div>
+        <div class="anim-badge"><span class="anim-badge-dot"></span>GitHub Actions</div>
+        <div class="anim-badge"><span class="anim-badge-dot"></span>Terraform IaC</div>
+        <div class="anim-badge"><span class="anim-badge-dot"></span>PostgreSQL</div>
+        <div class="anim-badge"><span class="anim-badge-dot"></span>ArgoCD GitOps</div>
+        <div class="anim-badge"><span class="anim-badge-dot"></span>Prometheus</div>
+        <div class="anim-badge"><span class="anim-badge-dot"></span>Delta Lake</div>
+        <div class="anim-badge"><span class="anim-badge-dot"></span>FastAPI</div>
+        <div class="anim-badge"><span class="anim-badge-dot"></span>Celery + Redis</div>
+        <!-- Duplicate for seamless loop -->
+        <div class="anim-badge"><span class="anim-badge-dot"></span>Apache Kafka</div>
+        <div class="anim-badge"><span class="anim-badge-dot"></span>Kubernetes</div>
+        <div class="anim-badge"><span class="anim-badge-dot"></span>AWS Lambda</div>
+        <div class="anim-badge"><span class="anim-badge-dot"></span>Redis Cache</div>
+        <div class="anim-badge"><span class="anim-badge-dot"></span>Docker Compose</div>
+        <div class="anim-badge"><span class="anim-badge-dot"></span>Apache Spark</div>
+        <div class="anim-badge"><span class="anim-badge-dot"></span>GitHub Actions</div>
+        <div class="anim-badge"><span class="anim-badge-dot"></span>Terraform IaC</div>
+        <div class="anim-badge"><span class="anim-badge-dot"></span>PostgreSQL</div>
+        <div class="anim-badge"><span class="anim-badge-dot"></span>ArgoCD GitOps</div>
+        <div class="anim-badge"><span class="anim-badge-dot"></span>Prometheus</div>
+        <div class="anim-badge"><span class="anim-badge-dot"></span>Delta Lake</div>
+        <div class="anim-badge"><span class="anim-badge-dot"></span>FastAPI</div>
+        <div class="anim-badge"><span class="anim-badge-dot"></span>Celery + Redis</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ Animated Pipeline Flow ══ -->
+<section class="section-sm">
+  <div class="container">
+    <div class="section-tag reveal">The EDGE Loop in Action</div>
+    <h2 class="section-title reveal d1" style="margin-bottom:8px">
+      From Audit to <span class="gradient-text">Production</span>
+    </h2>
+    <p class="section-sub reveal d2" style="margin-bottom:40px">Every piece of code you write completes the full loop — audit, implement, validate, evolve.</p>
+    <div class="pipe-flow reveal d3">
+      <div class="pipe-node">
+        <div class="pipe-node-circle">🔍</div>
+        <div class="pipe-node-label">Exploration<br/>Audit</div>
+      </div>
+      <div class="pipe-arrow"><div class="pipe-progress"></div></div>
+      <div class="pipe-node">
+        <div class="pipe-node-circle">⌨️</div>
+        <div class="pipe-node-label">Delivery<br/>Sprint</div>
+      </div>
+      <div class="pipe-arrow"><div class="pipe-progress"></div></div>
+      <div class="pipe-node">
+        <div class="pipe-node-circle">🛡️</div>
+        <div class="pipe-node-label">Guardrails<br/>CI/CD</div>
+      </div>
+      <div class="pipe-arrow"><div class="pipe-progress"></div></div>
+      <div class="pipe-node">
+        <div class="pipe-node-circle">⚡</div>
+        <div class="pipe-node-label">Evolution<br/>Refactor</div>
+      </div>
+      <div class="pipe-arrow"><div class="pipe-progress"></div></div>
+      <div class="pipe-node">
+        <div class="pipe-node-circle" style="background:var(--g-pale);border-color:var(--g)">✓</div>
+        <div class="pipe-node-label" style="color:var(--g-dark)">Deployed<br/>Production</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ Animated Metrics ══ -->
+<section class="section-sm" style="background:var(--bg-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="container">
+    <div class="metrics-marquee reveal">
+      <div class="metric-tile">
+        <div class="metric-tile-val" data-target="18">0</div>
+        <div style="font-family:var(--font-mono);font-size:0.68rem;color:var(--text-4);margin-bottom:6px">WEEKS</div>
+        <div class="metric-tile-desc">Full programme duration from foundational engineer to production-grade specialist</div>
+      </div>
+      <div class="metric-tile">
+        <div class="metric-tile-val" data-target="10">0</div>
+        <div style="font-family:var(--font-mono);font-size:0.68rem;color:var(--text-4);margin-bottom:6px">× SPEED</div>
+        <div class="metric-tile-desc">AI co-pilot acceleration — generate features 10× faster than traditional development</div>
+      </div>
+      <div class="metric-tile">
+        <div class="metric-tile-val" data-target="3">0</div>
+        <div style="font-family:var(--font-mono);font-size:0.68rem;color:var(--text-4);margin-bottom:6px">TRACKS</div>
+        <div class="metric-tile-desc">Specialised engineering tracks: Data Engineering, Cloud DevOps, AI Web Applications</div>
+      </div>
+      <div class="metric-tile">
+        <div class="metric-tile-val" data-target="90">0</div>
+        <div style="font-family:var(--font-mono);font-size:0.68rem;color:var(--text-4);margin-bottom:6px">DAYS SUPPORT</div>
+        <div class="metric-tile-desc">Post-placement technical triage desk active for your first 90 days on the enterprise floor</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ CTA Banner ══ -->
+<section class="section" id="apply">
+  <div class="container">
+    <div class="cta-banner reveal">
+      <h2>Are you ready to step out<br />of the <span class="gradient-text">syntax loops?</span></h2>
+      <p>The industry is evolving rapidly. Don't get left behind writing basic code that automation can handle. Take our 10-minute technical intake diagnostic to see if you qualify for our advanced engineering tracks.</p>
+      <div class="cta-btns">
+        <a href="#" class="btn btn-primary">Get Started: Evaluate My Technical Baseline</a>
+        <a href="tracks.html" class="btn btn-outline">Explore Tracks</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ Footer ══ -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="assets/neuarc-logo.png" alt="NeuArc AI Academy"
+             onerror="this.style.display='none'" />
+        <p>NeuArc AI Academy transforms developers with foundational knowledge into elite, AI-leveraged engineers through real-time, production-grade delivery loops.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Academy</h5>
+        <a href="edge-framework.html">EDGE Framework</a>
+        <a href="tracks.html">Tracks &amp; Portfolios</a>
+        <a href="career.html">Career Suite</a>
+        <a href="#apply">Apply Now</a>
+      </div>
+      <div class="footer-col">
+        <h5>Tracks</h5>
+        <a href="tracks.html">Advanced Data Engineering</a>
+        <a href="tracks.html">Cloud-Native DevOps</a>
+        <a href="tracks.html">AI-Assisted Web Apps</a>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="#">About NeuArc</a>
+        <a href="#">Partner: SkyTARK Holdings</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 NeuArc AI Academy. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NeuArc AI Academy — Production-grade specialisations in Advanced Data Engineering, Cloud-Native DevOps, and AI-Assisted Web Applications." />
+  <title>Tracks &amp; Portfolios — NeuArc AI Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ══ Navigation ══ -->
+<nav id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <img class="nav-logo-img" src="assets/neuarc-logo.png" alt="NeuArc AI Academy"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+      <span class="logo-css">NEUARC <span class="logo-css-sub">AI ACADEMY</span></span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="edge-framework.html">EDGE Framework</a></li>
+      <li><a href="tracks.html">Tracks</a></li>
+      <li><a href="career.html">Career Suite</a></li>
+      <li><a href="index.html#apply" class="nav-cta">Apply Now</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ══ Page Header ══ -->
+<div class="page-header">
+  <div class="container">
+    <div class="section-tag reveal">Specialisations</div>
+    <h1 class="reveal d1">
+      Production-Grade<br />
+      <span class="gradient-text">Specialisations.</span>
+    </h1>
+    <p class="reveal d2">
+      We do not offer beginner bootcamps. Our tracks are built explicitly for developers,
+      analysts, and systems engineers who want to skip the syntax tutorials and master
+      high-value enterprise engineering roles.
+    </p>
+  </div>
+</div>
+<div class="divider"></div>
+
+<!-- ══ Track Filter + Panels ══ -->
+<section class="section">
+  <div class="container">
+
+    <!-- Visual track cards -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:56px">
+      <div class="img-card reveal d1">
+        <div class="img-card-header" style="background:linear-gradient(135deg,#EBF5ED 0%,#D1EDD9 100%)">
+          <!-- Animated data flow SVG illustration -->
+          <svg width="200" height="130" viewBox="0 0 200 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="45" width="50" height="40" rx="6" fill="white" stroke="#2D7A50" stroke-width="1.5"/>
+            <text x="35" y="70" text-anchor="middle" font-family="monospace" font-size="9" fill="#2D7A50">DB</text>
+            <line x1="60" y1="65" x2="80" y2="65" stroke="#2D7A50" stroke-width="1.5" stroke-dasharray="4 2">
+              <animate attributeName="stroke-dashoffset" from="0" to="-12" dur="1s" repeatCount="indefinite"/>
+            </line>
+            <rect x="80" y="45" width="50" height="40" rx="6" fill="white" stroke="#2D7A50" stroke-width="1.5"/>
+            <text x="105" y="70" text-anchor="middle" font-family="monospace" font-size="9" fill="#2D7A50">Kafka</text>
+            <line x1="130" y1="65" x2="150" y2="65" stroke="#2D7A50" stroke-width="1.5" stroke-dasharray="4 2">
+              <animate attributeName="stroke-dashoffset" from="0" to="-12" dur="1s" begin="0.3s" repeatCount="indefinite"/>
+            </line>
+            <rect x="150" y="45" width="45" height="40" rx="6" fill="#2D7A50"/>
+            <text x="172" y="70" text-anchor="middle" font-family="monospace" font-size="8" fill="white">Spark</text>
+            <circle cx="35" cy="25" r="6" fill="#D1EDD9" stroke="#2D7A50" stroke-width="1.5">
+              <animate attributeName="r" values="6;8;6" dur="2s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="105" cy="108" r="6" fill="#D1EDD9" stroke="#2D7A50" stroke-width="1.5">
+              <animate attributeName="r" values="6;8;6" dur="2s" begin="0.7s" repeatCount="indefinite"/>
+            </circle>
+          </svg>
+        </div>
+        <div class="img-card-body">
+          <div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--g);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px">Track 01</div>
+          <h4>Advanced Data Engineering</h4>
+          <p>Real-time pipelines, distributed systems, data lakehouse orchestration, and enterprise data architecture.</p>
+        </div>
+      </div>
+
+      <div class="img-card reveal d2">
+        <div class="img-card-header" style="background:linear-gradient(135deg,#EEF6FF 0%,#DBEAFE 100%)">
+          <!-- Animated K8s/cloud SVG -->
+          <svg width="200" height="130" viewBox="0 0 200 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="75" y="10" width="50" height="32" rx="6" fill="white" stroke="#2563EB" stroke-width="1.5"/>
+            <text x="100" y="31" text-anchor="middle" font-family="monospace" font-size="8" fill="#2563EB">Cloud</text>
+            <line x1="100" y1="42" x2="100" y2="58" stroke="#2563EB" stroke-width="1.5"/>
+            <rect x="20" y="58" width="46" height="30" rx="6" fill="white" stroke="#2563EB" stroke-width="1.5"/>
+            <text x="43" y="78" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#2563EB">K8s Pod</text>
+            <rect x="77" y="58" width="46" height="30" rx="6" fill="white" stroke="#2563EB" stroke-width="1.5"/>
+            <text x="100" y="78" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#2563EB">K8s Pod</text>
+            <rect x="134" y="58" width="46" height="30" rx="6" fill="white" stroke="#2563EB" stroke-width="1.5"/>
+            <text x="157" y="78" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#2563EB">K8s Pod</text>
+            <line x1="100" y1="58" x2="43" y2="58" stroke="#2563EB" stroke-width="1.5"/>
+            <line x1="100" y1="58" x2="157" y2="58" stroke="#2563EB" stroke-width="1.5"/>
+            <rect x="65" y="100" width="70" height="22" rx="4" fill="#2563EB"/>
+            <text x="100" y="115" text-anchor="middle" font-family="monospace" font-size="8" fill="white">CI/CD Pipeline</text>
+            <circle cx="43" cy="104" r="5" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.5">
+              <animate attributeName="opacity" values="1;0.3;1" dur="1.5s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="157" cy="104" r="5" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.5">
+              <animate attributeName="opacity" values="1;0.3;1" dur="1.5s" begin="0.5s" repeatCount="indefinite"/>
+            </circle>
+          </svg>
+        </div>
+        <div class="img-card-body">
+          <div style="font-family:var(--font-mono);font-size:0.65rem;color:#1D4ED8;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px">Track 02</div>
+          <h4>Cloud-Native DevOps</h4>
+          <p>Kubernetes orchestration, Terraform IaC, ArgoCD GitOps, zero-downtime deployments, and SRE practices.</p>
+        </div>
+      </div>
+
+      <div class="img-card reveal d3">
+        <div class="img-card-header" style="background:linear-gradient(135deg,#FFF7ED 0%,#FED7AA 100%)">
+          <!-- Animated AI/web SVG -->
+          <svg width="200" height="130" viewBox="0 0 200 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="15" y="15" width="80" height="100" rx="8" fill="white" stroke="#D97706" stroke-width="1.5"/>
+            <rect x="25" y="28" width="60" height="8" rx="2" fill="#FED7AA"/>
+            <rect x="25" y="42" width="44" height="8" rx="2" fill="#FED7AA"/>
+            <rect x="25" y="56" width="60" height="8" rx="2" fill="#FED7AA"/>
+            <rect x="25" y="70" width="50" height="8" rx="2" fill="#FED7AA"/>
+            <rect x="105" y="25" width="80" height="50" rx="8" fill="#D97706"/>
+            <text x="145" y="54" text-anchor="middle" font-family="monospace" font-size="9" fill="white">AI Model</text>
+            <path d="M95 60 L105 60" stroke="#D97706" stroke-width="2" stroke-dasharray="3 2">
+              <animate attributeName="stroke-dashoffset" from="0" to="-10" dur="0.8s" repeatCount="indefinite"/>
+            </path>
+            <rect x="105" y="88" width="80" height="32" rx="8" fill="white" stroke="#D97706" stroke-width="1.5"/>
+            <text x="145" y="108" text-anchor="middle" font-family="monospace" font-size="8" fill="#D97706">Vector DB</text>
+          </svg>
+        </div>
+        <div class="img-card-body">
+          <div style="font-family:var(--font-mono);font-size:0.65rem;color:#B45309;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px">Track 03</div>
+          <h4>AI-Assisted Web Applications</h4>
+          <p>LLM integration, vector search, microservices, async workers, and intelligent full-stack applications.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toggle -->
+    <div class="track-toggle reveal">
+      <button class="track-btn active" data-track="data">Advanced Data Engineering</button>
+      <button class="track-btn" data-track="devops">Cloud-Native DevOps</button>
+      <button class="track-btn" data-track="ai-web">AI-Assisted Web Apps</button>
+    </div>
+
+    <!-- ── TRACK 1: Advanced Data Engineering ── -->
+    <div class="track-panel active" id="track-data">
+
+      <div class="section-tag" style="background:rgba(74,222,128,0.07)">🟢 Track 01</div>
+      <h2 class="section-title" style="margin-bottom:8px">Advanced Data Engineering</h2>
+      <p class="section-sub" style="margin-bottom:48px">
+        Master the hidden internal mechanics of high-throughput data systems. Move past simple
+        database queries and learn how data actually moves across memory and disk.
+      </p>
+
+      <div class="stages-grid">
+        <div class="stage-card">
+          <div class="stage-num">Stage 01 · Weeks 1–6</div>
+          <div class="stage-title">The Advancement Engine</div>
+          <div class="stage-subtitle">Deep-Dive &amp; Architecture</div>
+          <ul class="stage-items">
+            <li class="stage-item">Advanced Database Mastering: Connection pooling, column-store vs. row-store architectures, partition keys, and query optimisation in PostgreSQL and MongoDB</li>
+            <li class="stage-item">Distributed Systems Foundations: CAP theorem in practice, data replication strategies, sharding, and consensus mechanisms</li>
+            <li class="stage-item">AI-Driven Optimisation: Leveraging AI models to analyse slow query execution plans, generate complex indexing schemas, and automate index maintenance scripts</li>
+          </ul>
+        </div>
+
+        <div class="stage-card">
+          <div class="stage-num">Stage 02 · Weeks 7–12</div>
+          <div class="stage-title">The Implementation &amp; Product Lab</div>
+          <div class="stage-subtitle">Real-Time Deployment &amp; Pipelines</div>
+          <ul class="stage-items">
+            <li class="stage-item">Event-Driven Streaming: Architecting message queues using Apache Kafka or RabbitMQ, handling consumer groups, offset strategies, and backpressure</li>
+            <li class="stage-item">Data Lakehouse Orchestration: Building robust ETL/ELT pipelines using Apache Spark and Delta Lake, orchestrated via Apache Airflow</li>
+            <li class="stage-item">CI/CD Data Pipelines: Setting up automated pipeline validation—your pipelines are hooked into GitHub Actions to test data quality, schemas, and processing speed</li>
+          </ul>
+        </div>
+
+        <div class="stage-card">
+          <div class="stage-num">Stage 03 · Weeks 13–18</div>
+          <div class="stage-title">The Career Survival &amp; Adaptability Arena</div>
+          <div class="stage-subtitle">Production Outages &amp; Ticket Simulations</div>
+          <ul class="stage-items">
+            <li class="stage-item">The Live Triage Simulation: We intentionally break your pipeline—debug a live data lake storage corruption issue, recover a fallen Kafka broker, and resolve schema drift mid-stream</li>
+            <li class="stage-item">Enterprise Ticket Resolution: Resolving high-priority Jira tickets tracking data loss, lag spikes, and downstream API ingestion failures</li>
+            <li class="stage-item">Whiteboard Defence: Defend your data warehousing architecture choices against AI-simulated scale constraints before our engineering review board</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="capstone">
+        <div class="capstone-icon">📊</div>
+        <div>
+          <div class="capstone-tag">Product Capstone Showcase</div>
+          <h4>Real-Time Financial Transaction Analytics Ledger</h4>
+          <p>An enterprise-grade data platform handling a simulated stream of 10,000 transaction events per second. The architecture utilises Apache Kafka for event ingestion, Apache Spark for real-time streaming fraud analysis, Delta Lake for storage, and Apache Airflow to manage continuous data flows—all deployed inside isolated Docker containers on AWS.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TRACK 2: Cloud-Native DevOps ── -->
+    <div class="track-panel" id="track-devops">
+
+      <div class="section-tag" style="background:rgba(34,211,238,0.07);color:var(--cyan);border-color:rgba(34,211,238,0.2)">🔵 Track 02</div>
+      <h2 class="section-title" style="margin-bottom:8px">Cloud-Native DevOps</h2>
+      <p class="section-sub" style="margin-bottom:48px">
+        Stop using cloud consoles manually and master programmatic infrastructure design.
+        Build automated, ironclad deployment engines that scale applications flawlessly with zero downtime.
+      </p>
+
+      <div class="stages-grid">
+        <div class="stage-card">
+          <div class="stage-num">Stage 01 · Weeks 1–6</div>
+          <div class="stage-title">The Advancement Engine</div>
+          <div class="stage-subtitle">Deep-Dive &amp; Architecture</div>
+          <ul class="stage-items">
+            <li class="stage-item">Infrastructure as Code (IaC): Advanced Terraform setups, custom module design, state file locks, and multi-environment workspace structuring</li>
+            <li class="stage-item">Advanced Linux &amp; Networking: Internal networking mechanisms, IP routing, subnet masks, DNS configuration, and OS-level resource monitoring</li>
+            <li class="stage-item">AI IaC Autocompletion: Using AI engines to securely generate complex cloud configuration scripts, validate security parameters, and prevent structural drift</li>
+          </ul>
+        </div>
+
+        <div class="stage-card">
+          <div class="stage-num">Stage 02 · Weeks 7–12</div>
+          <div class="stage-title">The Implementation &amp; Product Lab</div>
+          <div class="stage-subtitle">Real-Time Deployment &amp; Pipelines</div>
+          <ul class="stage-items">
+            <li class="stage-item">Container Orchestration: Designing enterprise Kubernetes clusters, writing complex YAML manifests, configuring ingress controllers, and handling persistent volume claims</li>
+            <li class="stage-item">Advanced GitOps &amp; CI/CD: Building production pipelines using GitHub Actions or ArgoCD, managing secret variables securely, and executing canary or blue-green deployment strategies</li>
+            <li class="stage-item">Cloud Infrastructure Rigor: Running automated infrastructure security linters (Checkov) directly inside active deployment pipelines</li>
+          </ul>
+        </div>
+
+        <div class="stage-card">
+          <div class="stage-num">Stage 03 · Weeks 13–18</div>
+          <div class="stage-title">The Career Survival &amp; Adaptability Arena</div>
+          <div class="stage-subtitle">Production Outages &amp; Ticket Simulations</div>
+          <ul class="stage-items">
+            <li class="stage-item">The Production Outage Simulation: Your cluster goes down—simulated catastrophic AWS region failure or broken Kubernetes cluster loop. 45 minutes to trace metrics and fix it</li>
+            <li class="stage-item">Monitoring Triage: Utilising Prometheus and Grafana dashboards to identify memory leaks, track cluster health, and resolve active service bottlenecks</li>
+            <li class="stage-item">Architectural Defence: Presenting and defending your cloud infrastructure bills and security models against an aggressive corporate efficiency review panel</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="capstone">
+        <div class="capstone-icon">🏗️</div>
+        <div>
+          <div class="capstone-tag">Product Capstone Showcase</div>
+          <h4>Multi-Region Automated Kubernetes Deployment Engine</h4>
+          <p>A fully automated, GitOps-driven AWS infrastructure deployment. You will construct a production-ready Kubernetes cluster using Terraform, configure secure ArgoCD automated git deployments, and implement an all-inclusive monitoring suite using Prometheus and Grafana to track multi-region cluster resource pools.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TRACK 3: AI-Assisted Web Apps ── -->
+    <div class="track-panel" id="track-ai-web">
+
+      <div class="section-tag" style="background:rgba(245,158,11,0.07);color:var(--amber);border-color:rgba(245,158,11,0.2)">🟡 Track 03</div>
+      <h2 class="section-title" style="margin-bottom:8px">AI-Assisted Web Applications</h2>
+      <p class="section-sub" style="margin-bottom:48px">
+        Move away from simple monolithic code architectures and master modern, completely
+        decoupled enterprise software designs. Embed intelligence directly into production applications.
+      </p>
+
+      <div class="stages-grid">
+        <div class="stage-card">
+          <div class="stage-num">Stage 01 · Weeks 1–6</div>
+          <div class="stage-title">The Advancement Engine</div>
+          <div class="stage-subtitle">Deep-Dive &amp; Architecture</div>
+          <ul class="stage-items">
+            <li class="stage-item">Enterprise Architecture Patterns: Implementing clean microservices, domain-driven design, asynchronous workers (Celery/Redis), and advanced state management</li>
+            <li class="stage-item">API Design Mastery: Designing production-grade RESTful and GraphQL APIs featuring strict rate-limiting, comprehensive CORS protection, and secure OAuth2/JWT validation</li>
+            <li class="stage-item">AI Co-Pilot Scaling: Utilising advanced semantic prompts inside IDEs to automate unit testing suites, clean legacy code, and write efficient data model patterns</li>
+          </ul>
+        </div>
+
+        <div class="stage-card">
+          <div class="stage-num">Stage 02 · Weeks 7–12</div>
+          <div class="stage-title">The Implementation &amp; Product Lab</div>
+          <div class="stage-subtitle">Real-Time Deployment &amp; Pipelines</div>
+          <ul class="stage-items">
+            <li class="stage-item">AI Model Integration &amp; LLMOps: Connecting applications safely to Large Language Models, optimising custom vector embedding search databases (Pinecone/ChromaDB), and managing context windows</li>
+            <li class="stage-item">Containerised App Deployment: Packaging multi-tier web applications into highly optimised multi-stage Docker builds</li>
+            <li class="stage-item">Continuous Integration Rigor: Forcing application builds through automated testing pipelines checking for code coverage ratios, race conditions, and frontend/backend interface contracts</li>
+          </ul>
+        </div>
+
+        <div class="stage-card">
+          <div class="stage-num">Stage 03 · Weeks 13–18</div>
+          <div class="stage-title">The Career Survival &amp; Adaptability Arena</div>
+          <div class="stage-subtitle">Production Outages &amp; Ticket Simulations</div>
+          <ul class="stage-items">
+            <li class="stage-item">The Application Failure Simulation: Your software is throwing 500 internal errors under a simulated user surge—debug memory leaks, race conditions, and broken cache layers live</li>
+            <li class="stage-item">Jira Escalation Resolution: Fixing critical application bugs, patch deployments, and data mapping mismatches straight out of a simulated production dashboard</li>
+            <li class="stage-item">System Design Defence: Whiteboarding your full-stack system architecture to defend its security policies and scaling performance under technical cross-examination</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="capstone">
+        <div class="capstone-icon">🤖</div>
+        <div>
+          <div class="capstone-tag">Product Capstone Showcase</div>
+          <h4>Enterprise Intelligent Content Discovery Platform</h4>
+          <p>A distributed, multi-tenant web application incorporating a modern frontend and a robust backend API service. The application integrates an AI-driven vector search recommendation tool, leverages Celery and Redis to handle heavy asynchronous background jobs, utilises automated GitHub Actions testing, and deploys natively via cloud container platforms.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ CTA ══ -->
+<section class="section-sm">
+  <div class="container">
+    <div class="cta-banner reveal">
+      <h2>Stop recycling basic<br /><span class="gradient-text">portfolio templates.</span></h2>
+      <p>The market is saturated with simple clone applications and basic landing pages. Engineering managers see right through them. NeuArc empowers you to build complex, pipeline-validated enterprise systems that command respect.</p>
+      <div class="cta-btns">
+        <a href="index.html#apply" class="btn btn-primary">Select Your Track &amp; Begin Intake Evaluation</a>
+        <a href="edge-framework.html" class="btn btn-outline">How the EDGE Loop Works</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ Footer ══ -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="assets/neuarc-logo.png" alt="NeuArc AI Academy" onerror="this.style.display='none'" />
+        <p>NeuArc AI Academy transforms developers with foundational knowledge into elite, AI-leveraged engineers through real-time, production-grade delivery loops.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Academy</h5>
+        <a href="edge-framework.html">EDGE Framework</a>
+        <a href="tracks.html">Tracks &amp; Portfolios</a>
+        <a href="career.html">Career Suite</a>
+        <a href="index.html#apply">Apply Now</a>
+      </div>
+      <div class="footer-col">
+        <h5>Tracks</h5>
+        <a href="tracks.html">Advanced Data Engineering</a>
+        <a href="tracks.html">Cloud-Native DevOps</a>
+        <a href="tracks.html">AI-Assisted Web Apps</a>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="#">About NeuArc</a>
+        <a href="#">Partner: SkyTARK Holdings</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 NeuArc AI Academy. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
