@@ -10,7 +10,9 @@
      NOTE: buddy.adviser@neuarcaiacademy.com must be activated
      via the confirmation link formsubmit.co sends on first POST.
   ───────────────────────────────────────────────────────────── */
-  var INTAKE_EMAIL = 'buddy.adviser@neuarcaiacademy.com';
+  /* Primary: info@ (already activated via apply form)
+     BCC keeps buddy.adviser in the loop once that inbox is activated */
+  var INTAKE_EMAIL = 'info@neuarcaiacademy.com';
 
   /* ─────────────────────────────────────────────────────────────
      TRACK CATALOGUE  (16 tracks)
@@ -570,12 +572,16 @@
     var payload = {
       _subject:
         '[NeuArc AI Academy] Technical Profile Logged — ' + d.name,
-      _cc:          d.email,
+      _cc:          d.email,          /* candidate gets a copy       */
+      _bcc:         'buddy.adviser@neuarcaiacademy.com', /* internal BCC */
       _template:    'table',
       _captcha:     'false',
       _autoresponse:
         'Hi ' + d.name + ', your NeuArc AI Academy engineering profile has been logged. ' +
         'Our team will send your 10-minute technical evaluation link within 24 hours. — NeuArc AI Academy Team',
+
+      /* FormSubmit uses 'email' field to route the _autoresponse */
+      email:        d.email,
 
       /* ── Dossier fields ── */
       '01_Full_Name':          d.name,
@@ -595,7 +601,10 @@
       method:  'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body:    JSON.stringify(payload),
-    }).catch(function () { /* silent fail — advisor has already shown completion message */ });
+    })
+    .then(function (r) { return r.json(); })
+    .then(function (r) { console.log('[NeuArc Advisor] email dispatch:', r); })
+    .catch(function (e) { console.warn('[NeuArc Advisor] email dispatch failed:', e); });
   }
 
   /* ─────────────────────────────────────────────────────────────
