@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="NeuArc AI Academy — Production-grade specialisations in Advanced Data Engineering, Cloud-Native DevOps, and AI-Assisted Web Applications." />
+  <meta name="description" content="NeuArc AI Academy — 12 production-grade specialisation tracks across Data Science, AI, Cloud, SAP, ServiceNow, Snowflake, Python, Java and more." />
   <title>Tracks &amp; Portfolios — NeuArc AI Academy</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -36,283 +36,674 @@
 <!-- ══ Page Header ══ -->
 <div class="page-header">
   <div class="container">
-    <div class="section-tag reveal">Specialisations</div>
+    <div class="section-tag reveal">12 Specialisations</div>
     <h1 class="reveal d1">
       Production-Grade<br />
       <span class="gradient-text">Specialisations.</span>
     </h1>
     <p class="reveal d2">
-      We do not offer beginner bootcamps. Our tracks are built explicitly for developers,
-      analysts, and systems engineers who want to skip the syntax tutorials and master
-      high-value enterprise engineering roles.
+      12 high-demand engineering tracks built for developers ready to skip the syntax tutorials
+      and command real enterprise roles — from Data Science and AI to SAP, ServiceNow, and Cloud.
     </p>
   </div>
 </div>
 <div class="divider"></div>
 
-<!-- ══ Track Filter + Panels ══ -->
+<!-- ══ Track Overview Cards ══ -->
 <section class="section">
   <div class="container">
 
-    <!-- Visual track cards -->
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:56px">
-      <div class="img-card reveal d1">
-        <div class="img-card-header" style="background:linear-gradient(135deg,#EBF5ED 0%,#D1EDD9 100%)">
-          <!-- Animated data flow SVG illustration -->
-          <svg width="200" height="130" viewBox="0 0 200 130" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="10" y="45" width="50" height="40" rx="6" fill="white" stroke="#2D7A50" stroke-width="1.5"/>
-            <text x="35" y="70" text-anchor="middle" font-family="monospace" font-size="9" fill="#2D7A50">DB</text>
-            <line x1="60" y1="65" x2="80" y2="65" stroke="#2D7A50" stroke-width="1.5" stroke-dasharray="4 2">
-              <animate attributeName="stroke-dashoffset" from="0" to="-12" dur="1s" repeatCount="indefinite"/>
-            </line>
-            <rect x="80" y="45" width="50" height="40" rx="6" fill="white" stroke="#2D7A50" stroke-width="1.5"/>
-            <text x="105" y="70" text-anchor="middle" font-family="monospace" font-size="9" fill="#2D7A50">Kafka</text>
-            <line x1="130" y1="65" x2="150" y2="65" stroke="#2D7A50" stroke-width="1.5" stroke-dasharray="4 2">
-              <animate attributeName="stroke-dashoffset" from="0" to="-12" dur="1s" begin="0.3s" repeatCount="indefinite"/>
-            </line>
-            <rect x="150" y="45" width="45" height="40" rx="6" fill="#2D7A50"/>
-            <text x="172" y="70" text-anchor="middle" font-family="monospace" font-size="8" fill="white">Spark</text>
-            <circle cx="35" cy="25" r="6" fill="#D1EDD9" stroke="#2D7A50" stroke-width="1.5">
-              <animate attributeName="r" values="6;8;6" dur="2s" repeatCount="indefinite"/>
-            </circle>
-            <circle cx="105" cy="108" r="6" fill="#D1EDD9" stroke="#2D7A50" stroke-width="1.5">
-              <animate attributeName="r" values="6;8;6" dur="2s" begin="0.7s" repeatCount="indefinite"/>
-            </circle>
-          </svg>
-        </div>
-        <div class="img-card-body">
-          <div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--g);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px">Track 01</div>
-          <h4>Advanced Data Engineering</h4>
-          <p>Real-time pipelines, distributed systems, data lakehouse orchestration, and enterprise data architecture.</p>
-        </div>
+    <div class="tracks-overview-grid">
+      <div class="track-overview-card reveal d1">
+        <div class="track-overview-icon">📊</div>
+        <div class="track-overview-num">Track 01</div>
+        <h4>Data Science</h4>
+        <p>Python, statistics, EDA, predictive modelling and business intelligence.</p>
       </div>
-
-      <div class="img-card reveal d2">
-        <div class="img-card-header" style="background:linear-gradient(135deg,#EEF6FF 0%,#DBEAFE 100%)">
-          <!-- Animated K8s/cloud SVG -->
-          <svg width="200" height="130" viewBox="0 0 200 130" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="75" y="10" width="50" height="32" rx="6" fill="white" stroke="#2563EB" stroke-width="1.5"/>
-            <text x="100" y="31" text-anchor="middle" font-family="monospace" font-size="8" fill="#2563EB">Cloud</text>
-            <line x1="100" y1="42" x2="100" y2="58" stroke="#2563EB" stroke-width="1.5"/>
-            <rect x="20" y="58" width="46" height="30" rx="6" fill="white" stroke="#2563EB" stroke-width="1.5"/>
-            <text x="43" y="78" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#2563EB">K8s Pod</text>
-            <rect x="77" y="58" width="46" height="30" rx="6" fill="white" stroke="#2563EB" stroke-width="1.5"/>
-            <text x="100" y="78" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#2563EB">K8s Pod</text>
-            <rect x="134" y="58" width="46" height="30" rx="6" fill="white" stroke="#2563EB" stroke-width="1.5"/>
-            <text x="157" y="78" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#2563EB">K8s Pod</text>
-            <line x1="100" y1="58" x2="43" y2="58" stroke="#2563EB" stroke-width="1.5"/>
-            <line x1="100" y1="58" x2="157" y2="58" stroke="#2563EB" stroke-width="1.5"/>
-            <rect x="65" y="100" width="70" height="22" rx="4" fill="#2563EB"/>
-            <text x="100" y="115" text-anchor="middle" font-family="monospace" font-size="8" fill="white">CI/CD Pipeline</text>
-            <circle cx="43" cy="104" r="5" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.5">
-              <animate attributeName="opacity" values="1;0.3;1" dur="1.5s" repeatCount="indefinite"/>
-            </circle>
-            <circle cx="157" cy="104" r="5" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.5">
-              <animate attributeName="opacity" values="1;0.3;1" dur="1.5s" begin="0.5s" repeatCount="indefinite"/>
-            </circle>
-          </svg>
-        </div>
-        <div class="img-card-body">
-          <div style="font-family:var(--font-mono);font-size:0.65rem;color:#1D4ED8;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px">Track 02</div>
-          <h4>Cloud-Native DevOps</h4>
-          <p>Kubernetes orchestration, Terraform IaC, ArgoCD GitOps, zero-downtime deployments, and SRE practices.</p>
-        </div>
+      <div class="track-overview-card reveal d2">
+        <div class="track-overview-icon">🧠</div>
+        <div class="track-overview-num">Track 02</div>
+        <h4>Machine Learning</h4>
+        <p>Supervised/unsupervised learning, deep learning, MLOps, model deployment.</p>
       </div>
-
-      <div class="img-card reveal d3">
-        <div class="img-card-header" style="background:linear-gradient(135deg,#FFF7ED 0%,#FED7AA 100%)">
-          <!-- Animated AI/web SVG -->
-          <svg width="200" height="130" viewBox="0 0 200 130" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="15" y="15" width="80" height="100" rx="8" fill="white" stroke="#D97706" stroke-width="1.5"/>
-            <rect x="25" y="28" width="60" height="8" rx="2" fill="#FED7AA"/>
-            <rect x="25" y="42" width="44" height="8" rx="2" fill="#FED7AA"/>
-            <rect x="25" y="56" width="60" height="8" rx="2" fill="#FED7AA"/>
-            <rect x="25" y="70" width="50" height="8" rx="2" fill="#FED7AA"/>
-            <rect x="105" y="25" width="80" height="50" rx="8" fill="#D97706"/>
-            <text x="145" y="54" text-anchor="middle" font-family="monospace" font-size="9" fill="white">AI Model</text>
-            <path d="M95 60 L105 60" stroke="#D97706" stroke-width="2" stroke-dasharray="3 2">
-              <animate attributeName="stroke-dashoffset" from="0" to="-10" dur="0.8s" repeatCount="indefinite"/>
-            </path>
-            <rect x="105" y="88" width="80" height="32" rx="8" fill="white" stroke="#D97706" stroke-width="1.5"/>
-            <text x="145" y="108" text-anchor="middle" font-family="monospace" font-size="8" fill="#D97706">Vector DB</text>
-          </svg>
-        </div>
-        <div class="img-card-body">
-          <div style="font-family:var(--font-mono);font-size:0.65rem;color:#B45309;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px">Track 03</div>
-          <h4>AI-Assisted Web Applications</h4>
-          <p>LLM integration, vector search, microservices, async workers, and intelligent full-stack applications.</p>
-        </div>
+      <div class="track-overview-card reveal d3">
+        <div class="track-overview-icon">🤖</div>
+        <div class="track-overview-num">Track 03</div>
+        <h4>Artificial Intelligence</h4>
+        <p>LLMs, prompt engineering, RAG systems, agents, and AI application deployment.</p>
+      </div>
+      <div class="track-overview-card reveal d4">
+        <div class="track-overview-icon">💾</div>
+        <div class="track-overview-num">Track 04</div>
+        <h4>SAP ABAP on HANA</h4>
+        <p>ABAP development, SAP HANA optimisation, CDS views, S/4HANA migration.</p>
+      </div>
+      <div class="track-overview-card reveal d1">
+        <div class="track-overview-icon">🔗</div>
+        <div class="track-overview-num">Track 05</div>
+        <h4>SAP CPI / BTP</h4>
+        <p>iFlow design, BTP services, API management, end-to-end integration scenarios.</p>
+      </div>
+      <div class="track-overview-card reveal d2">
+        <div class="track-overview-icon">⚙️</div>
+        <div class="track-overview-num">Track 06</div>
+        <h4>ServiceNow</h4>
+        <p>ITSM workflows, Flow Designer, scripting, CMDB, custom app development.</p>
+      </div>
+      <div class="track-overview-card reveal d3">
+        <div class="track-overview-icon">❄️</div>
+        <div class="track-overview-num">Track 07</div>
+        <h4>Snowflake Developer</h4>
+        <p>Data warehousing, Snowpark, query optimisation, data sharing, Streamlit.</p>
+      </div>
+      <div class="track-overview-card reveal d4">
+        <div class="track-overview-icon">🐍</div>
+        <div class="track-overview-num">Track 08</div>
+        <h4>Python Developer</h4>
+        <p>Advanced Python, FastAPI, async programming, testing, production deployment.</p>
+      </div>
+      <div class="track-overview-card reveal d1">
+        <div class="track-overview-icon">☕</div>
+        <div class="track-overview-num">Track 09</div>
+        <h4>Java Developer</h4>
+        <p>Spring Boot microservices, JVM internals, reactive programming, Kubernetes.</p>
+      </div>
+      <div class="track-overview-card reveal d2">
+        <div class="track-overview-icon">☁️</div>
+        <div class="track-overview-num">Track 10</div>
+        <h4>Azure Data Engineer</h4>
+        <p>ADF pipelines, Synapse Analytics, Databricks, Event Hubs, Purview governance.</p>
+      </div>
+      <div class="track-overview-card reveal d3">
+        <div class="track-overview-icon">🌩️</div>
+        <div class="track-overview-num">Track 11</div>
+        <h4>AWS Data Engineer</h4>
+        <p>S3 data lake, Glue ETL, Redshift, EMR Spark, Kinesis, Lake Formation.</p>
+      </div>
+      <div class="track-overview-card reveal d4">
+        <div class="track-overview-icon">🔮</div>
+        <div class="track-overview-num">Track 12</div>
+        <h4>GCP Data Engineer</h4>
+        <p>BigQuery, Dataflow, Dataproc, Pub/Sub, Cloud Composer, Vertex AI.</p>
       </div>
     </div>
 
-    <!-- Toggle -->
+    <!-- ── Track Selector Toggle ── -->
     <div class="track-toggle reveal">
-      <button class="track-btn active" data-track="data">Advanced Data Engineering</button>
-      <button class="track-btn" data-track="devops">Cloud-Native DevOps</button>
-      <button class="track-btn" data-track="ai-web">AI-Assisted Web Apps</button>
+      <button class="track-btn active" data-track="data-science">Data Science</button>
+      <button class="track-btn" data-track="machine-learning">Machine Learning</button>
+      <button class="track-btn" data-track="ai">Artificial Intelligence</button>
+      <button class="track-btn" data-track="sap-abap">SAP ABAP on HANA</button>
+      <button class="track-btn" data-track="sap-cpi">SAP CPI / BTP</button>
+      <button class="track-btn" data-track="servicenow">ServiceNow</button>
+      <button class="track-btn" data-track="snowflake">Snowflake</button>
+      <button class="track-btn" data-track="python">Python Developer</button>
+      <button class="track-btn" data-track="java">Java Developer</button>
+      <button class="track-btn" data-track="azure-data">Azure Data Engineer</button>
+      <button class="track-btn" data-track="aws-data">AWS Data Engineer</button>
+      <button class="track-btn" data-track="gcp-data">GCP Data Engineer</button>
     </div>
 
-    <!-- ── TRACK 1: Advanced Data Engineering ── -->
-    <div class="track-panel active" id="track-data">
-
-      <div class="section-tag" style="background:rgba(74,222,128,0.07)">🟢 Track 01</div>
-      <h2 class="section-title" style="margin-bottom:8px">Advanced Data Engineering</h2>
-      <p class="section-sub" style="margin-bottom:48px">
-        Master the hidden internal mechanics of high-throughput data systems. Move past simple
-        database queries and learn how data actually moves across memory and disk.
-      </p>
-
+    <!-- ══ TRACK 01: Data Science ══ -->
+    <div class="track-panel active" id="track-data-science">
+      <div class="section-tag" style="background:rgba(74,222,128,0.07)">📊 Track 01</div>
+      <h2 class="section-title" style="margin-bottom:8px">Data Science</h2>
+      <p class="section-sub" style="margin-bottom:48px">Transform raw data into business intelligence. Master the complete data science workflow from statistical analysis and feature engineering to deploying predictive models that drive enterprise decisions.</p>
       <div class="stages-grid">
         <div class="stage-card">
           <div class="stage-num">Stage 01 · Weeks 1–6</div>
-          <div class="stage-title">The Advancement Engine</div>
-          <div class="stage-subtitle">Deep-Dive &amp; Architecture</div>
+          <div class="stage-title">Foundations &amp; Analysis</div>
+          <div class="stage-subtitle">Python, Statistics &amp; Data Wrangling</div>
           <ul class="stage-items">
-            <li class="stage-item">Advanced Database Mastering: Connection pooling, column-store vs. row-store architectures, partition keys, and query optimisation in PostgreSQL and MongoDB</li>
-            <li class="stage-item">Distributed Systems Foundations: CAP theorem in practice, data replication strategies, sharding, and consensus mechanisms</li>
-            <li class="stage-item">AI-Driven Optimisation: Leveraging AI models to analyse slow query execution plans, generate complex indexing schemas, and automate index maintenance scripts</li>
+            <li class="stage-item">Advanced Python for data: NumPy vectorisation, Pandas optimisation, complex data transformations and multi-index operations</li>
+            <li class="stage-item">Statistical foundations: Hypothesis testing, probability distributions, A/B testing design, and inference from real-world datasets</li>
+            <li class="stage-item">Data wrangling at scale: Handling missing data strategies, outlier detection, merging disparate datasets, and pipeline reproducibility</li>
           </ul>
         </div>
-
         <div class="stage-card">
           <div class="stage-num">Stage 02 · Weeks 7–12</div>
-          <div class="stage-title">The Implementation &amp; Product Lab</div>
-          <div class="stage-subtitle">Real-Time Deployment &amp; Pipelines</div>
+          <div class="stage-title">Modelling &amp; Visualisation</div>
+          <div class="stage-subtitle">EDA, Feature Engineering &amp; Predictive Models</div>
           <ul class="stage-items">
-            <li class="stage-item">Event-Driven Streaming: Architecting message queues using Apache Kafka or RabbitMQ, handling consumer groups, offset strategies, and backpressure</li>
-            <li class="stage-item">Data Lakehouse Orchestration: Building robust ETL/ELT pipelines using Apache Spark and Delta Lake, orchestrated via Apache Airflow</li>
-            <li class="stage-item">CI/CD Data Pipelines: Setting up automated pipeline validation—your pipelines are hooked into GitHub Actions to test data quality, schemas, and processing speed</li>
+            <li class="stage-item">Exploratory data analysis: Profiling enterprise datasets, correlation analysis, and communicating findings through Plotly and Seaborn dashboards</li>
+            <li class="stage-item">Feature engineering: Domain-driven feature creation, encoding strategies, dimensionality reduction, and feature importance scoring</li>
+            <li class="stage-item">Predictive modelling: Regression, classification, time-series forecasting, ensemble methods, and cross-validation strategies</li>
           </ul>
         </div>
-
         <div class="stage-card">
           <div class="stage-num">Stage 03 · Weeks 13–18</div>
-          <div class="stage-title">The Career Survival &amp; Adaptability Arena</div>
-          <div class="stage-subtitle">Production Outages &amp; Ticket Simulations</div>
+          <div class="stage-title">Production &amp; Delivery</div>
+          <div class="stage-subtitle">Deployment, Reporting &amp; Stakeholder Communication</div>
           <ul class="stage-items">
-            <li class="stage-item">The Live Triage Simulation: We intentionally break your pipeline—debug a live data lake storage corruption issue, recover a fallen Kafka broker, and resolve schema drift mid-stream</li>
-            <li class="stage-item">Enterprise Ticket Resolution: Resolving high-priority Jira tickets tracking data loss, lag spikes, and downstream API ingestion failures</li>
-            <li class="stage-item">Whiteboard Defence: Defend your data warehousing architecture choices against AI-simulated scale constraints before our engineering review board</li>
+            <li class="stage-item">Model deployment: Packaging Scikit-learn pipelines into REST APIs with FastAPI, containerised with Docker and deployed to cloud</li>
+            <li class="stage-item">Interactive dashboards: Building executive-facing BI dashboards using Streamlit and Power BI connected to live data sources</li>
+            <li class="stage-item">Data storytelling: Presenting analysis to non-technical stakeholders with clarity — findings, limitations, and actionable recommendations</li>
           </ul>
         </div>
       </div>
-
       <div class="capstone">
         <div class="capstone-icon">📊</div>
         <div>
           <div class="capstone-tag">Product Capstone Showcase</div>
-          <h4>Real-Time Financial Transaction Analytics Ledger</h4>
-          <p>An enterprise-grade data platform handling a simulated stream of 10,000 transaction events per second. The architecture utilises Apache Kafka for event ingestion, Apache Spark for real-time streaming fraud analysis, Delta Lake for storage, and Apache Airflow to manage continuous data flows—all deployed inside isolated Docker containers on AWS.</p>
+          <h4>Customer Churn Prediction &amp; Revenue Intelligence Platform</h4>
+          <p>An end-to-end data science product that ingests CRM data, performs automated EDA, engineers predictive churn features, trains and validates an ensemble ML model, and surfaces insights through an interactive Streamlit dashboard — deployed on cloud infrastructure with a live REST API for scoring new customers.</p>
         </div>
       </div>
     </div>
 
-    <!-- ── TRACK 2: Cloud-Native DevOps ── -->
-    <div class="track-panel" id="track-devops">
-
-      <div class="section-tag" style="background:rgba(34,211,238,0.07);color:var(--cyan);border-color:rgba(34,211,238,0.2)">🔵 Track 02</div>
-      <h2 class="section-title" style="margin-bottom:8px">Cloud-Native DevOps</h2>
-      <p class="section-sub" style="margin-bottom:48px">
-        Stop using cloud consoles manually and master programmatic infrastructure design.
-        Build automated, ironclad deployment engines that scale applications flawlessly with zero downtime.
-      </p>
-
+    <!-- ══ TRACK 02: Machine Learning ══ -->
+    <div class="track-panel" id="track-machine-learning">
+      <div class="section-tag" style="background:rgba(139,92,246,0.07);color:#7C3AED;border-color:rgba(139,92,246,0.2)">🧠 Track 02</div>
+      <h2 class="section-title" style="margin-bottom:8px">Machine Learning</h2>
+      <p class="section-sub" style="margin-bottom:48px">Go beyond running Jupyter notebooks. Master the full ML lifecycle — from model architecture and training to production deployment, monitoring, and automated retraining pipelines.</p>
       <div class="stages-grid">
         <div class="stage-card">
           <div class="stage-num">Stage 01 · Weeks 1–6</div>
-          <div class="stage-title">The Advancement Engine</div>
-          <div class="stage-subtitle">Deep-Dive &amp; Architecture</div>
+          <div class="stage-title">Algorithms &amp; Architecture</div>
+          <div class="stage-subtitle">Classical ML &amp; Deep Learning Foundations</div>
           <ul class="stage-items">
-            <li class="stage-item">Infrastructure as Code (IaC): Advanced Terraform setups, custom module design, state file locks, and multi-environment workspace structuring</li>
-            <li class="stage-item">Advanced Linux &amp; Networking: Internal networking mechanisms, IP routing, subnet masks, DNS configuration, and OS-level resource monitoring</li>
-            <li class="stage-item">AI IaC Autocompletion: Using AI engines to securely generate complex cloud configuration scripts, validate security parameters, and prevent structural drift</li>
+            <li class="stage-item">Classical ML mastery: Gradient boosting (XGBoost/LightGBM), SVMs, ensemble methods, and understanding the mathematics driving each algorithm</li>
+            <li class="stage-item">Deep learning with PyTorch: Neural network architectures, backpropagation mechanics, CNNs for image tasks, RNNs and Transformers for sequences</li>
+            <li class="stage-item">Model evaluation rigour: Precision/recall tradeoffs, ROC-AUC, calibration curves, and designing evaluation frameworks for imbalanced datasets</li>
           </ul>
         </div>
-
         <div class="stage-card">
           <div class="stage-num">Stage 02 · Weeks 7–12</div>
-          <div class="stage-title">The Implementation &amp; Product Lab</div>
-          <div class="stage-subtitle">Real-Time Deployment &amp; Pipelines</div>
+          <div class="stage-title">Training &amp; Optimisation</div>
+          <div class="stage-subtitle">Hyperparameter Tuning &amp; Experiment Tracking</div>
           <ul class="stage-items">
-            <li class="stage-item">Container Orchestration: Designing enterprise Kubernetes clusters, writing complex YAML manifests, configuring ingress controllers, and handling persistent volume claims</li>
-            <li class="stage-item">Advanced GitOps &amp; CI/CD: Building production pipelines using GitHub Actions or ArgoCD, managing secret variables securely, and executing canary or blue-green deployment strategies</li>
-            <li class="stage-item">Cloud Infrastructure Rigor: Running automated infrastructure security linters (Checkov) directly inside active deployment pipelines</li>
+            <li class="stage-item">Experiment management: MLflow for tracking runs, comparing experiments, and registering production-ready model versions with full reproducibility</li>
+            <li class="stage-item">Hyperparameter optimisation: Optuna, Ray Tune, Bayesian optimisation, and distributed training strategies across GPU clusters</li>
+            <li class="stage-item">Feature stores: Building reusable feature pipelines with Feast, handling train/serve skew, and ensuring data consistency across ML systems</li>
           </ul>
         </div>
-
         <div class="stage-card">
           <div class="stage-num">Stage 03 · Weeks 13–18</div>
-          <div class="stage-title">The Career Survival &amp; Adaptability Arena</div>
-          <div class="stage-subtitle">Production Outages &amp; Ticket Simulations</div>
+          <div class="stage-title">MLOps &amp; Production</div>
+          <div class="stage-subtitle">Model Serving, Monitoring &amp; Retraining</div>
           <ul class="stage-items">
-            <li class="stage-item">The Production Outage Simulation: Your cluster goes down—simulated catastrophic AWS region failure or broken Kubernetes cluster loop. 45 minutes to trace metrics and fix it</li>
-            <li class="stage-item">Monitoring Triage: Utilising Prometheus and Grafana dashboards to identify memory leaks, track cluster health, and resolve active service bottlenecks</li>
-            <li class="stage-item">Architectural Defence: Presenting and defending your cloud infrastructure bills and security models against an aggressive corporate efficiency review panel</li>
+            <li class="stage-item">Model serving: Deploying models via FastAPI and Triton Inference Server, A/B testing model variants, and managing blue-green model deployments</li>
+            <li class="stage-item">Production monitoring: Detecting data drift with Evidently AI, alerting on performance degradation, and automated model retraining triggers</li>
+            <li class="stage-item">ML pipelines: Orchestrating end-to-end retraining with Kubeflow or Airflow, CI/CD for ML (GitHub Actions), and model governance policies</li>
           </ul>
         </div>
       </div>
-
       <div class="capstone">
-        <div class="capstone-icon">🏗️</div>
+        <div class="capstone-icon">🧠</div>
         <div>
           <div class="capstone-tag">Product Capstone Showcase</div>
-          <h4>Multi-Region Automated Kubernetes Deployment Engine</h4>
-          <p>A fully automated, GitOps-driven AWS infrastructure deployment. You will construct a production-ready Kubernetes cluster using Terraform, configure secure ArgoCD automated git deployments, and implement an all-inclusive monitoring suite using Prometheus and Grafana to track multi-region cluster resource pools.</p>
+          <h4>Automated ML Pipeline with Drift Detection &amp; Continuous Retraining</h4>
+          <p>A production-grade MLOps system that trains, validates, and deploys a fraud detection model, monitors prediction drift in real-time, automatically triggers retraining on data distribution shifts, and provides a live REST inference API — all orchestrated through an automated CI/CD pipeline with full experiment lineage tracking.</p>
         </div>
       </div>
     </div>
 
-    <!-- ── TRACK 3: AI-Assisted Web Apps ── -->
-    <div class="track-panel" id="track-ai-web">
-
-      <div class="section-tag" style="background:rgba(245,158,11,0.07);color:var(--amber);border-color:rgba(245,158,11,0.2)">🟡 Track 03</div>
-      <h2 class="section-title" style="margin-bottom:8px">AI-Assisted Web Applications</h2>
-      <p class="section-sub" style="margin-bottom:48px">
-        Move away from simple monolithic code architectures and master modern, completely
-        decoupled enterprise software designs. Embed intelligence directly into production applications.
-      </p>
-
+    <!-- ══ TRACK 03: Artificial Intelligence ══ -->
+    <div class="track-panel" id="track-ai">
+      <div class="section-tag" style="background:rgba(245,158,11,0.07);color:var(--amber);border-color:rgba(245,158,11,0.2)">🤖 Track 03</div>
+      <h2 class="section-title" style="margin-bottom:8px">Artificial Intelligence</h2>
+      <p class="section-sub" style="margin-bottom:48px">Move beyond prompt experimentation. Build enterprise-grade AI systems — RAG pipelines, multi-agent orchestration, and production-deployed LLM applications that solve real business problems at scale.</p>
       <div class="stages-grid">
         <div class="stage-card">
           <div class="stage-num">Stage 01 · Weeks 1–6</div>
-          <div class="stage-title">The Advancement Engine</div>
-          <div class="stage-subtitle">Deep-Dive &amp; Architecture</div>
+          <div class="stage-title">LLM Foundations</div>
+          <div class="stage-subtitle">Prompt Engineering &amp; Model APIs</div>
           <ul class="stage-items">
-            <li class="stage-item">Enterprise Architecture Patterns: Implementing clean microservices, domain-driven design, asynchronous workers (Celery/Redis), and advanced state management</li>
-            <li class="stage-item">API Design Mastery: Designing production-grade RESTful and GraphQL APIs featuring strict rate-limiting, comprehensive CORS protection, and secure OAuth2/JWT validation</li>
-            <li class="stage-item">AI Co-Pilot Scaling: Utilising advanced semantic prompts inside IDEs to automate unit testing suites, clean legacy code, and write efficient data model patterns</li>
+            <li class="stage-item">LLM architecture deep-dive: Transformer mechanics, attention mechanisms, tokenisation, context windows, and selecting the right model for each task</li>
+            <li class="stage-item">Advanced prompt engineering: Chain-of-thought, few-shot learning, structured output design, and building reliable prompts for production pipelines</li>
+            <li class="stage-item">Model API integration: Claude, OpenAI, Gemini APIs — handling streaming, function calling, tool use, and implementing robust retry and fallback logic</li>
           </ul>
         </div>
-
         <div class="stage-card">
           <div class="stage-num">Stage 02 · Weeks 7–12</div>
-          <div class="stage-title">The Implementation &amp; Product Lab</div>
-          <div class="stage-subtitle">Real-Time Deployment &amp; Pipelines</div>
+          <div class="stage-title">RAG &amp; Agent Systems</div>
+          <div class="stage-subtitle">Vector Search, LangChain &amp; Multi-Agent Frameworks</div>
           <ul class="stage-items">
-            <li class="stage-item">AI Model Integration &amp; LLMOps: Connecting applications safely to Large Language Models, optimising custom vector embedding search databases (Pinecone/ChromaDB), and managing context windows</li>
-            <li class="stage-item">Containerised App Deployment: Packaging multi-tier web applications into highly optimised multi-stage Docker builds</li>
-            <li class="stage-item">Continuous Integration Rigor: Forcing application builds through automated testing pipelines checking for code coverage ratios, race conditions, and frontend/backend interface contracts</li>
+            <li class="stage-item">RAG architecture: Chunking strategies, embedding models, vector database selection (Pinecone, ChromaDB, pgvector), retrieval quality evaluation</li>
+            <li class="stage-item">Agent frameworks: Building autonomous agents with LangChain and LlamaIndex, tool-calling patterns, memory systems, and multi-agent coordination</li>
+            <li class="stage-item">Fine-tuning: LoRA/QLoRA parameter-efficient fine-tuning, dataset preparation, evaluation harnesses, and deploying custom-tuned models</li>
           </ul>
         </div>
-
         <div class="stage-card">
           <div class="stage-num">Stage 03 · Weeks 13–18</div>
-          <div class="stage-title">The Career Survival &amp; Adaptability Arena</div>
-          <div class="stage-subtitle">Production Outages &amp; Ticket Simulations</div>
+          <div class="stage-title">LLMOps &amp; Safety</div>
+          <div class="stage-subtitle">Production Deployment, Evaluation &amp; Guardrails</div>
           <ul class="stage-items">
-            <li class="stage-item">The Application Failure Simulation: Your software is throwing 500 internal errors under a simulated user surge—debug memory leaks, race conditions, and broken cache layers live</li>
-            <li class="stage-item">Jira Escalation Resolution: Fixing critical application bugs, patch deployments, and data mapping mismatches straight out of a simulated production dashboard</li>
-            <li class="stage-item">System Design Defence: Whiteboarding your full-stack system architecture to defend its security policies and scaling performance under technical cross-examination</li>
+            <li class="stage-item">Production AI deployment: Containerising AI services, latency optimisation, cost management, caching strategies, and scaling inference workloads</li>
+            <li class="stage-item">Evaluation &amp; observability: LLM evaluation frameworks (RAGAS, DeepEval), tracing with LangSmith, monitoring hallucination rates and response quality</li>
+            <li class="stage-item">Safety &amp; guardrails: Implementing input/output validation, content filtering, PII detection, and designing responsible AI usage policies</li>
           </ul>
         </div>
       </div>
-
       <div class="capstone">
         <div class="capstone-icon">🤖</div>
         <div>
           <div class="capstone-tag">Product Capstone Showcase</div>
-          <h4>Enterprise Intelligent Content Discovery Platform</h4>
-          <p>A distributed, multi-tenant web application incorporating a modern frontend and a robust backend API service. The application integrates an AI-driven vector search recommendation tool, leverages Celery and Redis to handle heavy asynchronous background jobs, utilises automated GitHub Actions testing, and deploys natively via cloud container platforms.</p>
+          <h4>Enterprise RAG Knowledge Assistant with Multi-Agent Orchestration</h4>
+          <p>A production-deployed AI assistant that ingests enterprise documentation, builds a hybrid retrieval system combining dense and sparse search, orchestrates multi-agent workflows for complex queries, implements safety guardrails and PII redaction, and exposes a low-latency REST API with full observability and cost tracking.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ TRACK 04: SAP ABAP on HANA ══ -->
+    <div class="track-panel" id="track-sap-abap">
+      <div class="section-tag" style="background:rgba(59,130,246,0.07);color:#1D4ED8;border-color:rgba(59,130,246,0.2)">💾 Track 04</div>
+      <h2 class="section-title" style="margin-bottom:8px">SAP ABAP on HANA</h2>
+      <p class="section-sub" style="margin-bottom:48px">Master enterprise SAP development on the HANA platform. Build high-performance ABAP programs, optimise database access with CDS views, and architect solutions for S/4HANA transformation projects.</p>
+      <div class="stages-grid">
+        <div class="stage-card">
+          <div class="stage-num">Stage 01 · Weeks 1–6</div>
+          <div class="stage-title">ABAP Core &amp; Data Dictionary</div>
+          <div class="stage-subtitle">ABAP Syntax, Reports &amp; Modularisation</div>
+          <ul class="stage-items">
+            <li class="stage-item">Modern ABAP syntax: Object-oriented ABAP, interfaces, design patterns (Factory, Observer), exception handling, and clean code principles</li>
+            <li class="stage-item">Data dictionary mastery: Table design, domain/data element architecture, search helps, lock objects, and maintaining data integrity in SAP systems</li>
+            <li class="stage-item">Function modules &amp; BAPIs: Building reusable modularised code, RFC-enabled function groups, and integrating standard SAP BAPIs for business processes</li>
+          </ul>
+        </div>
+        <div class="stage-card">
+          <div class="stage-num">Stage 02 · Weeks 7–12</div>
+          <div class="stage-title">SAP HANA &amp; Performance</div>
+          <div class="stage-subtitle">CDS Views, AMDP &amp; Query Optimisation</div>
+          <ul class="stage-items">
+            <li class="stage-item">SAP HANA architecture: In-memory columnar storage, row vs. column store, partitioning strategies, and exploiting HANA's parallelism from ABAP</li>
+            <li class="stage-item">Core Data Services (CDS): Building CDS views with associations, annotations, access controls, and exposing data models for Fiori applications</li>
+            <li class="stage-item">ABAP Managed Database Procedures (AMDP): Writing SQLScript inside ABAP classes, code pushdown strategies, and performance benchmarking with HANA Studio</li>
+          </ul>
+        </div>
+        <div class="stage-card">
+          <div class="stage-num">Stage 03 · Weeks 13–18</div>
+          <div class="stage-title">S/4HANA &amp; Integration</div>
+          <div class="stage-subtitle">Fiori, OData, IDocs &amp; Migration</div>
+          <ul class="stage-items">
+            <li class="stage-item">OData services: Building and consuming OData APIs from ABAP, integrating with SAP Fiori UI5 frontends, and applying authorisation checks</li>
+            <li class="stage-item">IDocs &amp; RFCs: Designing message type hierarchies, configuring partner profiles, debugging IDoc processing errors in production environments</li>
+            <li class="stage-item">S/4HANA migration readiness: Custom code adaptation using the SAP ATC (ABAP Test Cockpit), resolving compatibility issues, and simplification item resolution</li>
+          </ul>
+        </div>
+      </div>
+      <div class="capstone">
+        <div class="capstone-icon">💾</div>
+        <div>
+          <div class="capstone-tag">Product Capstone Showcase</div>
+          <h4>Custom S/4HANA Business Process Automation with HANA-Optimised Reporting</h4>
+          <p>A complete SAP development project featuring a custom procurement workflow built with OO-ABAP, HANA-native CDS analytical views with drill-down reporting, IDoc-based supplier integration, and a Fiori Launchpad tile delivering real-time procurement insights — validated against S/4HANA compatibility checks.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ TRACK 05: SAP CPI/BTP ══ -->
+    <div class="track-panel" id="track-sap-cpi">
+      <div class="section-tag" style="background:rgba(20,184,166,0.07);color:#0F766E;border-color:rgba(20,184,166,0.2)">🔗 Track 05</div>
+      <h2 class="section-title" style="margin-bottom:8px">SAP CPI / BTP</h2>
+      <p class="section-sub" style="margin-bottom:48px">Architect and implement enterprise integration landscapes on SAP Business Technology Platform. Design iFlows, manage APIs, and connect SAP and non-SAP systems through scalable cloud integration patterns.</p>
+      <div class="stages-grid">
+        <div class="stage-card">
+          <div class="stage-num">Stage 01 · Weeks 1–6</div>
+          <div class="stage-title">BTP Fundamentals &amp; CPI Basics</div>
+          <div class="stage-subtitle">Platform Architecture &amp; iFlow Design</div>
+          <ul class="stage-items">
+            <li class="stage-item">SAP BTP architecture: Cloud Foundry environment, subaccounts, spaces, service bindings, and navigating the BTP Cockpit for enterprise setups</li>
+            <li class="stage-item">CPI iFlow fundamentals: Message processing channels, integration patterns (content-based routing, splitter, aggregator), and flow debugging</li>
+            <li class="stage-item">Adapters and connectivity: Configuring HTTPS, SFTP, SOAP, RFC, and SuccessFactors adapters with proper credential management and connectivity testing</li>
+          </ul>
+        </div>
+        <div class="stage-card">
+          <div class="stage-num">Stage 02 · Weeks 7–12</div>
+          <div class="stage-title">Advanced Mappings &amp; Error Handling</div>
+          <div class="stage-subtitle">Message Mapping, Groovy Scripts &amp; Exceptions</div>
+          <ul class="stage-items">
+            <li class="stage-item">Message mapping mastery: Graphical mapping, XSLT transformation, standard functions, and building reusable mapping libraries for common business objects</li>
+            <li class="stage-item">Groovy scripting in CPI: Custom message manipulation, dynamic endpoint resolution, and writing testable Groovy scripts with proper logging</li>
+            <li class="stage-item">Exception handling: Designing dead-letter queues, alert notifications, retry strategies, and building self-healing integration flows with error escalation</li>
+          </ul>
+        </div>
+        <div class="stage-card">
+          <div class="stage-num">Stage 03 · Weeks 13–18</div>
+          <div class="stage-title">BTP Services &amp; Enterprise Scenarios</div>
+          <div class="stage-subtitle">API Management, Event Mesh &amp; End-to-End Integration</div>
+          <ul class="stage-items">
+            <li class="stage-item">SAP API Management: Publishing APIs on API Business Hub, applying rate limiting/quota policies, OAuth2 security, and monitoring API traffic</li>
+            <li class="stage-item">SAP Event Mesh: Configuring event-driven messaging, webhooks, topic subscriptions, and building asynchronous enterprise integration scenarios</li>
+            <li class="stage-item">End-to-end scenarios: Implementing complete Order-to-Cash and Procure-to-Pay integration flows connecting SAP S/4HANA with third-party systems</li>
+          </ul>
+        </div>
+      </div>
+      <div class="capstone">
+        <div class="capstone-icon">🔗</div>
+        <div>
+          <div class="capstone-tag">Product Capstone Showcase</div>
+          <h4>Enterprise B2B Integration: SAP S/4HANA to External Partner Network</h4>
+          <p>A complete CPI/BTP integration project delivering a bi-directional purchase order exchange between SAP S/4HANA and a third-party supplier portal — featuring IDOC-to-REST transformation, real-time event-driven notifications via SAP Event Mesh, API gateway exposure, full error handling with alerting, and end-to-end monitoring dashboards.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ TRACK 06: ServiceNow ══ -->
+    <div class="track-panel" id="track-servicenow">
+      <div class="section-tag" style="background:rgba(107,114,128,0.07);color:#374151;border-color:rgba(107,114,128,0.2)">⚙️ Track 06</div>
+      <h2 class="section-title" style="margin-bottom:8px">ServiceNow</h2>
+      <p class="section-sub" style="margin-bottom:48px">Go beyond basic ticket management. Build enterprise-grade ServiceNow solutions — complex workflows, automated business rules, custom applications, and deep ITSM integrations that transform IT operations.</p>
+      <div class="stages-grid">
+        <div class="stage-card">
+          <div class="stage-num">Stage 01 · Weeks 1–6</div>
+          <div class="stage-title">Platform Fundamentals</div>
+          <div class="stage-subtitle">Tables, Forms, Security &amp; ITSM Configuration</div>
+          <ul class="stage-items">
+            <li class="stage-item">Platform architecture: Table hierarchy, schema design, glide data model, and understanding how ServiceNow stores and retrieves enterprise data</li>
+            <li class="stage-item">ITSM module deep-dive: Incident, Problem, Change management configuration, SLA design, assignment rules, and approval workflow structuring</li>
+            <li class="stage-item">Security model: ACLs, roles, user criteria, data policies, and designing least-privilege access for complex multi-team enterprise environments</li>
+          </ul>
+        </div>
+        <div class="stage-card">
+          <div class="stage-num">Stage 02 · Weeks 7–12</div>
+          <div class="stage-title">Automation &amp; Scripting</div>
+          <div class="stage-subtitle">Flow Designer, Business Rules &amp; Client Scripts</div>
+          <ul class="stage-items">
+            <li class="stage-item">Flow Designer mastery: Building complex multi-step approval flows, sub-flows, dynamic action selection, and integrating with third-party systems via spokes</li>
+            <li class="stage-item">Server-side scripting: Business Rules (before/after/async), Script Includes, Scheduled Jobs, and writing efficient GlideRecord queries at scale</li>
+            <li class="stage-item">Client-side scripting: Client Scripts, UI Policies, UI Actions, and building dynamic form behaviour that responds to real-time user interactions</li>
+          </ul>
+        </div>
+        <div class="stage-card">
+          <div class="stage-num">Stage 03 · Weeks 13–18</div>
+          <div class="stage-title">CMDB, Integration &amp; Custom Apps</div>
+          <div class="stage-subtitle">REST APIs, Service Portal &amp; Scoped App Development</div>
+          <ul class="stage-items">
+            <li class="stage-item">CMDB management: Designing CI class structures, reconciliation rules, Discovery configuration, and maintaining CMDB health for accurate impact analysis</li>
+            <li class="stage-item">REST integration: Consuming and exposing REST APIs from ServiceNow, building outbound integrations, and managing credentials securely with Connection Aliases</li>
+            <li class="stage-item">Custom scoped application development: Building packaged apps with their own tables, flows, portals, and publishing to the ServiceNow Store</li>
+          </ul>
+        </div>
+      </div>
+      <div class="capstone">
+        <div class="capstone-icon">⚙️</div>
+        <div>
+          <div class="capstone-tag">Product Capstone Showcase</div>
+          <h4>Automated IT Service Management Platform with AI-Assisted Incident Resolution</h4>
+          <p>A custom ServiceNow solution featuring automated incident triage using NLU-driven categorisation, a Flow Designer-orchestrated major incident workflow, CMDB-driven impact analysis, a self-service Service Portal for end users, and a management dashboard with real-time SLA compliance reporting — packaged as a deployable scoped application.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ TRACK 07: Snowflake Developer ══ -->
+    <div class="track-panel" id="track-snowflake">
+      <div class="section-tag" style="background:rgba(6,182,212,0.07);color:#0E7490;border-color:rgba(6,182,212,0.2)">❄️ Track 07</div>
+      <h2 class="section-title" style="margin-bottom:8px">Snowflake Developer</h2>
+      <p class="section-sub" style="margin-bottom:48px">Master the cloud data platform powering modern enterprise analytics. Build performant data pipelines, optimise warehouse costs, leverage Snowpark for ML, and architect multi-cloud data sharing solutions.</p>
+      <div class="stages-grid">
+        <div class="stage-card">
+          <div class="stage-num">Stage 01 · Weeks 1–6</div>
+          <div class="stage-title">Platform Architecture</div>
+          <div class="stage-subtitle">Virtual Warehouses, Storage &amp; Data Loading</div>
+          <ul class="stage-items">
+            <li class="stage-item">Snowflake architecture: Multi-cluster shared data architecture, separation of storage and compute, micro-partitioning, and metadata management</li>
+            <li class="stage-item">Data loading strategies: COPY INTO commands, Snowpipe continuous ingestion, external stage configuration (S3/Azure/GCS), and handling semi-structured data (JSON/Parquet)</li>
+            <li class="stage-item">Virtual warehouse management: Warehouse sizing, multi-cluster auto-scaling, query queuing, and designing warehouse strategies for mixed workloads</li>
+          </ul>
+        </div>
+        <div class="stage-card">
+          <div class="stage-num">Stage 02 · Weeks 7–12</div>
+          <div class="stage-title">Advanced SQL &amp; Snowpark</div>
+          <div class="stage-subtitle">Query Optimisation, Dynamic Tables &amp; Snowpark Python</div>
+          <ul class="stage-items">
+            <li class="stage-item">Advanced SQL performance: Clustering keys, search optimisation, query profiling with Query Profile, materialised views, and eliminating full table scans</li>
+            <li class="stage-item">Dynamic tables &amp; streams: Building declarative pipelines with Dynamic Tables, change data capture with Streams, and automating incremental processing with Tasks</li>
+            <li class="stage-item">Snowpark Python: Writing DataFrame-based transformations in Python that execute natively on Snowflake, building stored procedures, and deploying ML models with Snowpark ML</li>
+          </ul>
+        </div>
+        <div class="stage-card">
+          <div class="stage-num">Stage 03 · Weeks 13–18</div>
+          <div class="stage-title">Governance &amp; Advanced Features</div>
+          <div class="stage-subtitle">Data Sharing, Streamlit &amp; Cost Optimisation</div>
+          <ul class="stage-items">
+            <li class="stage-item">Data governance: Row and column-level security, dynamic data masking, object tagging, and configuring Snowflake Horizon for unified data governance</li>
+            <li class="stage-item">Data sharing &amp; Marketplace: Creating and consuming Snowflake Data Shares, publishing data products to the Marketplace, and designing secure cross-cloud sharing</li>
+            <li class="stage-item">Cost optimisation &amp; Streamlit: Resource monitors, warehouse cost attribution, query credit analysis, and building Streamlit in Snowflake apps for internal analytics</li>
+          </ul>
+        </div>
+      </div>
+      <div class="capstone">
+        <div class="capstone-icon">❄️</div>
+        <div>
+          <div class="capstone-tag">Product Capstone Showcase</div>
+          <h4>Multi-Cloud Analytics Platform with Snowpark ML Pipeline &amp; Data Sharing</h4>
+          <p>A complete Snowflake data platform featuring a Snowpipe-driven real-time ingestion layer, Dynamic Table-based transformation pipeline, a Snowpark Python ML model for demand forecasting, a Streamlit dashboard for business users, cross-account data sharing for partner reporting, and a full governance layer with masking policies and audit logging.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ TRACK 08: Python Developer ══ -->
+    <div class="track-panel" id="track-python">
+      <div class="section-tag" style="background:rgba(234,179,8,0.07);color:#854D0E;border-color:rgba(234,179,8,0.2)">🐍 Track 08</div>
+      <h2 class="section-title" style="margin-bottom:8px">Python Developer</h2>
+      <p class="section-sub" style="margin-bottom:48px">Move beyond scripting. Master advanced Python patterns, build production-grade REST APIs with async capabilities, design comprehensive test suites, and deploy containerised applications that survive enterprise traffic.</p>
+      <div class="stages-grid">
+        <div class="stage-card">
+          <div class="stage-num">Stage 01 · Weeks 1–6</div>
+          <div class="stage-title">Advanced Python Internals</div>
+          <div class="stage-subtitle">OOP, Async Programming &amp; Design Patterns</div>
+          <ul class="stage-items">
+            <li class="stage-item">Python internals: CPython memory model, GIL mechanics, reference counting, garbage collection, and writing memory-efficient code for production services</li>
+            <li class="stage-item">Advanced OOP: Metaclasses, descriptors, abstract base classes, mixins, and implementing enterprise design patterns (Strategy, Factory, Observer) in Python</li>
+            <li class="stage-item">Async programming: asyncio event loop internals, async/await patterns, concurrency vs. parallelism, aiohttp, and handling backpressure in async services</li>
+          </ul>
+        </div>
+        <div class="stage-card">
+          <div class="stage-num">Stage 02 · Weeks 7–12</div>
+          <div class="stage-title">API Development &amp; Databases</div>
+          <div class="stage-subtitle">FastAPI, SQLAlchemy &amp; Testing</div>
+          <ul class="stage-items">
+            <li class="stage-item">FastAPI mastery: Dependency injection, Pydantic v2 models, background tasks, WebSocket support, OpenAPI documentation, and JWT authentication</li>
+            <li class="stage-item">Database layer: SQLAlchemy 2.0 async ORM, Alembic migration management, query optimisation, connection pooling, and handling N+1 problems</li>
+            <li class="stage-item">Testing discipline: pytest fixtures and parametrisation, factory-boy test data, integration testing with test databases, coverage reporting, and mutation testing</li>
+          </ul>
+        </div>
+        <div class="stage-card">
+          <div class="stage-num">Stage 03 · Weeks 13–18</div>
+          <div class="stage-title">Production Deployment</div>
+          <div class="stage-subtitle">Docker, CI/CD &amp; Performance Profiling</div>
+          <ul class="stage-items">
+            <li class="stage-item">Containerisation: Multi-stage Docker builds for Python apps, minimising image size, Gunicorn/Uvicorn tuning, health checks, and graceful shutdown handling</li>
+            <li class="stage-item">Async task queues: Celery with Redis broker, priority queues, task retry strategies, monitoring with Flower, and designing idempotent background jobs</li>
+            <li class="stage-item">Performance profiling: cProfile, py-spy, memory-profiler, identifying bottlenecks in production traces, and optimising hot code paths in web APIs</li>
+          </ul>
+        </div>
+      </div>
+      <div class="capstone">
+        <div class="capstone-icon">🐍</div>
+        <div>
+          <div class="capstone-tag">Product Capstone Showcase</div>
+          <h4>Production-Grade Async REST API with Background Job Processing</h4>
+          <p>A fully tested FastAPI application featuring async PostgreSQL access via SQLAlchemy, JWT-secured endpoints, Celery-based background job queue for report generation, Redis caching layer, multi-stage Docker build, GitHub Actions CI/CD pipeline with 90%+ test coverage, and Prometheus metrics exposure — deployed to a cloud container platform.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ TRACK 09: Java Developer ══ -->
+    <div class="track-panel" id="track-java">
+      <div class="section-tag" style="background:rgba(220,38,38,0.07);color:#B91C1C;border-color:rgba(220,38,38,0.2)">☕ Track 09</div>
+      <h2 class="section-title" style="margin-bottom:8px">Java Developer</h2>
+      <p class="section-sub" style="margin-bottom:48px">Master enterprise Java at the architectural level. Build production-ready Spring Boot microservices, understand JVM internals, apply distributed systems patterns, and deploy cloud-native Java applications that scale under load.</p>
+      <div class="stages-grid">
+        <div class="stage-card">
+          <div class="stage-num">Stage 01 · Weeks 1–6</div>
+          <div class="stage-title">JVM Internals &amp; Core Java</div>
+          <div class="stage-subtitle">Concurrency, Generics &amp; Design Patterns</div>
+          <ul class="stage-items">
+            <li class="stage-item">JVM deep-dive: Class loading, JIT compilation, GC algorithms (G1, ZGC), heap tuning, and using JFR/JMC for production performance analysis</li>
+            <li class="stage-item">Advanced concurrency: Thread pools, CompletableFuture, virtual threads (Project Loom), concurrent data structures, and diagnosing deadlocks and race conditions</li>
+            <li class="stage-item">Enterprise design patterns: GoF patterns in Java, DDD tactical patterns, event sourcing foundations, and clean architecture applied to real systems</li>
+          </ul>
+        </div>
+        <div class="stage-card">
+          <div class="stage-num">Stage 02 · Weeks 7–12</div>
+          <div class="stage-title">Spring Boot Microservices</div>
+          <div class="stage-subtitle">Spring Security, JPA &amp; Reactive Programming</div>
+          <ul class="stage-items">
+            <li class="stage-item">Spring Boot mastery: Auto-configuration internals, custom starters, actuator endpoints, externalized configuration, and profiling Spring applications in production</li>
+            <li class="stage-item">Spring Security: OAuth2/OIDC integration, JWT validation, method-level security, CSRF protection, and securing microservice-to-microservice communication</li>
+            <li class="stage-item">Reactive programming: Spring WebFlux, Project Reactor (Mono/Flux), backpressure handling, reactive database drivers (R2DBC), and testing reactive streams</li>
+          </ul>
+        </div>
+        <div class="stage-card">
+          <div class="stage-num">Stage 03 · Weeks 13–18</div>
+          <div class="stage-title">Cloud-Native &amp; Distributed Systems</div>
+          <div class="stage-subtitle">Kubernetes, Kafka &amp; Service Resilience</div>
+          <ul class="stage-items">
+            <li class="stage-item">Cloud-native Java: Graal VM native image compilation, containerising Spring Boot apps with Buildpacks, Kubernetes health probes, and rolling deployment strategies</li>
+            <li class="stage-item">Kafka integration: Spring Kafka producer/consumer patterns, exactly-once semantics, consumer group rebalancing, and event-driven microservice choreography</li>
+            <li class="stage-item">Resilience patterns: Circuit breakers (Resilience4j), bulkheads, retry policies, distributed tracing (OpenTelemetry), and debugging failures in service meshes</li>
+          </ul>
+        </div>
+      </div>
+      <div class="capstone">
+        <div class="capstone-icon">☕</div>
+        <div>
+          <div class="capstone-tag">Product Capstone Showcase</div>
+          <h4>Cloud-Native Microservices Platform with Event-Driven Orchestration</h4>
+          <p>A production-deployed Java microservices system featuring a Spring Boot API gateway, three domain services (orders, inventory, notifications) communicating via Kafka events, OAuth2-secured endpoints, circuit-breaker resilience, distributed tracing with Jaeger, Kubernetes deployment with HPA autoscaling, and a full CI/CD pipeline with integration test gates.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ TRACK 10: Azure Data Engineer ══ -->
+    <div class="track-panel" id="track-azure-data">
+      <div class="section-tag" style="background:rgba(59,130,246,0.07);color:#1D4ED8;border-color:rgba(59,130,246,0.2)">☁️ Track 10</div>
+      <h2 class="section-title" style="margin-bottom:8px">Azure Data Engineer</h2>
+      <p class="section-sub" style="margin-bottom:48px">Design and build enterprise data platforms on Microsoft Azure. Master ADF orchestration, Synapse Analytics, Databricks pipelines, real-time streaming, and enterprise data governance with Microsoft Purview.</p>
+      <div class="stages-grid">
+        <div class="stage-card">
+          <div class="stage-num">Stage 01 · Weeks 1–6</div>
+          <div class="stage-title">Azure Data Foundation</div>
+          <div class="stage-subtitle">ADLS Gen2, ADF &amp; Data Modelling</div>
+          <ul class="stage-items">
+            <li class="stage-item">Azure Data Lake Storage Gen2: Hierarchical namespace design, RBAC vs. POSIX ACLs, lifecycle management, and optimising storage layout for analytical workloads</li>
+            <li class="stage-item">Azure Data Factory: Pipeline design, linked services, integration runtimes, parameterised datasets, trigger types, and designing reusable pipeline templates</li>
+            <li class="stage-item">Data modelling on Azure: Medallion architecture (Bronze/Silver/Gold), Delta Lake on ADLS, schema evolution strategies, and partition design for query efficiency</li>
+          </ul>
+        </div>
+        <div class="stage-card">
+          <div class="stage-num">Stage 02 · Weeks 7–12</div>
+          <div class="stage-title">Synapse &amp; Databricks</div>
+          <div class="stage-subtitle">Serverless SQL, Dedicated Pools &amp; Spark Engineering</div>
+          <ul class="stage-items">
+            <li class="stage-item">Azure Synapse Analytics: Serverless SQL pools for data lake queries, dedicated SQL pool design, PolyBase external tables, and workload management</li>
+            <li class="stage-item">Azure Databricks: Cluster configuration, Delta Live Tables for declarative pipelines, Unity Catalog for governance, and optimising Spark jobs with adaptive query execution</li>
+            <li class="stage-item">CI/CD for data: Azure DevOps pipelines for ADF deployments, Databricks Asset Bundles, automated data quality tests with Great Expectations</li>
+          </ul>
+        </div>
+        <div class="stage-card">
+          <div class="stage-num">Stage 03 · Weeks 13–18</div>
+          <div class="stage-title">Streaming &amp; Governance</div>
+          <div class="stage-subtitle">Event Hubs, Stream Analytics &amp; Purview</div>
+          <ul class="stage-items">
+            <li class="stage-item">Real-time streaming: Azure Event Hubs (Kafka-compatible), Stream Analytics windowing functions, and building end-to-end real-time analytical pipelines</li>
+            <li class="stage-item">Microsoft Purview: Data catalog scanning, automated lineage tracking, sensitivity label classification, and implementing data governance policies across Azure services</li>
+            <li class="stage-item">Production operations: Azure Monitor alerts for pipeline failures, cost optimisation with reserved capacity, disaster recovery design, and SLA management</li>
+          </ul>
+        </div>
+      </div>
+      <div class="capstone">
+        <div class="capstone-icon">☁️</div>
+        <div>
+          <div class="capstone-tag">Product Capstone Showcase</div>
+          <h4>End-to-End Azure Data Platform with Real-Time Streaming &amp; Governance</h4>
+          <p>A complete Azure data platform featuring ADF-orchestrated batch ingestion to ADLS Gen2, Delta Live Tables transformation in Databricks, an Azure Synapse dedicated pool for BI reporting, a real-time Event Hubs + Stream Analytics pipeline for operational metrics, Microsoft Purview data catalog with automated classification, and full CI/CD deployment via Azure DevOps.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ TRACK 11: AWS Data Engineer ══ -->
+    <div class="track-panel" id="track-aws-data">
+      <div class="section-tag" style="background:rgba(245,158,11,0.07);color:#B45309;border-color:rgba(245,158,11,0.2)">🌩️ Track 11</div>
+      <h2 class="section-title" style="margin-bottom:8px">AWS Data Engineer</h2>
+      <p class="section-sub" style="margin-bottom:48px">Build serverless, scalable data platforms on AWS. Master S3 data lake architecture, Glue ETL, Redshift analytics, EMR-based Spark processing, real-time Kinesis streaming, and Lake Formation security governance.</p>
+      <div class="stages-grid">
+        <div class="stage-card">
+          <div class="stage-num">Stage 01 · Weeks 1–6</div>
+          <div class="stage-title">AWS Data Lake Foundation</div>
+          <div class="stage-subtitle">S3 Architecture, Glue &amp; IAM Best Practices</div>
+          <ul class="stage-items">
+            <li class="stage-item">S3 data lake design: Bucket organisation, partitioning strategies, storage classes, S3 lifecycle policies, and optimising columnar formats (Parquet/ORC) for Athena performance</li>
+            <li class="stage-item">AWS Glue: Glue Data Catalog, Glue ETL jobs (Python/Spark), Glue Crawlers for schema discovery, bookmarks for incremental processing, and job tuning</li>
+            <li class="stage-item">IAM and Lake Formation: Designing least-privilege IAM policies for data access, Lake Formation permissions model, column-level security, and cross-account data access</li>
+          </ul>
+        </div>
+        <div class="stage-card">
+          <div class="stage-num">Stage 02 · Weeks 7–12</div>
+          <div class="stage-title">Analytics &amp; Spark on AWS</div>
+          <div class="stage-subtitle">Redshift, EMR &amp; Athena Optimisation</div>
+          <ul class="stage-items">
+            <li class="stage-item">Amazon Redshift: Distribution styles, sort keys, WLM concurrency scaling, Redshift Spectrum for querying S3 data, and VACUUM/ANALYZE maintenance strategies</li>
+            <li class="stage-item">EMR with Apache Spark: Cluster configuration, bootstrapping, Spark on EMR optimisations, EMR Serverless for cost efficiency, and integrating with S3 and Glue Catalog</li>
+            <li class="stage-item">Amazon Athena: Partitioning and bucketing for performance, cost control with partition projection, federated queries, and integrating Athena results with BI tools</li>
+          </ul>
+        </div>
+        <div class="stage-card">
+          <div class="stage-num">Stage 03 · Weeks 13–18</div>
+          <div class="stage-title">Streaming &amp; Orchestration</div>
+          <div class="stage-subtitle">Kinesis, Step Functions &amp; Cost Optimisation</div>
+          <ul class="stage-items">
+            <li class="stage-item">Kinesis streaming: Kinesis Data Streams shard management, Kinesis Firehose for S3 delivery, Kinesis Data Analytics for real-time SQL processing, and Lambda-based consumers</li>
+            <li class="stage-item">AWS Step Functions: State machine design for data pipeline orchestration, error handling with catch/retry, parallel processing branches, and integrating with Glue, EMR, and Lambda</li>
+            <li class="stage-item">Production operations: CloudWatch alarms for pipeline health, AWS Cost Explorer for data workload cost attribution, reserved instance planning, and building self-healing pipelines</li>
+          </ul>
+        </div>
+      </div>
+      <div class="capstone">
+        <div class="capstone-icon">🌩️</div>
+        <div>
+          <div class="capstone-tag">Product Capstone Showcase</div>
+          <h4>Serverless AWS Data Lake with ML-Ready Feature Store &amp; Real-Time Streaming</h4>
+          <p>A complete AWS data platform featuring an S3 medallion data lake with Lake Formation governance, automated Glue ETL with data quality checks, Redshift Serverless for analytics, a Kinesis-driven real-time ingestion pipeline with Lambda processing, Step Functions orchestration, a SageMaker Feature Store integration for ML teams, and full infrastructure-as-code with Terraform.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ TRACK 12: GCP Data Engineer ══ -->
+    <div class="track-panel" id="track-gcp-data">
+      <div class="section-tag" style="background:rgba(99,102,241,0.07);color:#4338CA;border-color:rgba(99,102,241,0.2)">🔮 Track 12</div>
+      <h2 class="section-title" style="margin-bottom:8px">GCP Data Engineer</h2>
+      <p class="section-sub" style="margin-bottom:48px">Architect enterprise data solutions on Google Cloud. Master BigQuery for analytics at scale, Dataflow streaming pipelines, Dataproc Spark processing, Cloud Composer orchestration, and Vertex AI for ML integration.</p>
+      <div class="stages-grid">
+        <div class="stage-card">
+          <div class="stage-num">Stage 01 · Weeks 1–6</div>
+          <div class="stage-title">GCP Data Foundation</div>
+          <div class="stage-subtitle">BigQuery Architecture, Cloud Storage &amp; IAM</div>
+          <ul class="stage-items">
+            <li class="stage-item">BigQuery internals: Dremel query engine, Capacitor columnar storage, slot-based compute model, partitioning and clustering for performance, and managing query costs</li>
+            <li class="stage-item">Cloud Storage for data lakes: Bucket design, storage classes (Standard/Nearline/Coldline), lifecycle rules, and optimising data formats (Parquet, Avro, ORC) for BigQuery loading</li>
+            <li class="stage-item">GCP IAM and VPC: Service accounts, workload identity federation, VPC Service Controls for data exfiltration prevention, and organisation-level policy design</li>
+          </ul>
+        </div>
+        <div class="stage-card">
+          <div class="stage-num">Stage 02 · Weeks 7–12</div>
+          <div class="stage-title">Dataflow &amp; Dataproc</div>
+          <div class="stage-subtitle">Apache Beam Pipelines &amp; Spark on GCP</div>
+          <ul class="stage-items">
+            <li class="stage-item">Cloud Dataflow (Apache Beam): Building batch and streaming pipelines, windowing strategies, triggers, watermarks, and optimising Dataflow jobs with autoscaling</li>
+            <li class="stage-item">Dataproc: Managed Spark and Hadoop clusters, Dataproc Serverless for Spark, optimising cluster configurations, and integrating with BigQuery and Cloud Storage</li>
+            <li class="stage-item">Pub/Sub for streaming: Topic and subscription design, push vs. pull delivery, message ordering, dead-letter topics, and building event-driven data architectures on GCP</li>
+          </ul>
+        </div>
+        <div class="stage-card">
+          <div class="stage-num">Stage 03 · Weeks 13–18</div>
+          <div class="stage-title">Orchestration &amp; AI Integration</div>
+          <div class="stage-subtitle">Cloud Composer, Data Catalog &amp; Vertex AI</div>
+          <ul class="stage-items">
+            <li class="stage-item">Cloud Composer (Airflow): Designing production DAGs, managing dependencies, cross-project integrations, Airflow operators for GCP services, and monitoring DAG health</li>
+            <li class="stage-item">Data Catalog &amp; governance: Automated metadata tagging, data lineage tracking, policy tags for column-level security, and integrating Data Catalog with BigQuery</li>
+            <li class="stage-item">Vertex AI integration: Feature Store for ML pipelines, BigQuery ML for in-database model training, Vertex AI Pipelines for MLOps, and deploying models to prediction endpoints</li>
+          </ul>
+        </div>
+      </div>
+      <div class="capstone">
+        <div class="capstone-icon">🔮</div>
+        <div>
+          <div class="capstone-tag">Product Capstone Showcase</div>
+          <h4>Serverless GCP Analytics Platform with Real-Time Pub/Sub Ingestion &amp; Vertex AI</h4>
+          <p>A complete GCP data platform featuring a Pub/Sub-driven real-time event stream processed by Dataflow into BigQuery, a Cloud Composer-orchestrated batch pipeline from Cloud Storage, a BigQuery ML demand forecasting model with Vertex AI deployment, Data Catalog governance with policy tag enforcement, a Looker Studio analytics dashboard — all provisioned via Terraform with full CI/CD.</p>
         </div>
       </div>
     </div>
@@ -324,8 +715,8 @@
 <section class="section-sm">
   <div class="container">
     <div class="cta-banner reveal">
-      <h2>Stop recycling basic<br /><span class="gradient-text">portfolio templates.</span></h2>
-      <p>The market is saturated with simple clone applications and basic landing pages. Engineering managers see right through them. NeuArc empowers you to build complex, pipeline-validated enterprise systems that command respect.</p>
+      <h2>12 tracks. One mission:<br /><span class="gradient-text">Make you production-ready.</span></h2>
+      <p>Every track follows the same EDGE Framework — real systems, real pressures, real deployments. Pick your specialisation and begin the technical intake evaluation today.</p>
       <div class="cta-btns">
         <a href="index.html#apply" class="btn btn-primary">Select Your Track &amp; Begin Intake Evaluation</a>
         <a href="edge-framework.html" class="btn btn-outline">How the EDGE Loop Works</a>
@@ -351,15 +742,21 @@
       </div>
       <div class="footer-col">
         <h5>Tracks</h5>
-        <a href="tracks.html">Advanced Data Engineering</a>
-        <a href="tracks.html">Cloud-Native DevOps</a>
-        <a href="tracks.html">AI-Assisted Web Apps</a>
+        <a href="tracks.html">Data Science</a>
+        <a href="tracks.html">Machine Learning</a>
+        <a href="tracks.html">Artificial Intelligence</a>
+        <a href="tracks.html">SAP ABAP on HANA</a>
+        <a href="tracks.html">SAP CPI / BTP</a>
+        <a href="tracks.html">ServiceNow</a>
+        <a href="tracks.html">Snowflake Developer</a>
+        <a href="tracks.html">+ 5 more tracks</a>
       </div>
       <div class="footer-col">
-        <h5>Company</h5>
-        <a href="#">About NeuArc</a>
-        <a href="#">Partner: SkyTARK Holdings</a>
-        <a href="#">Contact</a>
+        <h5>Contact</h5>
+        <a href="tel:+919071119371">+91 90711 19371</a>
+        <a href="tel:+919071119372">+91 90711 19372</a>
+        <a href="mailto:info@neuarcaiacademy.com">info@neuarcaiacademy.com</a>
+        <span style="font-size:0.82rem;line-height:1.5;color:var(--text-2);display:block;margin-top:8px;">Remote-Work Model<br>18-1-674, 2nd Floor, Bhavani Nagar<br>(Opp. Helios Hospital)<br>Devendra Theatre Lane,<br>Tirupati, Andhra Pradesh — 517501</span>
       </div>
     </div>
     <div class="footer-bottom">

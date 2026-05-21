@@ -1039,6 +1039,7 @@ img { max-width: 100%; display: block; }
 /* ── Track Toggle ── */
 .track-toggle {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 4px;
   background: var(--bg-2);
@@ -1046,13 +1047,14 @@ img { max-width: 100%; display: block; }
   border-radius: var(--r);
   padding: 4px;
   margin-bottom: 60px;
-  width: fit-content;
+  width: 100%;
+  justify-content: center;
   box-shadow: var(--shadow-xs);
 }
 .track-btn {
-  padding: 10px 22px;
+  padding: 8px 16px;
   border-radius: var(--r-sm);
-  font-size: 0.875rem;
+  font-size: 0.82rem;
   font-weight: 600;
   cursor: pointer;
   transition: var(--t);
@@ -1060,6 +1062,7 @@ img { max-width: 100%; display: block; }
   background: transparent;
   color: var(--text-3);
   font-family: var(--font-sans);
+  white-space: nowrap;
 }
 .track-btn.active {
   background: var(--g);
@@ -1069,6 +1072,77 @@ img { max-width: 100%; display: block; }
 .track-btn:not(.active):hover { color: var(--text-1); }
 .track-panel { display: none; }
 .track-panel.active { display: block; }
+
+/* ── Track overview cards grid ── */
+.tracks-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 56px;
+}
+.track-overview-card {
+  border-radius: var(--r);
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  padding: 20px;
+  cursor: pointer;
+  transition: var(--t);
+  box-shadow: var(--shadow-xs);
+}
+.track-overview-card:hover {
+  border-color: var(--g);
+  box-shadow: var(--shadow-green);
+  transform: translateY(-2px);
+}
+.track-overview-icon { font-size: 1.8rem; margin-bottom: 10px; }
+.track-overview-num {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--g);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+}
+.track-overview-card h4 {
+  font-family: var(--font-head);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-1);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+.track-overview-card p {
+  font-size: 0.78rem;
+  color: var(--text-3);
+  line-height: 1.55;
+}
+
+/* ── Mobile hero greeting ── */
+.hero-mobile-greeting { display: none; }
+@media (max-width: 768px) {
+  .hero-mobile-greeting {
+    display: block;
+    text-align: center;
+    padding: 0 0 8px;
+  }
+  .hero-mobile-greeting p {
+    font-size: 0.85rem;
+    color: var(--text-3);
+    font-family: var(--font-sans);
+    letter-spacing: 0.01em;
+  }
+  .hero-mobile-greeting h2 {
+    font-family: var(--font-head);
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--text-1);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-top: 6px;
+  }
+  .hero-title { display: none; }
+  .tracks-overview-grid { grid-template-columns: repeat(2, 1fr); }
+}
 
 /* Stage Cards */
 .stages-grid {
@@ -1712,8 +1786,8 @@ footer {
   .stages-grid      { grid-template-columns: 1fr; }
   .capstone         { grid-template-columns: 1fr; text-align: center; }
   .capstone-icon    { margin: 0 auto; }
-  .track-toggle     { flex-direction: column; width: 100%; }
-  .track-btn        { text-align: center; }
+  .track-toggle     { flex-direction: row; width: 100%; }
+  .track-btn        { text-align: center; flex: 0 0 auto; }
   .footer-inner     { grid-template-columns: 1fr; }
   .footer-bottom    { flex-direction: column; gap: 10px; text-align: center; }
   .cta-banner       { padding: 40px 24px; }
