@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Apply to NeuArc AI Academy — Submit your application and resume to join our elite engineering training programme." />
+  <title>Apply Now — NeuArc AI Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ══ Navigation ══ -->
+<nav id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <img class="nav-logo-img" src="assets/neuarc-logo.png" alt="NeuArc AI Academy"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+      <span class="logo-css">NEUARC <span class="logo-css-sub">AI ACADEMY</span></span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="edge-framework.html">EDGE Framework</a></li>
+      <li><a href="tracks.html">Tracks</a></li>
+      <li><a href="career.html">Career Suite</a></li>
+      <li><a href="apply.html" class="nav-cta">Apply Now</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ══ Page Header ══ -->
+<div class="page-header">
+  <div class="container">
+    <div class="section-tag reveal">Join the Academy</div>
+    <h1 class="reveal d1">Apply to NeuArc <span class="gradient-text">AI Academy</span></h1>
+    <p class="reveal d2" style="max-width:600px;margin:0 auto;color:var(--text-2);font-size:1.05rem;">
+      Tell us about yourself. We review every application personally and respond within 2–3 business days.
+    </p>
+  </div>
+</div>
+
+<!-- ══ Application Form ══ -->
+<section class="section">
+  <div class="container">
+    <div class="apply-wrap reveal">
+
+      <!-- Left: Process Steps -->
+      <div class="apply-info">
+        <p class="apply-info-heading">How it works</p>
+
+        <div class="apply-info-block">
+          <div class="apply-step-num">01</div>
+          <div>
+            <h4>Submit Your Application</h4>
+            <p>Fill in your details and attach your resume. Our team reviews every profile against our programme requirements.</p>
+          </div>
+        </div>
+
+        <div class="apply-info-block">
+          <div class="apply-step-num">02</div>
+          <div>
+            <h4>Technical Baseline Assessment</h4>
+            <p>Shortlisted candidates receive a 30-minute asynchronous technical intake to gauge current proficiency level.</p>
+          </div>
+        </div>
+
+        <div class="apply-info-block">
+          <div class="apply-step-num">03</div>
+          <div>
+            <h4>Enrolment Confirmation</h4>
+            <p>Accepted candidates receive their onboarding kit, cohort schedule, and access to the pre-work sprint.</p>
+          </div>
+        </div>
+
+        <div class="apply-contact-box">
+          <p class="apply-contact-label">Questions? Reach us directly</p>
+          <a href="mailto:info@neuarcaiacademy.com">info@neuarcaiacademy.com</a>
+          <a href="tel:+919071119371">+91 90711 19371</a>
+          <a href="tel:+919071119372">+91 90711 19372</a>
+        </div>
+      </div>
+
+      <!-- Right: Form -->
+      <div class="apply-form-wrap">
+        <form
+          class="apply-form"
+          action="https://formsubmit.co/info@neuarcaiacademy.com"
+          method="POST"
+          enctype="multipart/form-data"
+          id="applyForm"
+        >
+          <!-- FormSubmit.co configuration -->
+          <input type="hidden" name="_subject" value="New Application — NeuArc AI Academy" />
+          <input type="hidden" name="_next" value="thankyou.html" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_autoresponse" value="Thank you for applying to NeuArc AI Academy! We have received your application and will review it within 2–3 business days. Our team will reach out to shortlisted candidates with next steps. — NeuArc AI Academy Team" />
+
+          <!-- Row 1 -->
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="fullName">Full Name <span class="req">*</span></label>
+              <input type="text" id="fullName" name="Full Name" placeholder="Your full name" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address <span class="req">*</span></label>
+              <input type="email" id="email" name="Email" placeholder="you@example.com" required />
+            </div>
+          </div>
+
+          <!-- Row 2 -->
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="phone">Phone Number <span class="req">*</span></label>
+              <input type="tel" id="phone" name="Phone" placeholder="+91 XXXXX XXXXX" required />
+            </div>
+            <div class="form-group">
+              <label for="track">Track of Interest <span class="req">*</span></label>
+              <select id="track" name="Track of Interest" required>
+                <option value="" disabled selected>Select a track</option>
+                <option value="Advanced Data Engineering">Advanced Data Engineering</option>
+                <option value="Cloud-Native DevOps">Cloud-Native DevOps</option>
+                <option value="AI-Assisted Web Apps">AI-Assisted Web Apps</option>
+                <option value="Undecided — Need guidance">Undecided — Need guidance</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Row 3 -->
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="role">Current Role / Job Title</label>
+              <input type="text" id="role" name="Current Role" placeholder="e.g. Backend Developer" />
+            </div>
+            <div class="form-group">
+              <label for="experience">Years of Experience <span class="req">*</span></label>
+              <select id="experience" name="Years of Experience" required>
+                <option value="" disabled selected>Select range</option>
+                <option value="0–1 years (Fresher)">0–1 years (Fresher)</option>
+                <option value="1–3 years">1–3 years</option>
+                <option value="3–5 years">3–5 years</option>
+                <option value="5+ years">5+ years</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- LinkedIn -->
+          <div class="form-group">
+            <label for="linkedin">LinkedIn Profile URL</label>
+            <input type="url" id="linkedin" name="LinkedIn Profile" placeholder="https://linkedin.com/in/yourprofile" />
+          </div>
+
+          <!-- Goals -->
+          <div class="form-group">
+            <label for="message">Why NeuArc? What are your goals? <span class="req">*</span></label>
+            <textarea id="message" name="Goals and Motivation" rows="5"
+              placeholder="Tell us about your current situation, what you want to achieve, and why NeuArc's approach resonates with you..." required></textarea>
+          </div>
+
+          <!-- Resume Upload -->
+          <div class="form-group">
+            <label>Attach Resume <span class="req">*</span></label>
+            <div class="file-drop" id="fileDrop">
+              <input type="file" id="resume" name="attachment" accept=".pdf,.doc,.docx" required />
+              <div class="file-drop-ui" id="fileDropUI">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--g)">
+                  <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                  <polyline points="17 8 12 3 7 8"/>
+                  <line x1="12" y1="3" x2="12" y2="15"/>
+                </svg>
+                <span class="file-drop-label">Drop your resume here or <strong>browse</strong></span>
+                <span class="file-drop-hint">PDF, DOC or DOCX &mdash; max 5 MB</span>
+              </div>
+              <div class="file-selected" id="fileSelected" style="display:none">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color:var(--g);flex-shrink:0">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                <span id="fileName">resume.pdf</span>
+                <button type="button" class="file-clear" id="fileClear" title="Remove file">&#x2715;</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <div class="form-submit-row">
+            <p class="form-note">By submitting this form, you agree to be contacted by the NeuArc AI Academy team regarding your application. We do not share your information with third parties.</p>
+            <button type="submit" class="btn btn-primary btn-apply" id="submitBtn">
+              Submit Application
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </button>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ Footer ══ -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="assets/neuarc-logo.png" alt="NeuArc AI Academy"
+             onerror="this.style.display='none'" />
+        <p>NeuArc AI Academy transforms developers with foundational knowledge into elite, AI-leveraged engineers through real-time, production-grade delivery loops.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Academy</h5>
+        <a href="edge-framework.html">EDGE Framework</a>
+        <a href="tracks.html">Tracks &amp; Portfolios</a>
+        <a href="career.html">Career Suite</a>
+        <a href="apply.html">Apply Now</a>
+      </div>
+      <div class="footer-col">
+        <h5>Tracks</h5>
+        <a href="tracks.html">Advanced Data Engineering</a>
+        <a href="tracks.html">Cloud-Native DevOps</a>
+        <a href="tracks.html">AI-Assisted Web Apps</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <a href="tel:+919071119371">+91 90711 19371</a>
+        <a href="tel:+919071119372">+91 90711 19372</a>
+        <a href="mailto:info@neuarcaiacademy.com">info@neuarcaiacademy.com</a>
+        <span style="font-size:0.82rem;line-height:1.5;color:var(--text-2);display:block;margin-top:8px;">Remote-Work Model<br>18-1-674, 2nd Floor, Bhavani Nagar<br>(Opp. Helios Hospital)<br>Devendra Theatre Lane,<br>Tirupati, Andhra Pradesh — 517501</span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 NeuArc AI Academy. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  const fileInput   = document.getElementById('resume');
+  const fileDropUI  = document.getElementById('fileDropUI');
+  const fileSelected = document.getElementById('fileSelected');
+  const fileNameEl  = document.getElementById('fileName');
+  const fileClear   = document.getElementById('fileClear');
+  const fileDrop    = document.getElementById('fileDrop');
+
+  function showFile(name) {
+    fileNameEl.textContent = name;
+    fileDropUI.style.display = 'none';
+    fileSelected.style.display = 'flex';
+  }
+
+  fileInput.addEventListener('change', function () {
+    if (this.files && this.files[0]) showFile(this.files[0].name);
+  });
+
+  fileClear.addEventListener('click', function () {
+    fileInput.value = '';
+    fileDropUI.style.display = 'flex';
+    fileSelected.style.display = 'none';
+  });
+
+  fileDrop.addEventListener('dragover', function (e) {
+    e.preventDefault();
+    this.classList.add('drag-over');
+  });
+  fileDrop.addEventListener('dragleave', function () {
+    this.classList.remove('drag-over');
+  });
+  fileDrop.addEventListener('drop', function (e) {
+    e.preventDefault();
+    this.classList.remove('drag-over');
+    const files = e.dataTransfer.files;
+    if (files && files[0]) {
+      fileInput.files = files;
+      showFile(files[0].name);
+    }
+  });
+
+  document.getElementById('applyForm').addEventListener('submit', function () {
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.innerHTML = 'Submitting&hellip;';
+  });
+</script>
+
+</body>
+</html>
