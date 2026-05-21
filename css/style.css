@@ -1914,24 +1914,6 @@ body { padding-bottom: 44px; }
   color: #fff; font-family: var(--font-sans); font-size: 0.82rem; font-weight: 600;
 }
 .wa-popup-body { display: flex; flex-direction: column; }
-.wa-name-row {
-  padding: 10px 14px 9px;
-  border-bottom: 1px solid var(--border);
-  background: #f9fafb;
-}
-.wa-name-row label {
-  display: block; font-family: var(--font-sans); font-size: 0.68rem;
-  font-weight: 600; color: var(--text-4); letter-spacing: 0.04em;
-  text-transform: uppercase; margin-bottom: 4px;
-}
-.wa-name-input {
-  width: 100%; box-sizing: border-box;
-  border: 1px solid var(--border); border-radius: 6px;
-  padding: 6px 10px; font-family: var(--font-sans); font-size: 0.8rem;
-  color: var(--text-1); background: #fff; outline: none;
-}
-.wa-name-input:focus { border-color: #25D366; }
-.wa-name-input::placeholder { color: var(--text-4); }
 .wa-num-link {
   display: flex; align-items: center; gap: 10px;
   padding: 13px 16px;

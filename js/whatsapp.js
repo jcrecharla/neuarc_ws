@@ -11,9 +11,9 @@
   ];
 
   var MSG_TEMPLATE =
-    'Hi NeuArc AI Academy! My name is {name}, and I\'m interested in learning more ' +
-    'about your AI courses and programs. Could you please provide some information on ' +
-    'upcoming batches? Looking forward to hearing from you!';
+    'Hi NeuArc AI Academy! I\'m interested in learning more about your AI courses and ' +
+    'programs. Could you please provide some information on upcoming batches? ' +
+    'Looking forward to hearing from you!';
 
   var WA_SVG =
     '<svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">' +
@@ -61,19 +61,8 @@
       'c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>' +
     '</svg>';
 
-  /* Builds the wa.me URL with the pre-filled message */
-  function waUrl(waNumber, name) {
-    var displayName = (name && name.trim()) ? name.trim() : 'Your Name';
-    var msg = MSG_TEMPLATE.replace('{name}', displayName);
-    return 'https://wa.me/' + waNumber + '?text=' + encodeURIComponent(msg);
-  }
-
-  /* Updates all number link hrefs based on current name input value */
-  function refreshLinks(nameInput, links) {
-    var name = nameInput.value;
-    links.forEach(function (link, i) {
-      link.href = waUrl(PHONES[i].wa, name);
-    });
+  function waUrl(waNumber) {
+    return 'https://wa.me/' + waNumber + '?text=' + encodeURIComponent(MSG_TEMPLATE);
   }
 
   function build() {
@@ -81,9 +70,9 @@
     widget.className = 'wa-widget';
     widget.setAttribute('id', 'waWidget');
 
-    /* Build number link rows */
+    /* Build number link rows with static pre-filled message URLs */
     var linksHtml = PHONES.map(function (p) {
-      return '<a href="#" target="_blank" rel="noopener" class="wa-num-link" data-wa="' + p.wa + '">' +
+      return '<a href="' + waUrl(p.wa) + '" target="_blank" rel="noopener" class="wa-num-link">' +
         PHONE_SVG +
         '<span>' + p.number + '<span class="wa-num-label">' + p.label + '</span></span>' +
       '</a>';
@@ -94,11 +83,6 @@
         '<div class="wa-popup-header">' +
           HEADER_WA_SVG + ' Chat on WhatsApp' +
         '</div>' +
-        '<div class="wa-name-row">' +
-          '<label for="waNameInput">Your name</label>' +
-          '<input type="text" class="wa-name-input" id="waNameInput"' +
-          ' placeholder="e.g. Priya Sharma" autocomplete="off" />' +
-        '</div>' +
         '<div class="wa-popup-body">' + linksHtml + '</div>' +
       '</div>' +
       '<button class="wa-btn" id="waBtn" aria-label="Chat on WhatsApp" aria-expanded="false">' +
@@ -107,33 +91,14 @@
 
     document.body.appendChild(widget);
 
-    var btn       = widget.querySelector('#waBtn');
-    var popup     = widget.querySelector('#waPopup');
-    var nameInput = widget.querySelector('#waNameInput');
-    var numLinks  = Array.prototype.slice.call(widget.querySelectorAll('.wa-num-link'));
-
-    /* Set initial hrefs */
-    refreshLinks(nameInput, numLinks);
-
-    /* Re-build URL as user types */
-    nameInput.addEventListener('input', function () {
-      refreshLinks(nameInput, numLinks);
-    });
+    var btn   = widget.querySelector('#waBtn');
+    var popup = widget.querySelector('#waPopup');
 
     /* Toggle popup */
     btn.addEventListener('click', function (e) {
       e.stopPropagation();
       var isOpen = popup.classList.toggle('open');
       btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-
-      if (isOpen) {
-        /* Auto-fill name from chatbot if available */
-        if (!nameInput.value && window.NeuArcVisitorName) {
-          nameInput.value = window.NeuArcVisitorName;
-          refreshLinks(nameInput, numLinks);
-        }
-        setTimeout(function () { nameInput.focus(); }, 120);
-      }
     });
 
     /* Dismiss on outside click */
