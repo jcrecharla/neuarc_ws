@@ -98,18 +98,23 @@
      RESUME PROMPTS (after FAQ interruption)
   ───────────────────────────────────────────────────────────── */
   var RESUME = {
-    q1_name:       'Back to your profile — what\'s your full name?',
-    q1_email:      'What\'s your email address?',
-    q2_role:       'What\'s your current role or designation?',
-    q3_education:  'Your highest educational qualification?',
-    q4_graduation: 'And your year of graduation?',
-    q5_experience: 'How many years of professional experience do you have?',
-    q6_stack:      'What does your current tech stack look like?',
-    q7_intent:     'What\'s your primary objective for this programme?',
-    q8_lead:       'How did you come across NeuArc?',
-    q8_referral:   'The referral contact details?',
-    q9_track:      'Which engineering track are you targeting?',
-    q10_prereqs:   'Back to the baseline check — are you comfortable proceeding past introductory syntax into this architecture?',
+    q1_name:           'Back to your profile — what\'s your full name?',
+    q1_email:          'What\'s your email address?',
+    q2_role:           'What\'s your current role or designation?',
+    q3_education:      'Your highest educational qualification?',
+    q4_graduation:     'And your year of graduation?',
+    q5_experience:     'How many years of professional experience do you have?',
+    q5b_working:       'Are you actively working right now?',
+    q5c_ctc:           'What\'s your current CTC?',
+    q5d_notice:        'What\'s your notice period?',
+    q5e_expected:      'What\'s your expected CTC?',
+    q6_stack:          'What does your current tech stack look like?',
+    q7_intent:         'What\'s your primary objective for this programme?',
+    q8_lead:           'How did you come across NeuArc?',
+    q8_referral:       'The referral contact\'s name?',
+    q8_referral_phone: 'And the referral contact\'s phone number?',
+    q9_track:          'Which engineering track are you targeting?',
+    q10_prereqs:       'Back to the baseline check — are you comfortable proceeding past introductory syntax into this architecture?',
   };
 
   /* ─────────────────────────────────────────────────────────────
@@ -281,6 +286,62 @@
   }
 
   /* ─────────────────────────────────────────────────────────────
+     VALIDATION  —  returns error string or null if valid
+  ───────────────────────────────────────────────────────────── */
+  function validate(step, value) {
+    var v = value.trim();
+    switch (step) {
+      case 'q1_name':
+        if (v.length < 3)
+          return 'Please enter your full name.';
+        if (!/^[a-zA-Z][a-zA-Z\s.\-\']{1,}$/.test(v))
+          return 'Name should contain only letters, spaces, hyphens, or periods.';
+        if (v.split(/\s+/).filter(Boolean).length < 2)
+          return 'Please enter both your first and last name.';
+        return null;
+      case 'q1_email':
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v))
+          return "That doesn’t look like a valid email address. Please re-enter.";
+        return null;
+      case 'q2_role':
+        if (v.length < 2)
+          return 'Please enter your current role or designation.';
+        return null;
+      case 'q3_education':
+        if (v.length < 2)
+          return 'Please describe your highest educational qualification.';
+        return null;
+      case 'q6_stack':
+        if (v.length < 3)
+          return 'Please list at least one technology or tool you work with.';
+        return null;
+      case 'q5c_ctc':
+      case 'q5e_expected':
+        if (v.length === 0)
+          return 'Please enter the CTC (e.g., 8 LPA, 12.5 LPA, $80K) or type N/A.';
+        if (!/\d/.test(v) && !/^(n\/a|na|not applicable|nil|none)$/i.test(v))
+          return 'Please enter a numeric amount (e.g., 8 LPA, $80K) or type N/A.';
+        return null;
+      case 'q5d_notice':
+        if (v.length < 2)
+          return 'Please enter your notice period (e.g., Immediate, 30 days, 3 months).';
+        return null;
+      case 'q8_referral':
+        if (v.length < 2)
+          return "Please share the referral contact’s name.";
+        return null;
+      case 'q8_referral_phone': {
+        var digits = v.replace(/[\s\-\(\)+]/g, '');
+        if (!/^\d{10,14}$/.test(digits))
+          return 'Please enter a valid phone number (e.g., 9876543210 or +91 9876543210).';
+        return null;
+      }
+      default:
+        return null;
+    }
+  }
+
+  /* ─────────────────────────────────────────────────────────────
      BOT SPEAK  (simulated typing delay)
   ───────────────────────────────────────────────────────────── */
   function botSay(html, chips, fixedDelay) {
@@ -336,7 +397,8 @@
 
     /* FAQ interrupt — allowed from any data-collection step */
     var dataColl = ['q1_name','q1_email','q2_role','q3_education','q4_graduation',
-                    'q5_experience','q6_stack','q7_intent','q8_lead','q8_referral',
+                    'q5_experience','q5b_working','q5c_ctc','q5d_notice','q5e_expected',
+                    'q6_stack','q7_intent','q8_lead','q8_referral','q8_referral_phone',
                     'q9_track','q10_prereqs'];
     if (dataColl.indexOf(step) !== -1) {
       var faqHit = checkFAQ(lc);
@@ -354,24 +416,26 @@
 
     /* ── Step handlers ── */
     if (step === 'q1_name') {
-      if (value.trim().length < 2) {
-        botSay('Please enter your full name to continue.'); return;
-      }
+      var nameErr = validate('q1_name', value);
+      if (nameErr) { botSay(nameErr); return; }
       state.data.name = toTitle(value.trim());
       advance('q1_email');
 
     } else if (step === 'q1_email') {
-      if (!isEmail(value.trim())) {
-        botSay('That doesn\'t appear to be a valid address. Please re-enter your email.'); return;
-      }
+      var emailErr = validate('q1_email', value);
+      if (emailErr) { botSay(emailErr); return; }
       state.data.email = value.trim().toLowerCase();
       advance('q2_role');
 
     } else if (step === 'q2_role') {
+      var roleErr = validate('q2_role', value);
+      if (roleErr) { botSay(roleErr); return; }
       state.data.role = value.trim();
       advance('q3_education');
 
     } else if (step === 'q3_education') {
+      var eduErr = validate('q3_education', value);
+      if (eduErr) { botSay(eduErr); return; }
       state.data.education = value.trim();
       advance('q4_graduation');
 
@@ -385,9 +449,39 @@
 
     } else if (step === 'q5_experience') {
       state.data.experience = value.trim();
+      advance('q5b_working');
+
+    } else if (step === 'q5b_working') {
+      state.data.working = lc.indexOf('yes') !== -1 ? 'Yes' : 'No';
+      if (state.data.working === 'Yes') {
+        advance('q5c_ctc');
+      } else {
+        state.data.currentCtc   = 'N/A';
+        state.data.noticePeriod = 'Not currently employed';
+        advance('q5e_expected');
+      }
+
+    } else if (step === 'q5c_ctc') {
+      var ctcErr = validate('q5c_ctc', value);
+      if (ctcErr) { botSay(ctcErr); return; }
+      state.data.currentCtc = value.trim();
+      advance('q5d_notice');
+
+    } else if (step === 'q5d_notice') {
+      var noticeErr = validate('q5d_notice', value);
+      if (noticeErr) { botSay(noticeErr); return; }
+      state.data.noticePeriod = value.trim();
+      advance('q5e_expected');
+
+    } else if (step === 'q5e_expected') {
+      var expErr = validate('q5e_expected', value);
+      if (expErr) { botSay(expErr); return; }
+      state.data.expectedCtc = value.trim();
       advance('q6_stack');
 
     } else if (step === 'q6_stack') {
+      var stackErr = validate('q6_stack', value);
+      if (stackErr) { botSay(stackErr); return; }
       state.data.stack = value.trim();
       advance('q7_intent');
 
@@ -400,12 +494,21 @@
       if (state.data.leadSource === 'Referral') {
         advance('q8_referral');
       } else {
-        state.data.referral = 'N/A';
+        state.data.referral      = 'N/A';
+        state.data.referralPhone = 'N/A';
         advance('q9_track');
       }
 
     } else if (step === 'q8_referral') {
+      var refErr = validate('q8_referral', value);
+      if (refErr) { botSay(refErr); return; }
       state.data.referral = value.trim();
+      advance('q8_referral_phone');
+
+    } else if (step === 'q8_referral_phone') {
+      var phoneErr = validate('q8_referral_phone', value);
+      if (phoneErr) { botSay(phoneErr); return; }
+      state.data.referralPhone = value.trim();
       advance('q9_track');
 
     } else if (step === 'q9_track') {
@@ -501,6 +604,33 @@
         ]
       );
 
+    } else if (step === 'q5b_working') {
+      botSay(
+        'Are you <strong>actively working</strong> right now?',
+        [
+          { label: 'Yes', value: 'Yes' },
+          { label: 'No',  value: 'No'  },
+        ]
+      );
+
+    } else if (step === 'q5c_ctc') {
+      botSay(
+        'What\'s your <strong>current CTC</strong>?' +
+        '<span class="adv-hint"> e.g. 8 LPA, 12.5 LPA, $80K</span>'
+      );
+
+    } else if (step === 'q5d_notice') {
+      botSay(
+        'What\'s your <strong>notice period</strong>?' +
+        '<span class="adv-hint"> e.g. Immediate, 15 days, 30 days, 3 months</span>'
+      );
+
+    } else if (step === 'q5e_expected') {
+      botSay(
+        'What\'s your <strong>expected CTC</strong>?' +
+        '<span class="adv-hint"> e.g. 12 LPA, 18 LPA, $100K</span>'
+      );
+
     } else if (step === 'q6_stack') {
       botSay(
         'What does your <strong>current tech stack</strong> look like?' +
@@ -527,7 +657,11 @@
       );
 
     } else if (step === 'q8_referral') {
-      botSay('Could you share the <strong>name or contact details</strong> of the person who referred you?');
+      botSay('Could you share the <strong>name</strong> of the person who referred you?');
+
+    } else if (step === 'q8_referral_phone') {
+      botSay('And their <strong>phone number</strong>?' +
+        '<span class="adv-hint"> e.g. 9876543210 or +91 9876543210</span>');
 
     } else if (step === 'q9_track') {
       botSay(
@@ -583,17 +717,22 @@
       email:        d.email,
 
       /* ── Dossier fields ── */
-      '01_Full_Name':          d.name,
-      '02_Email':              d.email,
-      '03_Education':          d.education + ' (' + d.graduation + ')',
-      '04_Designation':        d.role,
-      '05_Experience':         d.experience,
-      '06_Tech_Stack':         d.stack,
-      '07_Target_Track':       d.track,
-      '08_Intent_Scope':       d.intent,
-      '09_Lead_Source':        d.leadSource || 'Direct',
-      '10_Referral':           d.referral   || 'N/A',
-      '11_Prereq_Acknowledged': d.prereqAck || 'Confirmed',
+      '01_Full_Name':            d.name,
+      '02_Email':                d.email,
+      '03_Education':            d.education + ' (' + d.graduation + ')',
+      '04_Designation':          d.role,
+      '05_Experience':           d.experience,
+      '06_Actively_Working':     d.working        || 'N/A',
+      '07_Current_CTC':          d.currentCtc     || 'N/A',
+      '08_Notice_Period':        d.noticePeriod    || 'N/A',
+      '09_Expected_CTC':         d.expectedCtc     || 'N/A',
+      '10_Tech_Stack':           d.stack,
+      '11_Target_Track':         d.track,
+      '12_Intent_Scope':         d.intent,
+      '13_Lead_Source':          d.leadSource      || 'Direct',
+      '14_Referral_Name':        d.referral        || 'N/A',
+      '15_Referral_Phone':       d.referralPhone   || 'N/A',
+      '16_Prereq_Acknowledged':  d.prereqAck       || 'Confirmed',
     };
 
     fetch('https://formsubmit.co/ajax/' + INTAKE_EMAIL, {
