@@ -10,9 +10,7 @@
      NOTE: buddy.adviser@neuarcaiacademy.com must be activated
      via the confirmation link formsubmit.co sends on first POST.
   ───────────────────────────────────────────────────────────── */
-  /* Primary: info@ (already activated via apply form)
-     BCC keeps buddy.adviser in the loop once that inbox is activated */
-  var INTAKE_EMAIL = 'info@neuarcaiacademy.com';
+  var INTAKE_EMAIL = 'buddy.adviser@neuarcaiacademy.com';
 
   /* ─────────────────────────────────────────────────────────────
      TRACK CATALOGUE  (16 tracks)
@@ -564,14 +562,16 @@
 
   /* ─────────────────────────────────────────────────────────────
      EMAIL TRIGGER  —  FormSubmit.co AJAX
-     Sends to INTAKE_EMAIL; CC candidate via _cc field.
-     _autoresponse sends a confirmation back to the candidate.
+     TO:      buddy.adviser@neuarcaiacademy.com  (INTAKE_EMAIL)
+     CC:      candidate's email
+     ReplyTo: info@neuarcaiacademy.com
   ───────────────────────────────────────────────────────────── */
   function triggerEmail() {
     var d = state.data;
     var payload = {
       _subject:
         '[NeuArc AI Academy] Technical Profile Logged — ' + d.name,
+      _replyto:     'info@neuarcaiacademy.com',
       _cc:          d.email,          /* candidate gets a copy */
       _template:    'table',
       _captcha:     'false',
