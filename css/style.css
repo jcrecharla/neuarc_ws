@@ -1868,26 +1868,26 @@ body { padding-bottom: 44px; }
 .bottom-banner {
   position: fixed; bottom: 0; left: 0; right: 0;
   z-index: 9000; height: 44px;
-  background: var(--g);
-  border-top: 2px solid var(--g-dark);
-  box-shadow: 0 -4px 20px rgba(45,122,80,0.3);
+  background: #F59E0B;
+  border-top: 2px solid #D97706;
+  box-shadow: 0 -4px 20px rgba(245,158,11,0.4);
   overflow: hidden; display: flex; align-items: center;
 }
 .bottom-banner-track {
   display: flex; white-space: nowrap;
-  animation: bannerScroll 50s linear infinite;
+  animation: bannerScroll 45s linear infinite;
   will-change: transform;
 }
 .bottom-banner-track:hover { animation-play-state: paused; }
 .bottom-banner-item {
   display: inline-flex; align-items: center; gap: 10px;
-  font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500;
-  letter-spacing: 0.04em; color: rgba(255,255,255,0.93);
+  font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.04em; color: #1C1400;
   padding-right: 80px;
 }
 .bottom-banner-sep {
   display: inline-block; width: 5px; height: 5px;
-  border-radius: 50%; background: rgba(255,255,255,0.55);
+  border-radius: 50%; background: rgba(28,20,0,0.45);
   animation: bannerPulse 1.8s ease infinite; flex-shrink: 0;
 }
 @keyframes bannerScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-25%); } }
