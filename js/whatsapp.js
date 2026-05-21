@@ -5,6 +5,16 @@
 (function () {
   'use strict';
 
+  var PHONES = [
+    { number: '+91 90711 19371', wa: '919071119371', label: 'Primary Line'   },
+    { number: '+91 90711 19372', wa: '919071119372', label: 'Secondary Line' },
+  ];
+
+  var MSG_TEMPLATE =
+    'Hi NeuArc AI Academy! My name is {name}, and I\'m interested in learning more ' +
+    'about your AI courses and programs. Could you please provide some information on ' +
+    'upcoming batches? Looking forward to hearing from you!';
+
   var WA_SVG =
     '<svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">' +
       '<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15' +
@@ -51,26 +61,45 @@
       'c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>' +
     '</svg>';
 
-  function numLink(href, number, label) {
-    return '<a href="' + href + '" target="_blank" rel="noopener" class="wa-num-link">' +
-      PHONE_SVG +
-      '<span>' + number + '<span class="wa-num-label">' + label + '</span></span>' +
-    '</a>';
+  /* Builds the wa.me URL with the pre-filled message */
+  function waUrl(waNumber, name) {
+    var displayName = (name && name.trim()) ? name.trim() : 'Your Name';
+    var msg = MSG_TEMPLATE.replace('{name}', displayName);
+    return 'https://wa.me/' + waNumber + '?text=' + encodeURIComponent(msg);
+  }
+
+  /* Updates all number link hrefs based on current name input value */
+  function refreshLinks(nameInput, links) {
+    var name = nameInput.value;
+    links.forEach(function (link, i) {
+      link.href = waUrl(PHONES[i].wa, name);
+    });
   }
 
   function build() {
     var widget = document.createElement('div');
     widget.className = 'wa-widget';
     widget.setAttribute('id', 'waWidget');
+
+    /* Build number link rows */
+    var linksHtml = PHONES.map(function (p) {
+      return '<a href="#" target="_blank" rel="noopener" class="wa-num-link" data-wa="' + p.wa + '">' +
+        PHONE_SVG +
+        '<span>' + p.number + '<span class="wa-num-label">' + p.label + '</span></span>' +
+      '</a>';
+    }).join('');
+
     widget.innerHTML =
-      '<div class="wa-popup" id="waPopup" role="dialog" aria-label="WhatsApp contact numbers">' +
+      '<div class="wa-popup" id="waPopup" role="dialog" aria-label="WhatsApp contact">' +
         '<div class="wa-popup-header">' +
           HEADER_WA_SVG + ' Chat on WhatsApp' +
         '</div>' +
-        '<div class="wa-popup-body">' +
-          numLink('https://wa.me/919071119371', '+91 90711 19371', 'Primary Line') +
-          numLink('https://wa.me/919071119372', '+91 90711 19372', 'Secondary Line') +
+        '<div class="wa-name-row">' +
+          '<label for="waNameInput">Your name</label>' +
+          '<input type="text" class="wa-name-input" id="waNameInput"' +
+          ' placeholder="e.g. Priya Sharma" autocomplete="off" />' +
         '</div>' +
+        '<div class="wa-popup-body">' + linksHtml + '</div>' +
       '</div>' +
       '<button class="wa-btn" id="waBtn" aria-label="Chat on WhatsApp" aria-expanded="false">' +
         WA_SVG +
@@ -78,15 +107,36 @@
 
     document.body.appendChild(widget);
 
-    var btn   = widget.querySelector('#waBtn');
-    var popup = widget.querySelector('#waPopup');
+    var btn       = widget.querySelector('#waBtn');
+    var popup     = widget.querySelector('#waPopup');
+    var nameInput = widget.querySelector('#waNameInput');
+    var numLinks  = Array.prototype.slice.call(widget.querySelectorAll('.wa-num-link'));
 
+    /* Set initial hrefs */
+    refreshLinks(nameInput, numLinks);
+
+    /* Re-build URL as user types */
+    nameInput.addEventListener('input', function () {
+      refreshLinks(nameInput, numLinks);
+    });
+
+    /* Toggle popup */
     btn.addEventListener('click', function (e) {
       e.stopPropagation();
       var isOpen = popup.classList.toggle('open');
       btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+
+      if (isOpen) {
+        /* Auto-fill name from chatbot if available */
+        if (!nameInput.value && window.NeuArcVisitorName) {
+          nameInput.value = window.NeuArcVisitorName;
+          refreshLinks(nameInput, numLinks);
+        }
+        setTimeout(function () { nameInput.focus(); }, 120);
+      }
     });
 
+    /* Dismiss on outside click */
     document.addEventListener('click', function (e) {
       if (!e.target.closest('#waWidget')) {
         popup.classList.remove('open');

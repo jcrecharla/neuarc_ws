@@ -419,6 +419,7 @@
       var nameErr = validate('q1_name', value);
       if (nameErr) { botSay(nameErr); return; }
       state.data.name = toTitle(value.trim());
+      window.NeuArcVisitorName = state.data.name;
       advance('q1_email');
 
     } else if (step === 'q1_email') {
