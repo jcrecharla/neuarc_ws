@@ -139,3 +139,16 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
   });
 });
+
+/* ── WhatsApp widget toggle ── */
+const waBtn   = document.getElementById('waBtn');
+const waPopup = document.getElementById('waPopup');
+if (waBtn && waPopup) {
+  waBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    waPopup.classList.toggle('open');
+  });
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.wa-widget')) waPopup.classList.remove('open');
+  });
+}
