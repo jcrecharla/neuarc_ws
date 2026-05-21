@@ -572,8 +572,7 @@
     var payload = {
       _subject:
         '[NeuArc AI Academy] Technical Profile Logged — ' + d.name,
-      _cc:          d.email,          /* candidate gets a copy       */
-      _bcc:         'buddy.adviser@neuarcaiacademy.com', /* internal BCC */
+      _cc:          d.email,          /* candidate gets a copy */
       _template:    'table',
       _captcha:     'false',
       _autoresponse:
