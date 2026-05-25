@@ -109,6 +109,13 @@
     .then(function (tracks) {
       if (!tracks || !tracks.length) return;
 
+      // Update track count displays
+      var count = tracks.length;
+      var hero = document.getElementById('tracks-count-hero');
+      var cta  = document.getElementById('tracks-count-cta');
+      if (hero) hero.textContent = count;
+      if (cta)  cta.textContent  = count;
+
       tracks.forEach(function (track) {
         var panel = document.getElementById('track-' + track.track_key);
         if (panel) {
