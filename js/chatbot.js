@@ -10,8 +10,7 @@
      NOTE: buddy.adviser@neuarcaiacademy.com must be activated
      via the confirmation link formsubmit.co sends on first POST.
   ───────────────────────────────────────────────────────────── */
-  var INTAKE_EMAIL   = 'buddy.adviser@neuarcaiacademy.com';
-  var INGEST_URL    = 'https://neuarc-admin.vercel.app/api/ingest'; /* ← your Vercel URL */
+  var INGEST_URL    = 'https://neuarc-admin.vercel.app/api/ingest';
   var INGEST_SECRET = 'ba6718ee0cc781c16079213a76fdad6ef677eecc431f8392';
 
   /* ─────────────────────────────────────────────────────────────
@@ -101,6 +100,8 @@
   ───────────────────────────────────────────────────────────── */
   var RESUME = {
     q1_name:           'Back to your profile — what\'s your full name?',
+    q1_phone:          'What\'s your mobile number?',
+    q1_phone_otp:      'Enter the OTP sent to your phone.',
     q1_email:          'What\'s your email address?',
     q2_role:           'What\'s your current role or designation?',
     q3_education:      'Your highest educational qualification?',
@@ -123,10 +124,12 @@
      STATE
   ───────────────────────────────────────────────────────────── */
   var state = {
-    step:    'boot',
-    data:    {},
-    started: false,
-    botBusy: false,
+    step:      'boot',
+    data:      {},
+    started:   false,
+    botBusy:   false,
+    otpSent:   false,
+    otpTries:  0,
   };
 
   var $msgs, $input, $send, $panel, $toggle, $typing;
@@ -398,7 +401,7 @@
     var step = state.step;
 
     /* FAQ interrupt — allowed from any data-collection step */
-    var dataColl = ['q1_name','q1_email','q2_role','q3_education','q4_graduation',
+    var dataColl = ['q1_name','q1_phone','q1_email','q2_role','q3_education','q4_graduation',
                     'q5_experience','q5b_working','q5c_ctc','q5d_notice','q5e_expected',
                     'q6_stack','q7_intent','q8_lead','q8_referral','q8_referral_phone',
                     'q9_track','q10_prereqs'];
@@ -421,7 +424,56 @@
       var nameErr = validate('q1_name', value);
       if (nameErr) { botSay(nameErr); return; }
       state.data.name = toTitle(value.trim());
-      advance('q1_email');
+      advance('q1_phone');
+
+    } else if (step === 'q1_phone') {
+      var digits = value.replace(/[^0-9]/g, '').replace(/^91/, '');
+      if (!/^\d{10}$/.test(digits)) {
+        botSay('Please enter a valid 10-digit mobile number (e.g., 9876543210).'); return;
+      }
+      state.data.phone = digits;
+      state.step       = 'q1_phone_otp';
+      state.otpSent    = false;
+      state.otpTries   = 0;
+
+      if (typeof NeuArcOTP === 'undefined') {
+        botSay('Phone verification unavailable. Proceeding without it.').then(function () { advance('q1_email'); });
+        return;
+      }
+
+      botSay('Sending a verification OTP to <strong>+91 ' + digits.slice(0, 5) + '&hellip;' + digits.slice(-2) + '</strong>&hellip;', null, 800).then(function () {
+        NeuArcOTP.sendOtp(digits, 'chatbot', function (err, masked) {
+          if (err) {
+            state.step = 'q1_phone';
+            botSay('Could not send OTP: ' + err + '<br>Please re-enter your mobile number.');
+          } else {
+            state.otpSent = true;
+            botSay('OTP sent to <strong>' + masked + '</strong>. Enter the 6-digit code below.');
+          }
+        });
+      });
+
+    } else if (step === 'q1_phone_otp') {
+      var code = value.replace(/\s/g, '');
+      if (!/^\d{6}$/.test(code)) { botSay('Please enter the 6-digit OTP.'); return; }
+      state.otpTries++;
+
+      if (typeof NeuArcOTP === 'undefined') {
+        advance('q1_email'); return;
+      }
+
+      NeuArcOTP.verifyOtp(state.data.phone, code, function (err, token) {
+        if (err) {
+          if (state.otpTries >= 3) {
+            botSay('Too many incorrect attempts. Let\'s try a different number.').then(function () { advance('q1_phone'); });
+          } else {
+            botSay(err + ' Please try again (' + (3 - state.otpTries) + ' attempt' + (3 - state.otpTries !== 1 ? 's' : '') + ' left).');
+          }
+          return;
+        }
+        state.data.phoneToken = token;
+        botSay('Phone verified ✓').then(function () { advance('q1_email'); });
+      });
 
     } else if (step === 'q1_email') {
       var emailErr = validate('q1_email', value);
@@ -577,9 +629,15 @@
         null, 1600
       );
 
+    } else if (step === 'q1_phone') {
+      botSay(
+        'Great, <strong>' + esc(state.data.name) + '</strong>. ' +
+        'What\'s your <strong>mobile number</strong>? I\'ll send a quick OTP to verify it.' +
+        '<span class="adv-hint"> e.g. 9876543210</span>'
+      );
+
     } else if (step === 'q1_email') {
       botSay(
-        'Good to connect, <strong>' + esc(state.data.name) + '</strong>. ' +
         'What\'s your <strong>email address</strong>? I\'ll send your intake confirmation there.'
       );
 
@@ -704,75 +762,30 @@
   ───────────────────────────────────────────────────────────── */
   function triggerEmail() {
     var d = state.data;
-    var payload = {
-      _subject:
-        '[NeuArc AI Academy] Technical Profile Logged — ' + d.name,
-      _replyto:     'info@neuarcaiacademy.com',
-      _cc:          d.email,          /* candidate gets a copy */
-      _template:    'table',
-      _captcha:     'false',
-      _autoresponse:
-        'Hi ' + d.name + ', your NeuArc AI Academy engineering profile has been logged. ' +
-        'Our team will send your 10-minute technical evaluation link within 24 hours. — NeuArc AI Academy Team',
-
-      /* FormSubmit uses 'email' field to route the _autoresponse */
-      email:        d.email,
-
-      /* ── Dossier fields ── */
-      '01_Full_Name':            d.name,
-      '02_Email':                d.email,
-      '03_Education':            d.education + ' (' + d.graduation + ')',
-      '04_Designation':          d.role,
-      '05_Experience':           d.experience,
-      '06_Actively_Working':     d.working        || 'N/A',
-      '07_Current_CTC':          d.currentCtc     || 'N/A',
-      '08_Notice_Period':        d.noticePeriod    || 'N/A',
-      '09_Expected_CTC':         d.expectedCtc     || 'N/A',
-      '10_Tech_Stack':           d.stack,
-      '11_Target_Track':         d.track,
-      '12_Intent_Scope':         d.intent,
-      '13_Lead_Source':          d.leadSource      || 'Direct',
-      '14_Referral_Name':        d.referral        || 'N/A',
-      '15_Referral_Phone':       d.referralPhone   || 'N/A',
-      '16_Prereq_Acknowledged':  d.prereqAck       || 'Confirmed',
-    };
-
-    /* ── 1. FormSubmit email notification (existing) ── */
-    fetch('https://formsubmit.co/ajax/' + INTAKE_EMAIL, {
-      method:  'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body:    JSON.stringify(payload),
-    })
-    .then(function (r) { return r.json(); })
-    .then(function (r) { console.log('[NeuArc Advisor] email dispatch:', r); })
-    .catch(function (e) { console.warn('[NeuArc Advisor] email dispatch failed:', e); });
-
-    /* ── 2. Admin portal ingest — writes lead to database ── */
     var ingestPayload = {
-      '01_Full_Name':           payload['01_Full_Name'],
-      '02_Email':               payload['02_Email'],
-      '03_Education':           payload['03_Education'],
-      '04_Designation':         payload['04_Designation'],
-      '05_Experience':          payload['05_Experience'],
-      '06_Actively_Working':    payload['06_Actively_Working'],
-      '07_Current_CTC':         payload['07_Current_CTC'],
-      '08_Notice_Period':       payload['08_Notice_Period'],
-      '09_Expected_CTC':        payload['09_Expected_CTC'],
-      '10_Tech_Stack':          payload['10_Tech_Stack'],
-      '11_Target_Track':        payload['11_Target_Track'],
-      '12_Intent_Scope':        payload['12_Intent_Scope'],
-      '13_Lead_Source':         payload['13_Lead_Source'],
-      '14_Referral_Name':       payload['14_Referral_Name'],
-      '15_Referral_Phone':      payload['15_Referral_Phone'],
-      '16_Prereq_Acknowledged': payload['16_Prereq_Acknowledged'],
+      '00_Phone':               d.phone             || '',
+      '01_Full_Name':           d.name,
+      '02_Email':               d.email,
+      '03_Education':           (d.education || '') + ' (' + (d.graduation || '') + ')',
+      '04_Designation':         d.role              || '',
+      '05_Experience':          d.experience        || '',
+      '06_Actively_Working':    d.working           || 'N/A',
+      '07_Current_CTC':         d.currentCtc        || 'N/A',
+      '08_Notice_Period':       d.noticePeriod      || 'N/A',
+      '09_Expected_CTC':        d.expectedCtc       || 'N/A',
+      '10_Tech_Stack':          d.stack             || '',
+      '11_Target_Track':        d.track             || '',
+      '12_Intent_Scope':        d.intent            || '',
+      '13_Lead_Source':         d.leadSource        || 'Direct',
+      '14_Referral_Name':       d.referral          || 'N/A',
+      '15_Referral_Phone':      d.referralPhone     || 'N/A',
+      '16_Prereq_Acknowledged': d.prereqAck         || 'Confirmed',
     };
+
     fetch(INGEST_URL, {
       method:  'POST',
-      headers: {
-        'Content-Type':    'application/json',
-        'x-ingest-secret': INGEST_SECRET,
-      },
-      body: JSON.stringify(ingestPayload),
+      headers: { 'Content-Type': 'application/json', 'x-ingest-secret': INGEST_SECRET },
+      body:    JSON.stringify(ingestPayload),
     })
     .then(function (r) { return r.json(); })
     .then(function (r) { console.log('[NeuArc Advisor] ingest:', r); })

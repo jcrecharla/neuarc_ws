@@ -29,6 +29,7 @@
       <li><a href="tracks.html">Tracks</a></li>
       <li><a href="career.html">Career Suite</a></li>
       <li><a href="apply.html" class="nav-cta">Apply Now</a></li>
+      <li><button class="nav-login-btn" aria-label="Login to portal">Login</button></li>
     </ul>
   </div>
 </nav>
@@ -403,6 +404,17 @@
   </div>
 </section>
 
+<!-- ══ Testimonials ══ -->
+<section class="section" id="testimonials">
+  <div class="container">
+    <div class="section-tag reveal">Alumni Outcomes</div>
+    <h2 class="reveal">What our <span class="gradient-text">engineers say</span></h2>
+    <div class="testimonials-grid" id="testimonialsGrid">
+      <p class="testimonials-empty" id="testimonialsLoading">Loading testimonials…</p>
+    </div>
+  </div>
+</section>
+
 <!-- ══ Footer ══ -->
 <footer>
   <div class="container">
@@ -446,8 +458,47 @@
 
 <script src="js/main.js"></script>
 <script src="js/cms-globals.js"></script>
+<script src="js/otp-widget.js"></script>
+<script src="js/login-popup.js"></script>
 <script src="js/chatbot.js"></script>
 <script src="js/whatsapp.js"></script>
+<script>
+  /* ── Testimonials loader ── */
+  (function () {
+    var API = 'https://neuarc-admin.vercel.app';
+    var grid = document.getElementById('testimonialsGrid');
+    if (!grid) return;
+
+    fetch(API + '/api/public/testimonials')
+      .then(function (r) { return r.json(); })
+      .then(function (rows) {
+        if (!rows || !rows.length) {
+          grid.innerHTML = '';
+          return;
+        }
+        grid.innerHTML = rows.map(function (t) {
+          var initials = (t.alumni_name || '?').split(' ').map(function (w) { return w[0]; }).join('').slice(0, 2).toUpperCase();
+          var avatarHtml = t.avatar_url
+            ? '<div class="testimonial-avatar"><img src="' + t.avatar_url + '" alt="' + t.alumni_name + '" /></div>'
+            : '<div class="testimonial-avatar">' + initials + '</div>';
+          return '<div class="testimonial-card reveal">' +
+            '<p class="testimonial-quote">' + (t.testimonial || '') + '</p>' +
+            '<div class="testimonial-author">' +
+              avatarHtml +
+              '<div>' +
+                '<p class="testimonial-name">' + t.alumni_name + '</p>' +
+                '<p class="testimonial-meta">' + (t.title || '') + '</p>' +
+                (t.track ? '<span class="testimonial-track">' + t.track + '</span>' : '') +
+              '</div>' +
+            '</div>' +
+          '</div>';
+        }).join('');
+      })
+      .catch(function () {
+        grid.innerHTML = '';
+      });
+  })();
+</script>
 
 
 <!-- ══ Bottom Running Banner ══ -->
