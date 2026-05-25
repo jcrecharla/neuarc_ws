@@ -12,7 +12,7 @@
   ───────────────────────────────────────────────────────────── */
   var INTAKE_EMAIL   = 'buddy.adviser@neuarcaiacademy.com';
   var INGEST_URL    = 'https://neuarc-admin.vercel.app/api/ingest'; /* ← your Vercel URL */
-  var INGEST_SECRET = 'REPLACE_WITH_YOUR_INGEST_SECRET';            /* ← match Vercel env var */
+  var INGEST_SECRET = 'ba6718ee0cc781c16079213a76fdad6ef677eecc431f8392';
 
   /* ─────────────────────────────────────────────────────────────
      TRACK CATALOGUE  (16 tracks)
