@@ -4,6 +4,22 @@
 (function () {
   var CMS_URL = 'https://admin.neuarcaiacademy.com/api/public/tracks';
 
+  /* ── Colour map for badge variants ────────────────────────────────── */
+  var TAG_COLORS = {
+    green:  { bg: 'rgba(74,222,128,0.07)',  color: '#16A34A', border: 'rgba(74,222,128,0.2)'  },
+    purple: { bg: 'rgba(139,92,246,0.07)',  color: '#7C3AED', border: 'rgba(139,92,246,0.2)'  },
+    amber:  { bg: 'rgba(245,158,11,0.07)',  color: '#B45309', border: 'rgba(245,158,11,0.2)'  },
+    sky:    { bg: 'rgba(6,182,212,0.07)',   color: '#0E7490', border: 'rgba(6,182,212,0.2)'   },
+    blue:   { bg: 'rgba(59,130,246,0.07)',  color: '#1D4ED8', border: 'rgba(59,130,246,0.2)'  },
+    indigo: { bg: 'rgba(99,102,241,0.07)',  color: '#4338CA', border: 'rgba(99,102,241,0.2)'  },
+    cyan:   { bg: 'rgba(34,211,238,0.07)',  color: '#0891B2', border: 'rgba(34,211,238,0.2)'  },
+    teal:   { bg: 'rgba(20,184,166,0.07)',  color: '#0F766E', border: 'rgba(20,184,166,0.2)'  },
+    yellow: { bg: 'rgba(234,179,8,0.07)',   color: '#854D0E', border: 'rgba(234,179,8,0.2)'   },
+    red:    { bg: 'rgba(220,38,38,0.07)',   color: '#B91C1C', border: 'rgba(220,38,38,0.2)'   },
+    violet: { bg: 'rgba(124,58,237,0.07)',  color: '#6D28D9', border: 'rgba(124,58,237,0.2)'  },
+    gray:   { bg: 'rgba(107,114,128,0.07)', color: '#374151', border: 'rgba(107,114,128,0.2)' },
+  };
+
   /* ── HTML helpers ──────────────────────────────────────────────────── */
   function esc(str) {
     return String(str || '')
@@ -14,8 +30,19 @@
   }
 
   function buildPanel(track) {
+    var tagHtml = '';
+    if (track.track_label) {
+      var c = TAG_COLORS[track.tag_color] || TAG_COLORS.green;
+      tagHtml = '<div class="section-tag" style="background:' + c.bg + ';color:' + c.color + ';border-color:' + c.border + '">' + esc(track.track_label) + '</div>';
+    }
+    var descHtml = track.track_description
+      ? '<p class="section-sub" style="margin-bottom:48px">' + esc(track.track_description) + '</p>'
+      : '';
+
     return [
+      tagHtml,
       '<h2 class="section-title" style="margin-bottom:8px">', esc(track.title), '</h2>',
+      descHtml,
       '<div class="stages-grid">',
         '<div class="stage-card">',
           '<div class="stage-num">Stage 01 · Weeks 1–6</div>',
