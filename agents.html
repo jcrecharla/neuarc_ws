@@ -210,7 +210,7 @@
             <div class="step-num">01</div>
             <div>
               <h4>Register as an Agent</h4>
-              <p>Fill the form with your details and PAN card. Verify your email with a one-time code to receive your unique Agent Code.</p>
+              <p>Fill the form with your details and PAN card. Verify your WhatsApp number, then your email, and set a password to activate your account.</p>
             </div>
           </div>
           <div class="how-step">
@@ -297,7 +297,7 @@
             <div class="form-submit-row">
               <p class="form-note">Your PAN is used only to generate your unique Agent Code and for payout compliance. We do not share it with third parties.</p>
               <button type="submit" class="btn btn-primary btn-apply" id="agSubmitBtn">
-                Register &amp; Get OTP
+                Register &amp; Verify Phone
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
                 </svg>
@@ -318,9 +318,14 @@
           <p style="color:var(--text-2);font-size:0.82rem;max-width:340px;margin:0 auto 24px;">
             Candidates enter this code on the <a href="apply.html" style="color:#00D4FF;">Apply Now</a> page. You'll earn ₹50,000 for each one who enrols.
           </p>
-          <a href="mailto:agents@neuarcaiacademy.com" class="btn btn-secondary" style="display:inline-flex;gap:8px;align-items:center;">
-            Contact Agent Support
-          </a>
+          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+            <a href="https://admin.neuarcaiacademy.com/login" target="_blank" class="btn btn-primary" style="display:inline-flex;gap:8px;align-items:center;">
+              Log In to Agent Portal
+            </a>
+            <a href="mailto:agents@neuarcaiacademy.com" class="btn btn-secondary" style="display:inline-flex;gap:8px;align-items:center;">
+              Contact Agent Support
+            </a>
+          </div>
         </div>
 
       </div>
@@ -329,19 +334,36 @@
   </div>
 </section>
 
-<!-- ══ OTP Verification Modal ══ -->
-<div class="otp-overlay" id="otpOverlay">
+<!-- ══ Multi-step OTP / Password Modal ══ -->
+<div class="otp-overlay" id="agModal">
   <div class="otp-box">
-    <h3>Verify your email</h3>
-    <p id="otpDesc">Enter the 6-digit code sent to <strong id="otpEmailDisplay"></strong>. Valid for 15 minutes.</p>
-    <input type="text" class="otp-input" id="otpInput" maxlength="6" inputmode="numeric" placeholder="— — — — — —" autocomplete="one-time-code" />
-    <p class="otp-error" id="otpError"></p>
-    <button class="btn btn-primary" style="width:100%;justify-content:center;" id="otpVerifyBtn">
-      Verify &amp; Activate
-    </button>
-    <p class="otp-resend" style="margin-top:14px;">
-      Didn't receive it? <a id="otpResendLink">Resend OTP</a>
-    </p>
+    <!-- Step: Phone OTP -->
+    <div id="stepPhoneOtp">
+      <h3>Verify your WhatsApp</h3>
+      <p id="phoneOtpDesc">We sent a 6-digit OTP to your WhatsApp number ending in <strong id="phoneMaskedDisplay"></strong>. Valid for 10 minutes.</p>
+      <input type="text" class="otp-input" id="phoneOtpInput" maxlength="6" inputmode="numeric" placeholder="— — — — — —" autocomplete="one-time-code" />
+      <p class="otp-error" id="phoneOtpError"></p>
+      <button class="btn btn-primary" style="width:100%;justify-content:center;" id="phoneOtpVerifyBtn">Verify Phone</button>
+      <p class="otp-resend" style="margin-top:14px;">Didn't receive it? <a id="phoneOtpResendLink">Resend on WhatsApp</a></p>
+    </div>
+    <!-- Step: Email OTP -->
+    <div id="stepEmailOtp" style="display:none;">
+      <h3>Verify your email</h3>
+      <p id="emailOtpDesc">Phone verified! Enter the 6-digit code sent to <strong id="emailOtpDisplay"></strong>. Valid for 15 minutes.</p>
+      <input type="text" class="otp-input" id="emailOtpInput" maxlength="6" inputmode="numeric" placeholder="— — — — — —" autocomplete="one-time-code" />
+      <p class="otp-error" id="emailOtpError"></p>
+      <button class="btn btn-primary" style="width:100%;justify-content:center;" id="emailOtpVerifyBtn">Verify Email</button>
+      <p class="otp-resend" style="margin-top:14px;">Didn't receive it? <a id="emailOtpResendLink">Resend email OTP</a></p>
+    </div>
+    <!-- Step: Set Password -->
+    <div id="stepPassword" style="display:none;">
+      <h3>Set your password</h3>
+      <p>Both your phone and email are verified. Create a password to activate your agent account.</p>
+      <input type="password" id="pwInput" placeholder="Minimum 8 characters" style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px;font-size:0.95rem;color:var(--text);outline:none;margin-bottom:10px;" />
+      <input type="password" id="pwConfirm" placeholder="Confirm password" style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px;font-size:0.95rem;color:var(--text);outline:none;margin-bottom:16px;" />
+      <p class="otp-error" id="pwError"></p>
+      <button class="btn btn-primary" style="width:100%;justify-content:center;" id="pwSetBtn">Activate Account</button>
+    </div>
   </div>
 </div>
 
@@ -389,31 +411,72 @@
 (function () {
   'use strict';
 
-  var API_BASE  = 'https://admin.neuarcaiacademy.com';
-  var pendingEmail = '';
-  var pendingBody  = null;
+  var API_BASE = 'https://admin.neuarcaiacademy.com';
 
+  // State
+  var pendingPhone     = '';
+  var pendingPhoneToken = '';  // record.id returned from /otp/verify (phone step)
+  var pendingEmail     = '';
+  var pendingAgentCode = '';
+  var formData         = null;
+
+  // DOM refs — form
   var agentForm   = document.getElementById('agentForm');
   var agSubmitBtn = document.getElementById('agSubmitBtn');
   var agFormError = document.getElementById('agFormError');
 
-  var otpOverlay     = document.getElementById('otpOverlay');
-  var otpInput       = document.getElementById('otpInput');
-  var otpError       = document.getElementById('otpError');
-  var otpVerifyBtn   = document.getElementById('otpVerifyBtn');
-  var otpResendLink  = document.getElementById('otpResendLink');
-  var otpEmailDisplay = document.getElementById('otpEmailDisplay');
+  // DOM refs — modal & steps
+  var agModal        = document.getElementById('agModal');
+  var stepPhoneOtp   = document.getElementById('stepPhoneOtp');
+  var stepEmailOtp   = document.getElementById('stepEmailOtp');
+  var stepPassword   = document.getElementById('stepPassword');
+
+  // Phone OTP elements
+  var phoneMaskedDisplay = document.getElementById('phoneMaskedDisplay');
+  var phoneOtpInput      = document.getElementById('phoneOtpInput');
+  var phoneOtpError      = document.getElementById('phoneOtpError');
+  var phoneOtpVerifyBtn  = document.getElementById('phoneOtpVerifyBtn');
+  var phoneOtpResendLink = document.getElementById('phoneOtpResendLink');
+
+  // Email OTP elements
+  var emailOtpDisplay    = document.getElementById('emailOtpDisplay');
+  var emailOtpInput      = document.getElementById('emailOtpInput');
+  var emailOtpError      = document.getElementById('emailOtpError');
+  var emailOtpVerifyBtn  = document.getElementById('emailOtpVerifyBtn');
+  var emailOtpResendLink = document.getElementById('emailOtpResendLink');
+
+  // Password elements
+  var pwInput   = document.getElementById('pwInput');
+  var pwConfirm = document.getElementById('pwConfirm');
+  var pwError   = document.getElementById('pwError');
+  var pwSetBtn  = document.getElementById('pwSetBtn');
+
+  // ── helpers ──────────────────────────────────────────────────────────
+
+  function showStep(step) {
+    stepPhoneOtp.style.display  = step === 'phone'    ? '' : 'none';
+    stepEmailOtp.style.display  = step === 'email'    ? '' : 'none';
+    stepPassword.style.display  = step === 'password' ? '' : 'none';
+    agModal.classList.add('visible');
+  }
+
+  function closeModal() {
+    agModal.classList.remove('visible');
+  }
 
   function panValid(pan) {
     return /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(pan.toUpperCase());
   }
 
-  function setFormBusy(busy) {
-    agSubmitBtn.disabled = busy;
-    agSubmitBtn.innerHTML = busy
-      ? 'Sending&hellip;'
-      : 'Register &amp; Get OTP <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+  function post(url, body) {
+    return fetch(API_BASE + url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    }).then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); });
   }
+
+  // ── Step 0: Form submit → send phone OTP ─────────────────────────────
 
   agentForm.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -435,76 +498,144 @@
       return;
     }
 
-    pendingBody = { full_name: full_name, email: email, phone: phone, pan_card: pan_card,
-                    designation: designation || undefined, company: company || undefined };
+    formData = { full_name: full_name, email: email, phone: phone, pan_card: pan_card,
+                 designation: designation || undefined, company: company || undefined };
+    pendingPhone = phone;
     pendingEmail = email;
 
-    setFormBusy(true);
-    fetch(API_BASE + '/api/public/agents/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(pendingBody),
-    })
-    .then(function (res) { return res.json().then(function (d) { return { ok: res.ok, d: d }; }); })
-    .then(function (r) {
-      setFormBusy(false);
-      if (!r.ok) { agFormError.textContent = r.d.error || 'Registration failed.'; return; }
-      otpEmailDisplay.textContent = pendingEmail;
-      otpInput.value = '';
-      otpError.textContent = '';
-      otpOverlay.classList.add('visible');
-      otpInput.focus();
-    })
-    .catch(function () {
-      setFormBusy(false);
-      agFormError.textContent = 'Network error. Please try again.';
-    });
+    agSubmitBtn.disabled = true;
+    agSubmitBtn.innerHTML = 'Sending OTP&hellip;';
+
+    post('/api/public/otp/send', { phone: phone, purpose: 'agent_register' })
+      .then(function (r) {
+        agSubmitBtn.disabled = false;
+        agSubmitBtn.innerHTML = 'Register &amp; Verify Phone <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+        if (!r.ok) { agFormError.textContent = r.d.error || 'Failed to send OTP.'; return; }
+        phoneMaskedDisplay.textContent = r.d.masked || phone.slice(-4);
+        phoneOtpInput.value = '';
+        phoneOtpError.textContent = '';
+        showStep('phone');
+        phoneOtpInput.focus();
+      })
+      .catch(function () {
+        agSubmitBtn.disabled = false;
+        agSubmitBtn.innerHTML = 'Register &amp; Verify Phone <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+        agFormError.textContent = 'Network error. Please try again.';
+      });
   });
 
-  function verifyOtp() {
-    var code = otpInput.value.replace(/\s/g, '').trim();
-    if (code.length !== 6) { otpError.textContent = 'Enter the 6-digit code.'; return; }
-    otpError.textContent = '';
-    otpVerifyBtn.disabled = true;
-    otpVerifyBtn.textContent = 'Verifying…';
+  // ── Step 1: Verify phone OTP → get phone_token ───────────────────────
 
-    fetch(API_BASE + '/api/public/agents/verify-otp', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: pendingEmail, otp: code }),
-    })
-    .then(function (res) { return res.json().then(function (d) { return { ok: res.ok, d: d }; }); })
-    .then(function (r) {
-      otpVerifyBtn.disabled = false;
-      otpVerifyBtn.textContent = 'Verify & Activate';
-      if (!r.ok) { otpError.textContent = r.d.error || 'Verification failed.'; return; }
-      otpOverlay.classList.remove('visible');
-      document.getElementById('agentCodeDisplay').textContent = r.d.agent_code || '—';
-      document.getElementById('agentFormWrap').style.display = 'none';
-      document.getElementById('agentSuccess').classList.add('show');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    })
-    .catch(function () {
-      otpVerifyBtn.disabled = false;
-      otpVerifyBtn.textContent = 'Verify & Activate';
-      otpError.textContent = 'Network error. Please try again.';
-    });
+  function verifyPhoneOtp() {
+    var code = phoneOtpInput.value.replace(/\D/g, '').trim();
+    if (code.length !== 6) { phoneOtpError.textContent = 'Enter the 6-digit code.'; return; }
+    phoneOtpError.textContent = '';
+    phoneOtpVerifyBtn.disabled = true;
+    phoneOtpVerifyBtn.textContent = 'Verifying…';
+
+    post('/api/public/otp/verify', { phone: pendingPhone, otp: code, purpose: 'agent_register' })
+      .then(function (r) {
+        phoneOtpVerifyBtn.disabled = false;
+        phoneOtpVerifyBtn.textContent = 'Verify Phone';
+        if (!r.ok) { phoneOtpError.textContent = r.d.error || 'Invalid OTP.'; return; }
+        pendingPhoneToken = r.d.token;  // record.id from PhoneOtp
+        // Now register agent (sends email OTP)
+        return post('/api/public/agents/register', Object.assign({}, formData, { phone_token: pendingPhoneToken }));
+      })
+      .then(function (r) {
+        if (!r) return;
+        if (!r.ok) { phoneOtpError.textContent = r.d.error || 'Registration failed.'; return; }
+        pendingAgentCode = r.d.agent_code || '';
+        emailOtpDisplay.textContent = pendingEmail;
+        emailOtpInput.value = '';
+        emailOtpError.textContent = '';
+        showStep('email');
+        emailOtpInput.focus();
+      })
+      .catch(function () {
+        phoneOtpVerifyBtn.disabled = false;
+        phoneOtpVerifyBtn.textContent = 'Verify Phone';
+        phoneOtpError.textContent = 'Network error. Please try again.';
+      });
   }
 
-  otpVerifyBtn.addEventListener('click', verifyOtp);
-  otpInput.addEventListener('keydown', function (e) { if (e.key === 'Enter') verifyOtp(); });
+  phoneOtpVerifyBtn.addEventListener('click', verifyPhoneOtp);
+  phoneOtpInput.addEventListener('keydown', function (e) { if (e.key === 'Enter') verifyPhoneOtp(); });
 
-  otpResendLink.addEventListener('click', function () {
-    if (!pendingBody) return;
-    otpError.textContent = '';
-    otpResendLink.textContent = 'Sending…';
-    fetch(API_BASE + '/api/public/agents/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(pendingBody),
-    })
-    .then(function () { otpResendLink.textContent = 'Resend OTP'; otpInput.value = ''; otpInput.focus(); })
-    .catch(function () { otpResendLink.textContent = 'Resend OTP'; });
+  phoneOtpResendLink.addEventListener('click', function () {
+    phoneOtpError.textContent = '';
+    phoneOtpResendLink.textContent = 'Sending…';
+    post('/api/public/otp/send', { phone: pendingPhone, purpose: 'agent_register' })
+      .then(function () { phoneOtpResendLink.textContent = 'Resend on WhatsApp'; phoneOtpInput.value = ''; phoneOtpInput.focus(); })
+      .catch(function () { phoneOtpResendLink.textContent = 'Resend on WhatsApp'; });
+  });
+
+  // ── Step 2: Verify email OTP ─────────────────────────────────────────
+
+  function verifyEmailOtp() {
+    var code = emailOtpInput.value.replace(/\D/g, '').trim();
+    if (code.length !== 6) { emailOtpError.textContent = 'Enter the 6-digit code.'; return; }
+    emailOtpError.textContent = '';
+    emailOtpVerifyBtn.disabled = true;
+    emailOtpVerifyBtn.textContent = 'Verifying…';
+
+    post('/api/public/agents/verify-otp', { email: pendingEmail, otp: code })
+      .then(function (r) {
+        emailOtpVerifyBtn.disabled = false;
+        emailOtpVerifyBtn.textContent = 'Verify Email';
+        if (!r.ok) { emailOtpError.textContent = r.d.error || 'Invalid OTP.'; return; }
+        pendingAgentCode = r.d.agent_code || pendingAgentCode;
+        pwInput.value = '';
+        pwConfirm.value = '';
+        pwError.textContent = '';
+        showStep('password');
+        pwInput.focus();
+      })
+      .catch(function () {
+        emailOtpVerifyBtn.disabled = false;
+        emailOtpVerifyBtn.textContent = 'Verify Email';
+        emailOtpError.textContent = 'Network error. Please try again.';
+      });
+  }
+
+  emailOtpVerifyBtn.addEventListener('click', verifyEmailOtp);
+  emailOtpInput.addEventListener('keydown', function (e) { if (e.key === 'Enter') verifyEmailOtp(); });
+
+  emailOtpResendLink.addEventListener('click', function () {
+    emailOtpError.textContent = '';
+    emailOtpResendLink.textContent = 'Sending…';
+    post('/api/public/agents/register', Object.assign({}, formData, { phone_token: pendingPhoneToken, resend: true }))
+      .then(function () { emailOtpResendLink.textContent = 'Resend email OTP'; emailOtpInput.value = ''; emailOtpInput.focus(); })
+      .catch(function () { emailOtpResendLink.textContent = 'Resend email OTP'; });
+  });
+
+  // ── Step 3: Set password ──────────────────────────────────────────────
+
+  pwSetBtn.addEventListener('click', function () {
+    var pw  = pwInput.value;
+    var pw2 = pwConfirm.value;
+    if (pw.length < 8)  { pwError.textContent = 'Password must be at least 8 characters.'; return; }
+    if (pw !== pw2)     { pwError.textContent = 'Passwords do not match.'; return; }
+    pwError.textContent = '';
+    pwSetBtn.disabled = true;
+    pwSetBtn.textContent = 'Activating…';
+
+    post('/api/public/agents/set-password', { email: pendingEmail, password: pw })
+      .then(function (r) {
+        pwSetBtn.disabled = false;
+        pwSetBtn.textContent = 'Activate Account';
+        if (!r.ok) { pwError.textContent = r.d.error || 'Failed to set password.'; return; }
+        closeModal();
+        document.getElementById('agentCodeDisplay').textContent = r.d.agent_code || pendingAgentCode || '—';
+        document.getElementById('agentFormWrap').style.display = 'none';
+        document.getElementById('agentSuccess').classList.add('show');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      })
+      .catch(function () {
+        pwSetBtn.disabled = false;
+        pwSetBtn.textContent = 'Activate Account';
+        pwError.textContent = 'Network error. Please try again.';
+      });
   });
 
   // Auto-uppercase PAN
