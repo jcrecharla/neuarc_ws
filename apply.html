@@ -87,29 +87,17 @@
 
       <!-- Right: Form -->
       <div class="apply-form-wrap">
-        <form
-          class="apply-form"
-          action="https://formsubmit.co/info@neuarcaiacademy.com"
-          method="POST"
-          enctype="multipart/form-data"
-          id="applyForm"
-        >
-          <!-- FormSubmit.co configuration -->
-          <input type="hidden" name="_subject" value="New Application — NeuArc AI Academy" />
-          <input type="hidden" name="_next" value="thankyou.html" />
-          <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_autoresponse" value="Thank you for applying to NeuArc AI Academy! We have received your application and will review it within 2–3 business days. Our team will reach out to shortlisted candidates with next steps. — NeuArc AI Academy Team" />
+        <form class="apply-form" id="applyForm" novalidate>
 
           <!-- Row 1 -->
           <div class="form-row-2">
             <div class="form-group">
               <label for="fullName">Full Name <span class="req">*</span></label>
-              <input type="text" id="fullName" name="Full Name" placeholder="Your full name" required />
+              <input type="text" id="fullName" placeholder="Your full name" />
             </div>
             <div class="form-group">
               <label for="email">Email Address <span class="req">*</span></label>
-              <input type="email" id="email" name="Email" placeholder="you@example.com" required />
+              <input type="email" id="email" placeholder="you@example.com" />
             </div>
           </div>
 
@@ -117,11 +105,11 @@
           <div class="form-row-2">
             <div class="form-group">
               <label for="phone">Phone Number <span class="req">*</span></label>
-              <input type="tel" id="phone" name="Phone" placeholder="+91 XXXXX XXXXX" required />
+              <input type="tel" id="phone" placeholder="+91 XXXXX XXXXX" />
             </div>
             <div class="form-group">
               <label for="track">Track of Interest <span class="req">*</span></label>
-              <select id="track" name="Track of Interest" required>
+              <select id="track">
                 <option value="" disabled selected>Select a track</option>
                 <option value="Advanced Data Engineering">Advanced Data Engineering</option>
                 <option value="Cloud-Native DevOps">Cloud-Native DevOps</option>
@@ -135,11 +123,11 @@
           <div class="form-row-2">
             <div class="form-group">
               <label for="role">Current Role / Job Title</label>
-              <input type="text" id="role" name="Current Role" placeholder="e.g. Backend Developer" />
+              <input type="text" id="role" placeholder="e.g. Backend Developer" />
             </div>
             <div class="form-group">
               <label for="experience">Years of Experience <span class="req">*</span></label>
-              <select id="experience" name="Years of Experience" required>
+              <select id="experience">
                 <option value="" disabled selected>Select range</option>
                 <option value="0–1 years (Fresher)">0–1 years (Fresher)</option>
                 <option value="1–3 years">1–3 years</option>
@@ -152,21 +140,21 @@
           <!-- LinkedIn -->
           <div class="form-group">
             <label for="linkedin">LinkedIn Profile URL</label>
-            <input type="url" id="linkedin" name="LinkedIn Profile" placeholder="https://linkedin.com/in/yourprofile" />
+            <input type="url" id="linkedin" placeholder="https://linkedin.com/in/yourprofile" />
           </div>
 
           <!-- Goals -->
           <div class="form-group">
             <label for="message">Why NeuArc? What are your goals? <span class="req">*</span></label>
-            <textarea id="message" name="Goals and Motivation" rows="5"
-              placeholder="Tell us about your current situation, what you want to achieve, and why NeuArc's approach resonates with you..." required></textarea>
+            <textarea id="message" rows="5"
+              placeholder="Tell us about your current situation, what you want to achieve, and why NeuArc's approach resonates with you..."></textarea>
           </div>
 
           <!-- Resume Upload -->
           <div class="form-group">
-            <label>Attach Resume <span class="req">*</span></label>
+            <label>Attach Resume</label>
             <div class="file-drop" id="fileDrop">
-              <input type="file" id="resume" name="attachment" accept=".pdf,.doc,.docx" required />
+              <input type="file" id="resume" accept=".pdf,.doc,.docx" />
               <div class="file-drop-ui" id="fileDropUI">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--g)">
                   <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
@@ -185,6 +173,15 @@
               </div>
             </div>
           </div>
+
+          <!-- Agent Code -->
+          <div class="form-group">
+            <label for="agentCode">Agent / Referral Code <span style="font-size:0.78rem;color:var(--text-2);font-weight:400">(optional)</span></label>
+            <input type="text" id="agentCode" placeholder="e.g. AGT-XXXXX" style="text-transform:uppercase" />
+          </div>
+
+          <!-- Error message -->
+          <div id="formError" style="display:none;color:#f87171;font-size:0.82rem;margin-bottom:8px;padding:10px 14px;background:rgba(248,113,113,0.08);border:1px solid rgba(248,113,113,0.25);border-radius:8px"></div>
 
           <!-- Submit -->
           <div class="form-submit-row">
@@ -246,50 +243,106 @@
 <script src="js/chatbot.js"></script>
 <script src="js/whatsapp.js"></script>
 <script>
-  const fileInput   = document.getElementById('resume');
-  const fileDropUI  = document.getElementById('fileDropUI');
+  const API_BASE = 'https://neuarc-admin.vercel.app';
+
+  /* ── File drop widget ── */
+  const fileInput    = document.getElementById('resume');
+  const fileDropUI   = document.getElementById('fileDropUI');
   const fileSelected = document.getElementById('fileSelected');
-  const fileNameEl  = document.getElementById('fileName');
-  const fileClear   = document.getElementById('fileClear');
-  const fileDrop    = document.getElementById('fileDrop');
+  const fileNameEl   = document.getElementById('fileName');
+  const fileClear    = document.getElementById('fileClear');
+  const fileDrop     = document.getElementById('fileDrop');
 
   function showFile(name) {
     fileNameEl.textContent = name;
-    fileDropUI.style.display = 'none';
+    fileDropUI.style.display  = 'none';
     fileSelected.style.display = 'flex';
   }
 
   fileInput.addEventListener('change', function () {
     if (this.files && this.files[0]) showFile(this.files[0].name);
   });
-
   fileClear.addEventListener('click', function () {
     fileInput.value = '';
-    fileDropUI.style.display = 'flex';
+    fileDropUI.style.display   = 'flex';
     fileSelected.style.display = 'none';
   });
-
   fileDrop.addEventListener('dragover', function (e) {
-    e.preventDefault();
-    this.classList.add('drag-over');
+    e.preventDefault(); this.classList.add('drag-over');
   });
   fileDrop.addEventListener('dragleave', function () {
     this.classList.remove('drag-over');
   });
   fileDrop.addEventListener('drop', function (e) {
-    e.preventDefault();
-    this.classList.remove('drag-over');
+    e.preventDefault(); this.classList.remove('drag-over');
     const files = e.dataTransfer.files;
-    if (files && files[0]) {
-      fileInput.files = files;
-      showFile(files[0].name);
-    }
+    if (files && files[0]) { fileInput.files = files; showFile(files[0].name); }
   });
 
-  document.getElementById('applyForm').addEventListener('submit', function () {
-    const btn = document.getElementById('submitBtn');
+  /* ── agentCode auto-uppercase ── */
+  document.getElementById('agentCode').addEventListener('input', function () {
+    const pos = this.selectionStart;
+    this.value = this.value.toUpperCase();
+    this.setSelectionRange(pos, pos);
+  });
+
+  /* ── Form submit ── */
+  document.getElementById('applyForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const btn       = document.getElementById('submitBtn');
+    const errBox    = document.getElementById('formError');
+    errBox.style.display = 'none';
+
+    const full_name  = document.getElementById('fullName').value.trim();
+    const email      = document.getElementById('email').value.trim();
+    const phone      = document.getElementById('phone').value.trim();
+    const track      = document.getElementById('track').value;
+    const role       = document.getElementById('role').value.trim();
+    const experience = document.getElementById('experience').value;
+    const linkedin   = document.getElementById('linkedin').value.trim();
+    const message    = document.getElementById('message').value.trim();
+    const agentCode  = document.getElementById('agentCode').value.trim();
+    const resumeFile = fileInput.files && fileInput.files[0] ? fileInput.files[0].name : '';
+
+    if (!full_name || !email || !phone || !track || !experience || !message) {
+      errBox.textContent = 'Please fill all required fields.';
+      errBox.style.display = 'block';
+      return;
+    }
+
     btn.disabled = true;
     btn.innerHTML = 'Submitting&hellip;';
+
+    try {
+      const payload = { full_name, email, phone, track, experience, message };
+      if (role)       payload.role       = role;
+      if (linkedin)   payload.linkedin   = linkedin;
+      if (agentCode)  payload.agent_code = agentCode;
+      if (resumeFile) payload.resume     = resumeFile;
+
+      const res  = await fetch(API_BASE + '/api/public/apply', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(payload),
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        errBox.textContent = data.error || 'Submission failed. Please try again.';
+        errBox.style.display = 'block';
+        btn.disabled = false;
+        btn.innerHTML = 'Submit Application <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+        return;
+      }
+
+      window.location.href = 'thankyou.html';
+    } catch (err) {
+      errBox.textContent = 'Network error. Please check your connection and try again.';
+      errBox.style.display = 'block';
+      btn.disabled = false;
+      btn.innerHTML = 'Submit Application <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+    }
   });
 </script>
 
