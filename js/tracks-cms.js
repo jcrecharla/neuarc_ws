@@ -39,9 +39,15 @@
       ? '<p class="section-sub" style="margin-bottom:48px">' + esc(track.track_description) + '</p>'
       : '';
 
+    var suffixHtml = '';
+    if (track.title_suffix) {
+      var sc = TAG_COLORS[track.tag_color] || TAG_COLORS.green;
+      suffixHtml = ' <span style="font-size:0.6em;color:' + sc.color + ';font-family:var(--font-mono)">' + esc(track.title_suffix) + '</span>';
+    }
+
     return [
       tagHtml,
-      '<h2 class="section-title" style="margin-bottom:8px">', esc(track.title), '</h2>',
+      '<h2 class="section-title" style="margin-bottom:8px">', esc(track.title), suffixHtml, '</h2>',
       descHtml,
       '<div class="stages-grid">',
         '<div class="stage-card">',
