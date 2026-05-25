@@ -4,7 +4,7 @@
 (function () {
   'use strict';
 
-  var API_BASE = 'https://neuarc-admin.vercel.app';
+  var API_BASE = 'https://admin.neuarcaiacademy.com';
 
   var PHONES = [
     { number: '+91 90711 19371', wa: '919071119371', label: 'Primary Line'   },

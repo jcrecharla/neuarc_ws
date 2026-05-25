@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  var ADMIN_URL   = 'https://neuarc-admin.vercel.app';
+  var ADMIN_URL   = 'https://admin.neuarcaiacademy.com';
   var LEARNER_URL = 'https://learner.neuarcaiacademy.com';
 
   function build() {

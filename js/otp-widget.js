@@ -5,7 +5,7 @@
 var NeuArcOTP = (function () {
   'use strict';
 
-  var API_BASE = 'https://neuarc-admin.vercel.app';
+  var API_BASE = 'https://admin.neuarcaiacademy.com';
 
   function cleanPhone(phone) {
     return phone.replace(/[^0-9]/g, '').replace(/^91/, '');

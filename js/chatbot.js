@@ -10,7 +10,7 @@
      NOTE: buddy.adviser@neuarcaiacademy.com must be activated
      via the confirmation link formsubmit.co sends on first POST.
   ───────────────────────────────────────────────────────────── */
-  var INGEST_URL    = 'https://neuarc-admin.vercel.app/api/ingest';
+  var INGEST_URL    = 'https://admin.neuarcaiacademy.com/api/ingest';
   var INGEST_SECRET = 'ba6718ee0cc781c16079213a76fdad6ef677eecc431f8392';
 
   /* ─────────────────────────────────────────────────────────────
