@@ -363,6 +363,7 @@
   <div class="container">
     <div class="metrics-marquee reveal">
       <div class="metric-tile">
+        <div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--text-4);margin-bottom:2px;letter-spacing:0.08em">UP TO</div>
         <div class="metric-tile-val" data-target="18">0</div>
         <div style="font-family:var(--font-mono);font-size:0.68rem;color:var(--text-4);margin-bottom:6px">WEEKS</div>
         <div class="metric-tile-desc">Full programme duration from foundational engineer to production-grade specialist</div>
@@ -373,9 +374,9 @@
         <div class="metric-tile-desc">AI co-pilot acceleration — generate features 10× faster than traditional development</div>
       </div>
       <div class="metric-tile">
-        <div class="metric-tile-val" data-target="16">0</div>
+        <div class="metric-tile-val" data-target="16" id="cms-tracks-metric">0</div>
         <div style="font-family:var(--font-mono);font-size:0.68rem;color:var(--text-4);margin-bottom:6px">TRACKS</div>
-        <div class="metric-tile-desc">16 specialised tracks across Data, AI, Cloud, SAP, ServiceNow, Python, Java &amp; Power Platform</div>
+        <div class="metric-tile-desc" id="cms-tracks-metric-desc">16 specialised tracks across Data, AI, Cloud, SAP, ServiceNow, Python, Java &amp; Power Platform</div>
       </div>
       <div class="metric-tile">
         <div class="metric-tile-val" data-target="90">0</div>
@@ -444,6 +445,7 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script src="js/cms-globals.js"></script>
 <script src="js/chatbot.js"></script>
 <script src="js/whatsapp.js"></script>
 
