@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Become a NeuArc Referral Agent — Earn ₹50,000 per enrolled candidate. Join our partner network today." />
+  <title>Referral Agent Programme — NeuArc AI Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .agent-hero-tag {
+      display: inline-block;
+      background: rgba(74,222,128,0.09);
+      color: #16A34A;
+      border: 1px solid rgba(74,222,128,0.25);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 18px;
+    }
+    .earnings-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin: 40px 0;
+    }
+    .earnings-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 20px;
+      text-align: center;
+    }
+    .earnings-card .earn-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2rem;
+      font-weight: 800;
+      background: var(--g);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+    }
+    .earnings-card .earn-label {
+      color: var(--text-2);
+      font-size: 0.82rem;
+      margin-top: 6px;
+    }
+    .how-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin: 32px 0;
+    }
+    .how-step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .step-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--g-text, #00D4FF);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .how-step h4 { margin: 0 0 4px; font-size: 0.95rem; }
+    .how-step p  { margin: 0; color: var(--text-2); font-size: 0.85rem; line-height: 1.5; }
+
+    /* OTP Modal */
+    .otp-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.65);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 9999; padding: 16px;
+      opacity: 0; pointer-events: none; transition: opacity 0.2s;
+    }
+    .otp-overlay.visible { opacity: 1; pointer-events: all; }
+    .otp-box {
+      background: var(--surface, #0F1B2D);
+      border: 1px solid var(--border, #1E2D42);
+      border-radius: 14px;
+      padding: 32px 28px;
+      width: 100%; max-width: 420px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+    }
+    .otp-box h3 { margin: 0 0 6px; font-size: 1.05rem; }
+    .otp-box p  { color: var(--text-2); font-size: 0.85rem; margin: 0 0 20px; }
+    .otp-input {
+      width: 100%;
+      background: var(--bg, #060E1A);
+      border: 1px solid var(--border, #1E2D42);
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      color: var(--text, #E8F4FF);
+      text-align: center;
+      outline: none;
+      transition: border-color 0.15s;
+      margin-bottom: 16px;
+    }
+    .otp-input:focus { border-color: #00D4FF; }
+    .otp-resend {
+      text-align: center; font-size: 0.78rem; color: var(--text-2); margin-bottom: 8px;
+    }
+    .otp-resend a { color: #00D4FF; cursor: pointer; text-decoration: underline; }
+    .otp-error { color: #f87171; font-size: 0.8rem; text-align: center; margin-bottom: 10px; min-height: 20px; }
+
+    /* Success view */
+    .agent-success {
+      display: none; text-align: center; padding: 40px 20px;
+    }
+    .agent-success.show { display: block; }
+    .agent-code-box {
+      display: inline-block;
+      background: rgba(0,212,255,0.08);
+      border: 1px solid rgba(0,212,255,0.25);
+      border-radius: 10px;
+      padding: 20px 32px;
+      margin: 20px 0;
+    }
+    .agent-code-box .code-label { font-size: 0.72rem; color: var(--text-2); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+    .agent-code-box .code-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: #00D4FF;
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ Navigation ══ -->
+<nav id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <img class="nav-logo-img" src="assets/neuarc-logo.png" alt="NeuArc AI Academy"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+      <span class="logo-css">NEUARC <span class="logo-css-sub">AI ACADEMY</span></span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="edge-framework.html">EDGE Framework</a></li>
+      <li><a href="tracks.html">Tracks</a></li>
+      <li><a href="career.html">Career Suite</a></li>
+      <li><a href="apply.html" class="nav-cta">Apply Now</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ══ Page Header ══ -->
+<div class="page-header">
+  <div class="container">
+    <div class="agent-hero-tag reveal">Referral Agent Programme</div>
+    <h1 class="reveal d1">Earn <span class="gradient-text">₹50,000</span> Per Enrolment</h1>
+    <p class="reveal d2" style="max-width:620px;margin:0 auto;color:var(--text-2);font-size:1.05rem;">
+      Partner with NeuArc AI Academy. Refer developers to our elite engineering programme and earn a fixed commission for every candidate who enrols.
+    </p>
+  </div>
+</div>
+
+<!-- ══ Earnings Section ══ -->
+<section class="section">
+  <div class="container">
+
+    <div class="earnings-grid reveal">
+      <div class="earnings-card">
+        <div class="earn-num">₹50,000</div>
+        <div class="earn-label">Commission per enrolled candidate</div>
+      </div>
+      <div class="earnings-card">
+        <div class="earn-num">No cap</div>
+        <div class="earn-label">Unlimited referrals, unlimited earnings</div>
+      </div>
+      <div class="earnings-card">
+        <div class="earn-num">Direct</div>
+        <div class="earn-label">Bank transfer within 30 days of enrolment</div>
+      </div>
+    </div>
+
+    <div class="apply-wrap reveal">
+
+      <!-- Left: How it works -->
+      <div class="apply-info">
+        <p class="apply-info-heading">How the programme works</p>
+
+        <div class="how-steps">
+          <div class="how-step">
+            <div class="step-num">01</div>
+            <div>
+              <h4>Register as an Agent</h4>
+              <p>Fill the form with your details and PAN card. Verify your email with a one-time code to receive your unique Agent Code.</p>
+            </div>
+          </div>
+          <div class="how-step">
+            <div class="step-num">02</div>
+            <div>
+              <h4>Share Your Agent Code</h4>
+              <p>Candidates mention your agent code when they apply. Our system automatically links the referral to your account.</p>
+            </div>
+          </div>
+          <div class="how-step">
+            <div class="step-num">03</div>
+            <div>
+              <h4>Candidate Enrols</h4>
+              <p>Once your referred candidate completes enrolment and payment, a ₹50,000 payout is logged against your account.</p>
+            </div>
+          </div>
+          <div class="how-step">
+            <div class="step-num">04</div>
+            <div>
+              <h4>Receive Your Payout</h4>
+              <p>Our team initiates a direct bank transfer within 30 days. Track your referrals and payout status via our agent portal.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="apply-contact-box">
+          <p class="apply-contact-label">Agent support</p>
+          <a href="mailto:agents@neuarcaiacademy.com">agents@neuarcaiacademy.com</a>
+          <a href="tel:+919071119371">+91 90711 19371</a>
+        </div>
+      </div>
+
+      <!-- Right: Registration Form -->
+      <div class="apply-form-wrap">
+
+        <!-- Registration form (shown until OTP verified) -->
+        <div id="agentFormWrap">
+          <form class="apply-form" id="agentForm" novalidate>
+            <div style="margin-bottom:20px;">
+              <p style="font-size:0.82rem;color:var(--text-2);line-height:1.5;margin:0;">
+                Register below to receive your Agent Code. You will receive a one-time password on your email to verify your account.
+              </p>
+            </div>
+
+            <!-- Row 1 -->
+            <div class="form-row-2">
+              <div class="form-group">
+                <label for="agFullName">Full Name <span class="req">*</span></label>
+                <input type="text" id="agFullName" placeholder="Your legal full name" required />
+              </div>
+              <div class="form-group">
+                <label for="agEmail">Email Address <span class="req">*</span></label>
+                <input type="email" id="agEmail" placeholder="you@example.com" required />
+              </div>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="form-row-2">
+              <div class="form-group">
+                <label for="agPhone">Phone Number <span class="req">*</span></label>
+                <input type="tel" id="agPhone" placeholder="+91 XXXXX XXXXX" required />
+              </div>
+              <div class="form-group">
+                <label for="agPan">PAN Card Number <span class="req">*</span></label>
+                <input type="text" id="agPan" placeholder="ABCDE1234F" maxlength="10"
+                       style="text-transform:uppercase;font-family:'JetBrains Mono',monospace;letter-spacing:0.08em;" required />
+              </div>
+            </div>
+
+            <!-- Row 3 (optional) -->
+            <div class="form-row-2">
+              <div class="form-group">
+                <label for="agDesig">Designation</label>
+                <input type="text" id="agDesig" placeholder="e.g. HR Manager, Consultant" />
+              </div>
+              <div class="form-group">
+                <label for="agCompany">Company / Organisation</label>
+                <input type="text" id="agCompany" placeholder="e.g. Infosys, Freelance" />
+              </div>
+            </div>
+
+            <p id="agFormError" style="color:#f87171;font-size:0.8rem;min-height:18px;margin-bottom:8px;"></p>
+
+            <div class="form-submit-row">
+              <p class="form-note">Your PAN is used only to generate your unique Agent Code and for payout compliance. We do not share it with third parties.</p>
+              <button type="submit" class="btn btn-primary btn-apply" id="agSubmitBtn">
+                Register &amp; Get OTP
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Success view (shown after OTP verified) -->
+        <div class="agent-success" id="agentSuccess">
+          <div style="font-size:2.5rem;margin-bottom:12px;">🎉</div>
+          <h2 style="margin:0 0 8px;">You're registered!</h2>
+          <p style="color:var(--text-2);font-size:0.92rem;margin-bottom:0;">Your Agent Code is below. Share it with candidates when they apply.</p>
+          <div class="agent-code-box">
+            <div class="code-label">Your Agent Code</div>
+            <div class="code-value" id="agentCodeDisplay">—</div>
+          </div>
+          <p style="color:var(--text-2);font-size:0.82rem;max-width:340px;margin:0 auto 24px;">
+            Candidates enter this code on the <a href="apply.html" style="color:#00D4FF;">Apply Now</a> page. You'll earn ₹50,000 for each one who enrols.
+          </p>
+          <a href="mailto:agents@neuarcaiacademy.com" class="btn btn-secondary" style="display:inline-flex;gap:8px;align-items:center;">
+            Contact Agent Support
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ OTP Verification Modal ══ -->
+<div class="otp-overlay" id="otpOverlay">
+  <div class="otp-box">
+    <h3>Verify your email</h3>
+    <p id="otpDesc">Enter the 6-digit code sent to <strong id="otpEmailDisplay"></strong>. Valid for 15 minutes.</p>
+    <input type="text" class="otp-input" id="otpInput" maxlength="6" inputmode="numeric" placeholder="— — — — — —" autocomplete="one-time-code" />
+    <p class="otp-error" id="otpError"></p>
+    <button class="btn btn-primary" style="width:100%;justify-content:center;" id="otpVerifyBtn">
+      Verify &amp; Activate
+    </button>
+    <p class="otp-resend" style="margin-top:14px;">
+      Didn't receive it? <a id="otpResendLink">Resend OTP</a>
+    </p>
+  </div>
+</div>
+
+<!-- ══ Footer ══ -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="assets/neuarc-logo.png" alt="NeuArc AI Academy"
+             onerror="this.style.display='none'" />
+        <p>NeuArc AI Academy transforms developers with foundational knowledge into elite, AI-leveraged engineers through real-time, production-grade delivery loops.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Academy</h5>
+        <a href="edge-framework.html">EDGE Framework</a>
+        <a href="tracks.html">Tracks &amp; Portfolios</a>
+        <a href="career.html">Career Suite</a>
+        <a href="apply.html">Apply Now</a>
+      </div>
+      <div class="footer-col">
+        <h5>Partners</h5>
+        <a href="agents.html">Referral Agent Programme</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <a href="tel:+919071119371">+91 90711 19371</a>
+        <a href="tel:+919071119372">+91 90711 19372</a>
+        <a href="mailto:info@neuarcaiacademy.com">info@neuarcaiacademy.com</a>
+        <span style="font-size:0.82rem;line-height:1.5;color:var(--text-2);display:block;margin-top:8px;">EVR Towers, Ground Floor, #32, 3rd Cross Rd, 3rd Block,<br>Ayyappa Nagar, Krishnarajapuram,<br>Bengaluru, Karnataka — 560036</span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 NeuArc AI Academy. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/cms-globals.js"></script>
+<script src="js/chatbot.js"></script>
+<script src="js/whatsapp.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  var API_BASE  = 'https://neuarc-admin.vercel.app';
+  var pendingEmail = '';
+  var pendingBody  = null;
+
+  var agentForm   = document.getElementById('agentForm');
+  var agSubmitBtn = document.getElementById('agSubmitBtn');
+  var agFormError = document.getElementById('agFormError');
+
+  var otpOverlay     = document.getElementById('otpOverlay');
+  var otpInput       = document.getElementById('otpInput');
+  var otpError       = document.getElementById('otpError');
+  var otpVerifyBtn   = document.getElementById('otpVerifyBtn');
+  var otpResendLink  = document.getElementById('otpResendLink');
+  var otpEmailDisplay = document.getElementById('otpEmailDisplay');
+
+  function panValid(pan) {
+    return /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(pan.toUpperCase());
+  }
+
+  function setFormBusy(busy) {
+    agSubmitBtn.disabled = busy;
+    agSubmitBtn.innerHTML = busy
+      ? 'Sending&hellip;'
+      : 'Register &amp; Get OTP <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+  }
+
+  agentForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    agFormError.textContent = '';
+
+    var full_name   = document.getElementById('agFullName').value.trim();
+    var email       = document.getElementById('agEmail').value.trim();
+    var phone       = document.getElementById('agPhone').value.trim();
+    var pan_card    = document.getElementById('agPan').value.trim().toUpperCase();
+    var designation = document.getElementById('agDesig').value.trim();
+    var company     = document.getElementById('agCompany').value.trim();
+
+    if (!full_name || !email || !phone || !pan_card) {
+      agFormError.textContent = 'Please fill all required fields.';
+      return;
+    }
+    if (!panValid(pan_card)) {
+      agFormError.textContent = 'Invalid PAN format. Expected: ABCDE1234F';
+      return;
+    }
+
+    pendingBody = { full_name: full_name, email: email, phone: phone, pan_card: pan_card,
+                    designation: designation || undefined, company: company || undefined };
+    pendingEmail = email;
+
+    setFormBusy(true);
+    fetch(API_BASE + '/api/public/agents/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(pendingBody),
+    })
+    .then(function (res) { return res.json().then(function (d) { return { ok: res.ok, d: d }; }); })
+    .then(function (r) {
+      setFormBusy(false);
+      if (!r.ok) { agFormError.textContent = r.d.error || 'Registration failed.'; return; }
+      otpEmailDisplay.textContent = pendingEmail;
+      otpInput.value = '';
+      otpError.textContent = '';
+      otpOverlay.classList.add('visible');
+      otpInput.focus();
+    })
+    .catch(function () {
+      setFormBusy(false);
+      agFormError.textContent = 'Network error. Please try again.';
+    });
+  });
+
+  function verifyOtp() {
+    var code = otpInput.value.replace(/\s/g, '').trim();
+    if (code.length !== 6) { otpError.textContent = 'Enter the 6-digit code.'; return; }
+    otpError.textContent = '';
+    otpVerifyBtn.disabled = true;
+    otpVerifyBtn.textContent = 'Verifying…';
+
+    fetch(API_BASE + '/api/public/agents/verify-otp', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: pendingEmail, otp: code }),
+    })
+    .then(function (res) { return res.json().then(function (d) { return { ok: res.ok, d: d }; }); })
+    .then(function (r) {
+      otpVerifyBtn.disabled = false;
+      otpVerifyBtn.textContent = 'Verify & Activate';
+      if (!r.ok) { otpError.textContent = r.d.error || 'Verification failed.'; return; }
+      otpOverlay.classList.remove('visible');
+      document.getElementById('agentCodeDisplay').textContent = r.d.agent_code || '—';
+      document.getElementById('agentFormWrap').style.display = 'none';
+      document.getElementById('agentSuccess').classList.add('show');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    })
+    .catch(function () {
+      otpVerifyBtn.disabled = false;
+      otpVerifyBtn.textContent = 'Verify & Activate';
+      otpError.textContent = 'Network error. Please try again.';
+    });
+  }
+
+  otpVerifyBtn.addEventListener('click', verifyOtp);
+  otpInput.addEventListener('keydown', function (e) { if (e.key === 'Enter') verifyOtp(); });
+
+  otpResendLink.addEventListener('click', function () {
+    if (!pendingBody) return;
+    otpError.textContent = '';
+    otpResendLink.textContent = 'Sending…';
+    fetch(API_BASE + '/api/public/agents/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(pendingBody),
+    })
+    .then(function () { otpResendLink.textContent = 'Resend OTP'; otpInput.value = ''; otpInput.focus(); })
+    .catch(function () { otpResendLink.textContent = 'Resend OTP'; });
+  });
+
+  // Auto-uppercase PAN
+  document.getElementById('agPan').addEventListener('input', function () {
+    this.value = this.value.toUpperCase();
+  });
+})();
+</script>
+
+<!-- ══ Bottom Running Banner ══ -->
+<div class="bottom-banner">
+  <div class="bottom-banner-track">
+    <span class="bottom-banner-item"><span class="bottom-banner-sep"></span>&#x26A1; NeuArc Referral Programme — Earn ₹50,000 per enrolled candidate. No cap on referrals. Register today and start earning.</span>
+    <span class="bottom-banner-item"><span class="bottom-banner-sep"></span>&#x26A1; NeuArc Referral Programme — Earn ₹50,000 per enrolled candidate. No cap on referrals. Register today and start earning.</span>
+    <span class="bottom-banner-item"><span class="bottom-banner-sep"></span>&#x26A1; NeuArc Referral Programme — Earn ₹50,000 per enrolled candidate. No cap on referrals. Register today and start earning.</span>
+    <span class="bottom-banner-item"><span class="bottom-banner-sep"></span>&#x26A1; NeuArc Referral Programme — Earn ₹50,000 per enrolled candidate. No cap on referrals. Register today and start earning.</span>
+  </div>
+</div>
+</body>
+</html>
