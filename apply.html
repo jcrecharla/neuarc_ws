@@ -100,7 +100,11 @@
             </div>
             <div class="form-group">
               <label for="email">Email Address <span class="req">*</span></label>
-              <input type="email" id="email" placeholder="you@example.com" />
+              <div style="display:flex;gap:8px;align-items:flex-start;flex-wrap:wrap">
+                <input type="email" id="email" placeholder="you@example.com" style="flex:1;min-width:150px" />
+                <button type="button" id="sendEmailOtpBtn" style="padding:9px 14px;background:var(--g);color:#fff;border:none;border-radius:8px;font-size:0.78rem;font-weight:700;cursor:pointer;white-space:nowrap;transition:background 0.2s">Verify Email</button>
+              </div>
+              <div id="emailOtpContainer" style="margin-top:8px;display:none"></div>
             </div>
           </div>
 
@@ -118,9 +122,6 @@
               <label for="track">Track of Interest <span class="req">*</span></label>
               <select id="track">
                 <option value="" disabled selected>Select a track</option>
-                <option value="Advanced Data Engineering">Advanced Data Engineering</option>
-                <option value="Cloud-Native DevOps">Cloud-Native DevOps</option>
-                <option value="AI-Assisted Web Apps">AI-Assisted Web Apps</option>
                 <option value="Undecided — Need guidance">Undecided — Need guidance</option>
               </select>
             </div>
@@ -254,6 +255,40 @@
 <script>
   const API_BASE = 'https://admin.neuarcaiacademy.com';
   let phoneToken = null;
+  let emailToken = null;
+
+  /* ── Email OTP wiring ── */
+  document.getElementById('sendEmailOtpBtn').addEventListener('click', function () {
+    const email   = document.getElementById('email').value.trim();
+    const name    = document.getElementById('fullName').value.trim();
+    const errBox  = document.getElementById('formError');
+    errBox.style.display = 'none';
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      errBox.textContent   = 'Enter a valid email address first.';
+      errBox.style.display = 'block';
+      return;
+    }
+
+    const sendBtn = document.getElementById('sendEmailOtpBtn');
+    sendBtn.disabled = true;
+    sendBtn.textContent = 'Sending…';
+
+    const container = document.getElementById('emailOtpContainer');
+    container.style.display = 'block';
+
+    NeuArcOTP.sendEmailOtp(email, 'apply', name, function (err) {
+      sendBtn.disabled = false;
+      sendBtn.textContent = 'Resend';
+      if (err) {
+        container.innerHTML = '<p style="color:#f87171;font-size:0.8rem;">' + err + '</p>';
+        return;
+      }
+      NeuArcOTP.buildInlineEmailOTP(container, email, 'apply', name, function (token) {
+        emailToken = token;
+      });
+    });
+  });
 
   /* ── Phone OTP wiring ── */
   document.getElementById('sendOtpBtn').addEventListener('click', function () {
@@ -353,6 +388,12 @@
       return;
     }
 
+    if (!emailToken) {
+      errBox.textContent = 'Please verify your email address before submitting.';
+      errBox.style.display = 'block';
+      return;
+    }
+
     if (!phoneToken) {
       errBox.textContent = 'Please verify your phone number with OTP before submitting.';
       errBox.style.display = 'block';
@@ -363,7 +404,7 @@
     btn.innerHTML = 'Submitting&hellip;';
 
     try {
-      const payload = { full_name, email, phone, phone_token: phoneToken, track, experience, message };
+      const payload = { full_name, email, phone, phone_token: phoneToken, email_token: emailToken, track, experience, message };
       if (role)       payload.role       = role;
       if (linkedin)   payload.linkedin   = linkedin;
       if (agentCode)  payload.agent_code = agentCode;

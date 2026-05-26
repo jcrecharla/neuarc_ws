@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════════════════════════════
-   NeuArc Phone OTP Module
+   NeuArc OTP Module — Phone + Email
    Shared across: apply form, chatbot, WhatsApp widget
    ══════════════════════════════════════════════════════════════ */
 var NeuArcOTP = (function () {
@@ -127,5 +127,113 @@ var NeuArcOTP = (function () {
     }
   }
 
-  return { sendOtp: sendOtp, verifyOtp: verifyOtp, buildInlineOTP: buildInlineOTP, isValidPhone: isValidPhone, cleanPhone: cleanPhone };
+  /* sendEmailOtp(email, purpose, name, cb)
+     cb(null) on success
+     cb(errorMessage) on failure */
+  function sendEmailOtp(email, purpose, name, cb) {
+    fetch(API_BASE + '/api/public/otp/email/send', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ email: email.trim().toLowerCase(), purpose: purpose || 'apply', name: name || '' }),
+    })
+    .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+    .then(function (x) {
+      if (!x.ok) { cb(x.d.error || 'Failed to send verification email.'); return; }
+      cb(null);
+    })
+    .catch(function () { cb('Network error. Please check your connection.'); });
+  }
+
+  /* verifyEmailOtp(email, otp, purpose, cb)
+     cb(null, token) on success
+     cb(errorMessage) on failure */
+  function verifyEmailOtp(email, otp, purpose, cb) {
+    fetch(API_BASE + '/api/public/otp/email/verify', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ email: email.trim().toLowerCase(), otp: otp.trim(), purpose: purpose || 'apply' }),
+    })
+    .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+    .then(function (x) {
+      if (!x.ok) { cb(x.d.error || 'Verification failed.'); return; }
+      cb(null, x.d.token);
+    })
+    .catch(function () { cb('Network error. Please check your connection.'); });
+  }
+
+  /* buildInlineEmailOTP(container, email, purpose, name, onVerified)
+     Injects an inline email OTP UI into container element.
+     onVerified(token, email) called when user verifies. */
+  function buildInlineEmailOTP(container, email, purpose, name, onVerified) {
+    var norm = email.trim().toLowerCase();
+    var masked = norm.replace(/^(.{2})(.*)(@.*)$/, function (_, a, b, c) {
+      return a + b.replace(/./g, '*') + c;
+    });
+    container.innerHTML =
+      '<div class="otp-inline-wrap">' +
+        '<p class="otp-inline-label">Enter the 6-digit OTP sent to <strong>' + masked + '</strong></p>' +
+        '<div class="otp-inline-row">' +
+          '<input type="text" inputmode="numeric" maxlength="6" class="otp-inline-input" id="emailOtpInput" placeholder="_ _ _ _ _ _" autocomplete="one-time-code" />' +
+          '<button type="button" class="otp-inline-btn" id="emailOtpVerify">Verify</button>' +
+        '</div>' +
+        '<button type="button" class="otp-inline-resend" id="emailOtpResend" disabled>Resend OTP <span id="emailOtpCountdown">(60s)</span></button>' +
+        '<p class="otp-inline-err" id="emailOtpErr" style="display:none"></p>' +
+      '</div>';
+
+    var inputEl   = container.querySelector('#emailOtpInput');
+    var verifyBtn = container.querySelector('#emailOtpVerify');
+    var resendBtn = container.querySelector('#emailOtpResend');
+    var errEl     = container.querySelector('#emailOtpErr');
+    var countdown = container.querySelector('#emailOtpCountdown');
+
+    var secs = 60;
+    var timer = setInterval(function () {
+      secs--;
+      if (secs <= 0) { clearInterval(timer); resendBtn.disabled = false; countdown.textContent = ''; }
+      else countdown.textContent = '(' + secs + 's)';
+    }, 1000);
+
+    function showErr(msg) { errEl.textContent = msg; errEl.style.display = 'block'; }
+
+    verifyBtn.addEventListener('click', function () {
+      var otp = inputEl.value.replace(/\s/g, '');
+      if (otp.length !== 6) { showErr('Enter the 6-digit code.'); return; }
+      verifyBtn.disabled = true;
+      verifyBtn.textContent = '…';
+      verifyEmailOtp(email, otp, purpose, function (err, token) {
+        if (err) { showErr(err); verifyBtn.disabled = false; verifyBtn.textContent = 'Verify'; return; }
+        clearInterval(timer);
+        container.innerHTML =
+          '<div class="otp-verified"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Email verified</div>';
+        onVerified(token, email);
+      });
+    });
+
+    resendBtn.addEventListener('click', function () {
+      resendBtn.disabled = true;
+      errEl.style.display = 'none';
+      sendEmailOtp(email, purpose, name, function (err) {
+        if (err) { showErr(err); resendBtn.disabled = false; return; }
+        secs = 60; countdown.textContent = '(60s)';
+        timer = setInterval(function () {
+          secs--;
+          if (secs <= 0) { clearInterval(timer); resendBtn.disabled = false; countdown.textContent = ''; }
+          else countdown.textContent = '(' + secs + 's)';
+        }, 1000);
+      });
+    });
+
+    inputEl.focus();
+  }
+
+  return {
+    sendOtp:            sendOtp,
+    verifyOtp:          verifyOtp,
+    buildInlineOTP:     buildInlineOTP,
+    isValidPhone:       isValidPhone,
+    cleanPhone:         cleanPhone,
+    sendEmailOtp:       sendEmailOtp,
+    verifyEmailOtp:     verifyEmailOtp,
+    buildInlineEmailOTP: buildInlineEmailOTP,
+  };
 })();

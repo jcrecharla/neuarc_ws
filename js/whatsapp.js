@@ -116,7 +116,7 @@
     if (mode === 'form') {
       return '<div class="wa-otp-modal">' +
         '<p class="wa-otp-title">' + WA_SVG.replace('28', '20').replace('28', '20') + ' Quick details first</p>' +
-        '<p class="wa-otp-sub">We\'ll log your enquiry and connect you instantly on WhatsApp.</p>' +
+        '<p class="wa-otp-sub">We\'ll verify your number via SMS and connect you instantly on WhatsApp.</p>' +
         '<div class="wa-otp-field"><label>Your Name <span style="color:#f87171">*</span></label><input type="text" id="waName" placeholder="Full name" /></div>' +
         '<div class="wa-otp-field"><label>Mobile Number <span style="color:#f87171">*</span></label><input type="tel" id="waPhone" placeholder="10-digit mobile" maxlength="10" inputmode="numeric" /></div>' +
         '<div class="wa-otp-field"><label>Email <span style="color:var(--text-3);font-weight:400">(optional)</span></label><input type="email" id="waEmail" placeholder="you@example.com" /></div>' +
@@ -131,7 +131,7 @@
       var masked = capturedPhone.slice(0,2) + '****' + capturedPhone.slice(-2);
       return '<div class="wa-otp-modal">' +
         '<p class="wa-otp-title">Verify Your Phone</p>' +
-        '<p class="wa-otp-sub">Enter the 6-digit OTP sent to +91 ' + masked + '</p>' +
+        '<p class="wa-otp-sub">Enter the 6-digit OTP sent via SMS to +91 ' + masked + '</p>' +
         '<div class="wa-otp-field"><label>OTP</label><input type="text" id="waOtpCode" inputmode="numeric" maxlength="6" placeholder="_ _ _ _ _ _" autocomplete="one-time-code" style="letter-spacing:0.2em;font-family:monospace" /></div>' +
         '<p class="wa-otp-err" id="waOtpErr"></p>' +
         '<div class="wa-otp-btns">' +
