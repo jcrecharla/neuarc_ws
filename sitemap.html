@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NeuArc AI Academy — Complete platform sitemap. Explore every section of our public website, admin portal, and learner hub." />
+  <title>Site Map — NeuArc AI Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ── Sitemap page styles ── */
+    .sm-hero {
+      background: var(--bg-2);
+      border-bottom: 1px solid var(--border);
+      padding: 64px 0 48px;
+      text-align: center;
+    }
+    .sm-hero .sm-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--g-bg);
+      color: var(--g);
+      border: 1px solid var(--border-2);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .sm-hero h1 {
+      font-family: var(--font-head);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      color: var(--text-1);
+      margin-bottom: 14px;
+      line-height: 1.15;
+    }
+    .sm-hero p {
+      color: var(--text-3);
+      font-size: 1rem;
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.65;
+    }
+
+    /* ── Legend ── */
+    .sm-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      padding: 28px 0 0;
+    }
+    .sm-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-3);
+    }
+    .sm-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .sm-dot-pub    { background: var(--g); }
+    .sm-dot-admin  { background: #1D6FE8; }
+    .sm-dot-learn  { background: #8B5CF6; }
+    .sm-dot-api    { background: #D97706; }
+    .sm-dot-agent  { background: #0891B2; }
+
+    /* ── Main grid ── */
+    .sm-layout {
+      padding: 56px 0 80px;
+    }
+    .sm-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 28px;
+    }
+    @media (max-width: 900px) { .sm-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .sm-grid { grid-template-columns: 1fr; } }
+
+    /* ── Surface card ── */
+    .sm-surface {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .sm-surface:hover { box-shadow: var(--shadow); border-color: var(--border-2); }
+
+    .sm-surface-head {
+      padding: 20px 22px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .sm-surface-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    .sm-icon-pub   { background: rgba(45,122,80,0.1);  color: var(--g); }
+    .sm-icon-admin { background: rgba(29,111,232,0.1); color: #1D6FE8; }
+    .sm-icon-learn { background: rgba(139,92,246,0.1); color: #8B5CF6; }
+    .sm-icon-api   { background: rgba(217,119,6,0.1);  color: #D97706; }
+    .sm-icon-agent { background: rgba(8,145,178,0.1);  color: #0891B2; }
+
+    .sm-surface-title h3 {
+      font-family: var(--font-head);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-1);
+      margin: 0 0 3px;
+    }
+    .sm-surface-title a {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-4);
+      text-decoration: none;
+    }
+    .sm-surface-title a:hover { color: var(--g); }
+
+    /* ── Section groups inside card ── */
+    .sm-section {
+      padding: 14px 22px 0;
+    }
+    .sm-section:last-child { padding-bottom: 20px; }
+    .sm-section-label {
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-5);
+      margin-bottom: 10px;
+      padding-top: 6px;
+    }
+
+    /* ── Page links ── */
+    .sm-links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .sm-links li {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+    .sm-links .sm-arrow {
+      color: var(--text-5);
+      font-size: 0.7rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .sm-links a {
+      font-size: 0.85rem;
+      color: var(--text-2);
+      text-decoration: none;
+      line-height: 1.9;
+      transition: color 0.15s;
+    }
+    .sm-links a:hover { color: var(--g); }
+    .sm-links .sm-path {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-4);
+      margin-left: 4px;
+    }
+    .sm-badge {
+      display: inline-block;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 1px 7px;
+      border-radius: 10px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    .sm-badge-pub    { background: rgba(45,122,80,0.1);  color: var(--g); }
+    .sm-badge-auth   { background: rgba(29,111,232,0.1); color: #1D6FE8; }
+    .sm-badge-prem   { background: rgba(139,92,246,0.1); color: #8B5CF6; }
+    .sm-badge-admin  { background: rgba(220,38,38,0.08); color: #DC2626; }
+    .sm-badge-agent  { background: rgba(8,145,178,0.1);  color: #0891B2; }
+
+    .sm-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 14px 0 0;
+    }
+
+    /* ── Full-width API section ── */
+    .sm-full {
+      grid-column: 1 / -1;
+    }
+    .sm-api-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 0;
+      padding: 0 22px 20px;
+    }
+    .sm-api-group { padding: 14px 0; }
+    .sm-api-group + .sm-api-group { border-top: 1px solid var(--border); }
+    .sm-api-title {
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-5);
+      margin-bottom: 8px;
+    }
+    .sm-api-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .sm-api-list li {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 2px 0;
+    }
+    .sm-method {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .m-get    { background: rgba(45,122,80,0.12); color: var(--g-dark); }
+    .m-post   { background: rgba(29,111,232,0.12); color: #1D4ED8; }
+    .m-patch  { background: rgba(217,119,6,0.12); color: #92400E; }
+    .m-delete { background: rgba(220,38,38,0.1); color: #B91C1C; }
+    .m-all    { background: rgba(100,116,139,0.1); color: #475569; }
+    .sm-api-list .sm-route {
+      font-family: var(--font-mono);
+      font-size: 0.73rem;
+      color: var(--text-2);
+    }
+    .sm-api-list .sm-route-note {
+      font-size: 0.73rem;
+      color: var(--text-4);
+      margin-left: 2px;
+    }
+
+    /* ── CTA strip ── */
+    .sm-cta-strip {
+      background: var(--g-bg);
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+      text-align: center;
+    }
+    .sm-cta-strip h2 {
+      font-family: var(--font-head);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text-1);
+      margin-bottom: 10px;
+    }
+    .sm-cta-strip p {
+      color: var(--text-3);
+      font-size: 0.9rem;
+      margin-bottom: 24px;
+    }
+    .sm-cta-strip .btn-group {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .sm-btn-primary {
+      display: inline-block;
+      background: var(--g);
+      color: #fff;
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 11px 28px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .sm-btn-primary:hover { background: var(--g-dark); transform: translateY(-1px); }
+    .sm-btn-secondary {
+      display: inline-block;
+      background: transparent;
+      color: var(--g);
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 11px 28px;
+      border-radius: 10px;
+      border: 1.5px solid var(--border-2);
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .sm-btn-secondary:hover { border-color: var(--g); color: var(--g-dark); }
+  </style>
+</head>
+<body>
+
+<!-- ══ Navigation ══ -->
+<nav id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <img class="nav-logo-img" src="assets/neuarc-logo.png" alt="NeuArc AI Academy"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+      <span class="logo-css">NEUARC <span class="logo-css-sub">AI ACADEMY</span></span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="edge-framework.html">EDGE Framework</a></li>
+      <li><a href="tracks.html">Tracks</a></li>
+      <li><a href="career.html">Career Suite</a></li>
+      <li><a href="success-stories.html">Success Stories</a></li>
+      <li><a href="careers.html">Careers</a></li>
+      <li><a href="apply.html" class="nav-cta">Apply Now</a></li>
+      <li><button class="nav-login-btn" aria-label="Login to portal">Login</button></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ══ Hero ══ -->
+<div class="sm-hero">
+  <div class="container">
+    <div class="sm-tag">&#9783; Platform Map</div>
+    <h1>Everything in <span class="gradient-text">one view.</span></h1>
+    <p>Every page, portal section, and API endpoint that makes up the NeuArc platform — organised by surface and access level.</p>
+    <div class="sm-legend">
+      <div class="sm-legend-item"><span class="sm-dot sm-dot-pub"></span> Public website</div>
+      <div class="sm-legend-item"><span class="sm-dot sm-dot-admin"></span> Admin portal (staff)</div>
+      <div class="sm-legend-item"><span class="sm-dot sm-dot-learn"></span> Learner Hub</div>
+      <div class="sm-legend-item"><span class="sm-dot sm-dot-agent"></span> Agent portal</div>
+      <div class="sm-legend-item"><span class="sm-dot sm-dot-api"></span> Public API</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ Main Content ══ -->
+<section class="sm-layout">
+  <div class="container">
+    <div class="sm-grid">
+
+      <!-- ── PUBLIC WEBSITE ── -->
+      <div class="sm-surface">
+        <div class="sm-surface-head">
+          <div class="sm-surface-icon sm-icon-pub">&#127760;</div>
+          <div class="sm-surface-title">
+            <h3>Public Website</h3>
+            <a href="https://neuarcaiacademy.com" target="_blank" rel="noopener">neuarcaiacademy.com</a>
+          </div>
+        </div>
+
+        <div class="sm-section">
+          <div class="sm-section-label">Main Pages</div>
+          <ul class="sm-links">
+            <li><span class="sm-arrow">&#8594;</span><a href="index.html">Home<span class="sm-path">index.html</span></a></li>
+            <li><span class="sm-arrow">&#8594;</span><a href="edge-framework.html">EDGE Framework<span class="sm-path">edge-framework.html</span></a></li>
+            <li><span class="sm-arrow">&#8594;</span><a href="tracks.html">Tracks &amp; Portfolios<span class="sm-path">tracks.html</span></a></li>
+            <li><span class="sm-arrow">&#8594;</span><a href="career.html">AI Career Suite<span class="sm-path">career.html</span></a></li>
+            <li><span class="sm-arrow">&#8594;</span><a href="success-stories.html">Success Stories<span class="sm-path">success-stories.html</span></a></li>
+          </ul>
+        </div>
+
+        <hr class="sm-divider" />
+
+        <div class="sm-section">
+          <div class="sm-section-label">Conversion Pages</div>
+          <ul class="sm-links">
+            <li><span class="sm-arrow">&#8594;</span><a href="apply.html">Apply Now<span class="sm-path">apply.html</span></a></li>
+            <li><span class="sm-arrow">&#8594;</span><a href="thankyou.html">Thank You<span class="sm-path">thankyou.html</span></a></li>
+          </ul>
+        </div>
+
+        <hr class="sm-divider" />
+
+        <div class="sm-section">
+          <div class="sm-section-label">Partner &amp; Careers</div>
+          <ul class="sm-links">
+            <li><span class="sm-arrow">&#8594;</span><a href="agents.html">Agent Programme<span class="sm-path">agents.html</span></a></li>
+            <li><span class="sm-arrow">&#8594;</span><a href="careers.html">Careers Network<span class="sm-path">careers.html</span></a></li>
+            <li><span class="sm-arrow">&#8594;</span><a href="sitemap.html">Site Map<span class="sm-path">sitemap.html</span></a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ── ADMIN PORTAL (STAFF) ── -->
+      <div class="sm-surface">
+        <div class="sm-surface-head">
+          <div class="sm-surface-icon sm-icon-admin">&#9881;</div>
+          <div class="sm-surface-title">
+            <h3>Admin Portal <span class="sm-badge sm-badge-auth">Login required</span></h3>
+            <a href="https://admin.neuarcaiacademy.com" target="_blank" rel="noopener">admin.neuarcaiacademy.com</a>
+          </div>
+        </div>
+
+        <div class="sm-section">
+          <div class="sm-section-label">CRM</div>
+          <ul class="sm-links">
+            <li><span class="sm-arrow">&#8594;</span><a href="https://admin.neuarcaiacademy.com/dashboard" target="_blank" rel="noopener">Dashboard<span class="sm-path">/dashboard</span></a></li>
+            <li><span class="sm-arrow">&#8594;</span><a href="https://admin.neuarcaiacademy.com/leads" target="_blank" rel="noopener">Leads Pipeline<span class="sm-path">/leads</span></a></li>
+            <li><span class="sm-arrow">&#8594;</span><a href="https://admin.neuarcaiacademy.com/fields" target="_blank" rel="noopener">Farm Fields<span class="sm-path">/fields</span></a></li>
+          </ul>
+        </div>
+
+        <hr class="sm-divider" />
+
+        <div class="sm-section">
+          <div class="sm-section-label">Administration <span class="sm-badge sm-badge-admin">SYSTEM_ADMIN</span></div>
+          <ul class="sm-links">
+            <li><span class="sm-arrow">&#8594;</span><a href="https://admin.neuarcaiacademy.com/users" target="_blank" rel="noopener">Users<span class="sm-path">/users</span></a></li>
+            <li><span class="sm-arrow">&#8594;</span><a href="https://admin.neuarcaiacademy.com/users/pending" target="_blank" rel="noopener">Pending Approvals<span class="sm-path">/users/pending</span></a></li>
+            <li><span class="sm-arrow">&#8594;</span><a href="https://admin.neuarcaiacademy.com/audit" target="_blank" rel="noopener">Audit Logs<span class="sm-path">/audit</span></a></li>
+          </ul>
+        </div>
+
+        <hr class="sm-divider" />
+
+        <div class="sm-section">
+          <div class="sm-section-label">Content Management</div>
+          <ul class="sm-links">
+            <li><span class="sm-arrow">&#8594;</span><a href="https://admin.neuarcaiacademy.com/cms/tracks" target="_blank" rel="noopener">Tracks<span class="sm-path">/cms/tracks</span></a></li>
+            <li><span class="sm-arrow">&#8594;</span><a href="https://admin.neuarcaiacademy.com/cms/curriculum" target="_blank" rel="noopener">Curriculum<span class="sm-path">/cms/curriculum</span></a></li>
+            <li><span class="sm-arrow">&#8594;</span><a href="https://admin.neuarcaiacademy.com/cms/interview-questions" target="_blank" rel="noopener">Interview Questions<span class="sm-path">/cms/interview-questions</span></a></li>
+            <li><span class="sm-arrow">&#8594;</span><a href="https://admin.neuarcaiacademy.com/cms/topics" target="_blank" rel="noopener">Topic MCQs<span class="sm-path">/cms/topics</span></a></li>
+            <li><span class="sm-arrow">&#8594;</span><a href="https://admin.neuarcaiacademy.com/cms/testimonials" target="_blank" rel="noopener">Testimonials<span class="sm-path">/cms/testimonials</span></a></li>
+            <li><span class="sm-arrow">&#8594;</span><a href="https://admin.neuarcaiacademy.com/cms/payments" target="_blank" rel="noopener">Payments<span class="sm-path">/cms/payments</span></a></li>
+            <li><span class="sm-arrow">&#8594;</span><a href="https://admin.neuarcaiacademy.com/cms/job-openings" target="_blank" rel="noopener">Job Openings<span class="sm-path">/cms/job-openings</span></a></li>
+          </ul>
+        </div>
+
+        <hr class="sm-divider" />
+
+        <div class="sm-section">
+          <div class="sm-section-label">Referral Network <span class="sm-badge sm-badge-admin">SYSTEM_ADMIN</span></div>
+          <ul class="sm-links">
+            <li><span class="sm-arrow">&#8594;</span><a href="https://admin.neuarcaiacademy.com/agents" target="_blank" rel="noopener">Agents<span class="sm-path">/agents</span></a></li>
+            <li><span class="sm-arrow">&#8594;</span><a href="https://admin.neuarcaiacademy.com/referrals" target="_blank" rel="noopener">Referrals<span class="sm-path">/referrals</span></a></li>
+          </ul>
+        </div>
+
+        <hr class="sm-divider" />
+
+        <div class="sm-section">
+          <div class="sm-section-label">Workspace</div>
+          <ul class="sm-links">
+            <li><span class="sm-arrow">&#8594;</span><a href="https://admin.neuarcaiacademy.com/tasks" target="_blank" rel="noopener">Task Board<span class="sm-path">/tasks</span></a></li>
+            <li><span class="sm-arrow">&#8594;</span><a href="https://admin.neuarcaiacademy.com/notes" target="_blank" rel="noopener">Notes<span class="sm-path">/notes</span></a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ── LEARNER HUB + STANDALONE ── -->
+      <div class="sm-surface">
+        <div class="sm-surface-head">
+          <div class="sm-surface-icon sm-icon-learn">&#9670;</div>
+          <div class="sm-surface-title">
+            <h3>Learner Hub <span class="sm-badge sm-badge-auth">Login required</span></h3>
+            <a href="https://admin.neuarcaiacademy.com/learner/dashboard" target="_blank" rel="noopener">admin.neuarcaiacademy.com/learner</a>
+          </div>
+        </div>
+
+        <div class="sm-section">
+          <div class="sm-section-label">Core Pages</div>
+          <ul class="sm-links">
+            <li><span class="sm-arrow">&#8594;</span><a href="https://admin.neuarcaiacademy.com/learner/dashboard" target="_blank" rel="noopener">Dashboard<span class="sm-path">/learner/dashboard</span></a></li>
+            <li><span class="sm-arrow">&#8594;</span><a href="https://admin.neuarcaiacademy.com/learner/track" target="_blank" rel="noopener">My Track — 30-Day Curriculum<span class="sm-path">/learner/track</span></a></li>
+          </ul>
+        </div>
+
+        <hr class="sm-divider" />
+
+        <div class="sm-section">
+          <div class="sm-section-label">AI Tools <span class="sm-badge sm-badge-prem">Premium only</span></div>
+          <ul class="sm-links">
+            <li><span class="sm-arrow">&#8594;</span><a href="https://admin.neuarcaiacademy.com/learner/assessor" target="_blank" rel="noopener">AI Resume Assessor<span class="sm-path">/learner/assessor</span></a></li>
+            <li><span class="sm-arrow">&#8594;</span><a href="https://admin.neuarcaiacademy.com/learner/trainer" target="_blank" rel="noopener">Interview Trainer<span class="sm-path">/learner/trainer</span></a></li>
+          </ul>
+        </div>
+
+        <hr class="sm-divider" />
+
+        <div class="sm-section">
+          <div class="sm-section-label">Standalone Learner Portal</div>
+          <a href="https://learner.neuarcaiacademy.com" target="_blank" rel="noopener" style="font-family:var(--font-mono);font-size:0.72rem;color:var(--text-4);display:block;margin-bottom:10px;">learner.neuarcaiacademy.com</a>
+          <ul class="sm-links">
+            <li><span class="sm-arrow">&#8594;</span><a href="https://learner.neuarcaiacademy.com/dashboard" target="_blank" rel="noopener">Dashboard<span class="sm-path">/dashboard</span></a></li>
+            <li><span class="sm-arrow">&#8594;</span><a href="https://learner.neuarcaiacademy.com/assessor" target="_blank" rel="noopener">AI Assessor <span class="sm-badge sm-badge-prem">Premium</span></a></li>
+            <li><span class="sm-arrow">&#8594;</span><a href="https://learner.neuarcaiacademy.com/trainer" target="_blank" rel="noopener">Interview Trainer <span class="sm-badge sm-badge-prem">Premium</span></a></li>
+            <li><span class="sm-arrow">&#8594;</span><a href="https://learner.neuarcaiacademy.com/tracks" target="_blank" rel="noopener">Tracks<span class="sm-path">/tracks</span></a></li>
+            <li><span class="sm-arrow">&#8594;</span><a href="https://learner.neuarcaiacademy.com/jobs" target="_blank" rel="noopener">Job Board<span class="sm-path">/jobs</span></a></li>
+            <li><span class="sm-arrow">&#8594;</span><a href="https://learner.neuarcaiacademy.com/stories" target="_blank" rel="noopener">Success Stories<span class="sm-path">/stories</span></a></li>
+            <li><span class="sm-arrow">&#8594;</span><a href="https://learner.neuarcaiacademy.com/profile" target="_blank" rel="noopener">My Profile<span class="sm-path">/profile</span></a></li>
+            <li><span class="sm-arrow">&#8594;</span><a href="https://learner.neuarcaiacademy.com/learners" target="_blank" rel="noopener">Learners List <span class="sm-badge sm-badge-auth">Staff</span></a></li>
+          </ul>
+        </div>
+
+        <hr class="sm-divider" />
+
+        <div class="sm-section">
+          <div class="sm-section-label">Agent Portal <span class="sm-badge sm-badge-agent">Agent role</span></div>
+          <ul class="sm-links">
+            <li><span class="sm-arrow">&#8594;</span><a href="https://admin.neuarcaiacademy.com/agent/referrals" target="_blank" rel="noopener">My Referrals<span class="sm-path">/agent/referrals</span></a></li>
+            <li><span class="sm-arrow">&#8594;</span><a href="https://admin.neuarcaiacademy.com/agent/openings" target="_blank" rel="noopener">Job Openings<span class="sm-path">/agent/openings</span></a></li>
+            <li><span class="sm-arrow">&#8594;</span><a href="https://admin.neuarcaiacademy.com/agent/refer" target="_blank" rel="noopener">Submit Referral<span class="sm-path">/agent/refer</span></a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ── PUBLIC API — full width ── -->
+      <div class="sm-surface sm-full">
+        <div class="sm-surface-head">
+          <div class="sm-surface-icon sm-icon-api">&#11835;</div>
+          <div class="sm-surface-title">
+            <h3>Public API Surface <span class="sm-badge sm-badge-pub">CORS gated</span></h3>
+            <a href="https://admin.neuarcaiacademy.com/api/public" target="_blank" rel="noopener">admin.neuarcaiacademy.com/api/public/&hellip;</a>
+          </div>
+        </div>
+        <div class="sm-api-grid">
+          <div class="sm-api-group">
+            <div class="sm-api-title">Lead Capture</div>
+            <ul class="sm-api-list">
+              <li><span class="sm-method m-post">POST</span><span class="sm-route">/api/public/apply</span></li>
+              <li><span class="sm-method m-post">POST</span><span class="sm-route">/api/public/wa-lead</span></li>
+              <li><span class="sm-method m-post">POST</span><span class="sm-route">/api/ingest</span><span class="sm-route-note">(secret)</span></li>
+            </ul>
+          </div>
+          <div class="sm-api-group">
+            <div class="sm-api-title">OTP Flows</div>
+            <ul class="sm-api-list">
+              <li><span class="sm-method m-post">POST</span><span class="sm-route">/api/public/otp/send</span></li>
+              <li><span class="sm-method m-post">POST</span><span class="sm-route">/api/public/otp/verify</span></li>
+              <li><span class="sm-method m-post">POST</span><span class="sm-route">/api/public/otp/email/send</span></li>
+              <li><span class="sm-method m-post">POST</span><span class="sm-route">/api/public/otp/email/verify</span></li>
+            </ul>
+          </div>
+          <div class="sm-api-group">
+            <div class="sm-api-title">CMS — Read-only</div>
+            <ul class="sm-api-list">
+              <li><span class="sm-method m-get">GET</span><span class="sm-route">/api/public/tracks</span></li>
+              <li><span class="sm-method m-get">GET</span><span class="sm-route">/api/public/testimonials</span></li>
+              <li><span class="sm-method m-get">GET</span><span class="sm-route">/api/public/careers/openings</span></li>
+              <li><span class="sm-method m-post">POST</span><span class="sm-route">/api/public/careers/refer</span></li>
+            </ul>
+          </div>
+          <div class="sm-api-group">
+            <div class="sm-api-title">Agent Registration</div>
+            <ul class="sm-api-list">
+              <li><span class="sm-method m-post">POST</span><span class="sm-route">/api/public/agents/register</span></li>
+              <li><span class="sm-method m-post">POST</span><span class="sm-route">/api/public/agents/verify-otp</span></li>
+              <li><span class="sm-method m-post">POST</span><span class="sm-route">/api/public/agents/set-password</span></li>
+              <li><span class="sm-method m-get">GET</span><span class="sm-route">/api/public/agents/check-code</span></li>
+            </ul>
+          </div>
+          <div class="sm-api-group">
+            <div class="sm-api-title">Auth</div>
+            <ul class="sm-api-list">
+              <li><span class="sm-method m-post">POST</span><span class="sm-route">/api/auth/forgot-password</span></li>
+              <li><span class="sm-method m-post">POST</span><span class="sm-route">/api/auth/reset-password</span></li>
+              <li><span class="sm-method m-all">ALL</span><span class="sm-route">/api/auth/[...nextauth]</span></li>
+            </ul>
+          </div>
+          <div class="sm-api-group">
+            <div class="sm-api-title">Learner (authenticated)</div>
+            <ul class="sm-api-list">
+              <li><span class="sm-method m-get">GET</span><span class="sm-route">/api/learner/track</span></li>
+              <li><span class="sm-method m-post">POST</span><span class="sm-route">/api/learner/track/progress</span></li>
+              <li><span class="sm-method m-post">POST</span><span class="sm-route">/api/learner/assess</span></li>
+              <li><span class="sm-method m-get">GET</span><span class="sm-route">/api/learner/interview/questions</span></li>
+              <li><span class="sm-method m-post">POST</span><span class="sm-route">/api/learner/interview/session</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /sm-grid -->
+  </div><!-- /container -->
+</section>
+
+<!-- ══ CTA Strip ══ -->
+<div class="sm-cta-strip">
+  <div class="container">
+    <h2>Ready to start your journey?</h2>
+    <p>Apply now and get assigned to a track within 48 hours of adviser review.</p>
+    <div class="btn-group">
+      <a href="apply.html" class="sm-btn-primary">Apply Now &rarr;</a>
+      <a href="tracks.html" class="sm-btn-secondary">Browse Tracks</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══ Footer ══ -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="assets/neuarc-logo.png" alt="NeuArc AI Academy"
+             onerror="this.style.display='none'" />
+        <p>NeuArc AI Academy transforms developers with foundational knowledge into elite, AI-leveraged engineers through real-time, production-grade delivery loops.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Academy</h5>
+        <a href="edge-framework.html">EDGE Framework</a>
+        <a href="tracks.html">Tracks &amp; Portfolios</a>
+        <a href="career.html">Career Suite</a>
+        <a href="apply.html">Apply Now</a>
+      </div>
+      <div class="footer-col">
+        <h5>Partners</h5>
+        <a href="agents.html">Referral Agent Programme</a>
+        <a href="careers.html">Careers Network</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <a href="tel:+919071119371">+91 90711 19371</a>
+        <a href="tel:+919071119372">+91 90711 19372</a>
+        <a href="mailto:info@neuarcaiacademy.com">info@neuarcaiacademy.com</a>
+        <span style="font-size:0.82rem;line-height:1.5;color:var(--text-2);display:block;margin-top:8px;">EVR Towers, Ground Floor, #32, 3rd Cross Rd, 3rd Block,<br>Ayyappa Nagar, Krishnarajapuram,<br>Bengaluru, Karnataka &mdash; 560036</span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 NeuArc AI Academy. All rights reserved.</span>
+      <span style="margin-left:16px;"><a href="sitemap.html" style="color:inherit;text-decoration:none;opacity:0.7;">Site Map</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/login-popup.js"></script>
+</body>
+</html>
